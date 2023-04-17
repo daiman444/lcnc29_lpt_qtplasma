@@ -43,6 +43,9 @@ class HandlerClass:
         self.hal = halcomp
         self.w = widgets
         self.PATHS = paths
+        self.stat = linuxcnc.stat()
+        self.cmd = linuxcnc.command()
+
 
 
     ##########################################
@@ -54,10 +57,34 @@ class HandlerClass:
     # the HAL pins are built but HAL is not set ready
     def initialized__(self):
         KEYBIND.add_call('Key_F12','on_keycall_F12')
+        # self.w.label_2.setText('{}'.format(linuxcnc.STATE_ESTOP))
+        # self.w.label_3.setText('{}'.format(linuxcnc.STATE_ON))
+        self.w.sw_home_workspace.setCurrentIndex(0)
         self.w.pb_estop.setCheckable(True)
         self.w.pb_estop.setChecked(True)
+        self.w.pb_estop.toggled.connect(self.estop_state)
         self.w.pb_power.setCheckable(True)
         self.w.pb_power.setChecked(False)
+        self.w.pb_power.setEnabled(False)
+        self.w.pb_power.toggled.connect(self.power_state)
+
+
+    def estop_state(self, state):
+        if isinstance(state, bool):
+            if state:
+                self.cmd.state(linuxcnc.STATE_ESTOP)
+                self.w.pb_power.setEnabled(False)
+                self.w.pb_power.setChecked(False)
+            else:
+                self.cmd.state(linuxcnc.STATE_ESTOP_RESET)
+                self.w.pb_power.setEnabled(True)
+
+    def power_state(self, state):
+        if isinstance(state, bool):
+            if state:
+                self.cmd.state(linuxcnc.STATE_ON)
+            else:
+                self.cmd.state(linuxcnc.STATE_OFF)
 
 
     def processed_key_event__(self,receiver,event,is_pressed,key,code,shift,cntrl):
