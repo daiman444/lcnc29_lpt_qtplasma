@@ -13,6 +13,7 @@ from qtvcp.widgets.stylesheeteditor import  StyleSheetEditor as SSE
 from qtvcp.lib.keybindings import Keylookup
 from qtvcp.core import Status, Action
 
+
 # Set up logging
 from qtvcp import logger
 LOG = logger.getLogger(__name__)
@@ -28,6 +29,7 @@ KEYBIND = Keylookup()
 STATUS = Status()
 ACTION = Action()
 STYLEEDITOR = SSE()
+INIPATH = os.environ.get('INI_FILE_NAME', '/dev/null')
 ###################################
 # **** HANDLER CLASS SECTION **** #
 ###################################
@@ -45,8 +47,7 @@ class HandlerClass:
         self.PATHS = paths
         self.stat = linuxcnc.stat()
         self.cmd = linuxcnc.command()
-
-
+        self.inifile = linuxcnc.ini(INIPATH)
 
     ##########################################
     # Special Functions called from QTSCREEN
@@ -57,19 +58,47 @@ class HandlerClass:
     # the HAL pins are built but HAL is not set ready
     def initialized__(self):
         KEYBIND.add_call('Key_F12','on_keycall_F12')
-        # self.w.label_2.setText('{}'.format(linuxcnc.STATE_ESTOP))
-        # self.w.label_3.setText('{}'.format(linuxcnc.STATE_ON))
-        self.w.sw_home_workspace.setCurrentIndex(0)
+
+        STATUS.connect('state-estop', lambda w: self.estop_state(True))
+        STATUS.connect('motion-mode-changed', self.motion_mode)
+
         self.w.pb_estop.setCheckable(True)
         self.w.pb_estop.setChecked(True)
-        self.w.pb_estop.toggled.connect(self.estop_state)
+        self.w.pb_estop.toggled.connect(self.estop_change)
         self.w.pb_power.setCheckable(True)
         self.w.pb_power.setChecked(False)
         self.w.pb_power.setEnabled(False)
         self.w.pb_power.toggled.connect(self.power_state)
+        self.w.pb_home_all.setCheckable(True)
+        self.w.pb_home_all.setChecked(False)
+        self.w.pb_home_all.setEnabled(False)
+        self.w.pb_home_all.toggled.connect(self.homing_state)
+
+        self.joints = self.inifile.find('KINS', 'JOINTS')
+        self.w.label_2.setText('{}'.format(self.joints))
+
+
 
 
     def estop_state(self, state):
+        if isinstance(state, bool):
+            if state:
+                self.w.pb_estop.setChecked(True)
+                self.w.pb_power.setChecked(False)
+                self.w.pb_power.setEnabled(False)
+                self.w.pb_home_all.setEnabled(False)
+
+    def motion_mode(self, obj, mode):
+        for i in ('lbl_axis_0', 'lbl_axis_1', 'lbl_axis_2', 'lbl_axis_3', )
+            if mode == 1:
+                # TODO !!!
+
+
+
+        self.w.label_5.setText('{}'.format(mode))
+
+
+    def estop_change(self, state):
         if isinstance(state, bool):
             if state:
                 self.cmd.state(linuxcnc.STATE_ESTOP)
@@ -83,8 +112,29 @@ class HandlerClass:
         if isinstance(state, bool):
             if state:
                 self.cmd.state(linuxcnc.STATE_ON)
+                self.w.pb_home_all.setEnabled(True)
             else:
                 self.cmd.state(linuxcnc.STATE_OFF)
+
+    def homing_state(self, state):
+        STATUS.stat.poll()
+        if isinstance(state, bool) and linuxcnc.MODE_MANUAL:
+            if state:
+                self.cmd.teleop_enable(False)
+                ACTION.SET_MACHINE_HOMING(-1)
+                self.cmd.wait_complete()
+                self.cmd.teleop_enable(True)
+                self.cmd.wait_complete()
+            else:
+                self.cmd.teleop_enable(False)
+                ACTION.SET_MACHINE_UNHOMED(-1)
+                self.cmd.wait_complete()
+        self.stat.poll()
+
+
+
+
+
 
 
     def processed_key_event__(self,receiver,event,is_pressed,key,code,shift,cntrl):
