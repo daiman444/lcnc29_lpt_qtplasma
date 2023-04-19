@@ -55,7 +55,7 @@ class HandlerClass:
         self.coord_push_buttons = ('pb_jog_0_plus', 'pb_jog_1_plus', 'pb_jog_2_plus', 'pb_jog_3_plus',
                                    'pb_jog_0_minus', 'pb_jog_1_minus', 'pb_jog_2_minus', 'pb_jog_3_minus',
                                    )
-        #self.axes_mask = {}
+        self.counter = 0
 
 
 
@@ -83,8 +83,12 @@ class HandlerClass:
 
         self.w.label_2.setText('{}'.format(INFO.GET_NAME_FROM_JOINT.get(1)))
 
+
+
+        STATUS.connect('periodic', self.some_def)
         STATUS.connect('state-estop', lambda w: self.estop_state(True))
         STATUS.connect('motion-mode-changed', self.motion_mode)
+        STATUS.connect('current-position', self.current_pos)
 
     def estop_state(self, state):
         if isinstance(state, bool):
@@ -128,7 +132,7 @@ class HandlerClass:
         self.stat.poll()
 
     def motion_mode(self, obj, mode):
-        self.w.label_3.setText('{}, {}'.format(mode, self.coordinates ))
+        self.w.label_3.setText('{}'.format(mode))
         if mode == 1:
             self.show_joints()
         if mode == 3:
@@ -161,6 +165,16 @@ class HandlerClass:
                 self.w['dro_label_%s' % i].show()
                 self.w['pb_jog_%s_plus' % i].show()
                 self.w['pb_jog_%s_minus' % i].show()
+
+    def some_def(self, w, data=None):
+        self.counter += 1
+        self.stat.poll()
+        #self.w.label_4.setText('{}, {}'.format(data, self.counter))
+        self.w.lbl_vel_val.setText('%s' % self.stat.velocity)
+
+    def current_pos(self, w, pos1, pos2, pos3, pos4):
+        self.w.label_4.setText('{}'.format(pos1))
+
 
     def processed_key_event__(self,receiver,event,is_pressed,key,code,shift,cntrl):
         # when typing in MDI, we don't want keybinding to call functions
