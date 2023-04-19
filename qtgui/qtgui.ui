@@ -363,7 +363,7 @@
               </widget>
              </item>
              <item row="2" column="3">
-              <widget class="QPushButton" name="pb_jog_y2_minus">
+              <widget class="QPushButton" name="pb_jog_2_minus">
                <property name="minimumSize">
                 <size>
                  <width>0</width>
@@ -388,28 +388,8 @@
                </property>
               </widget>
              </item>
-             <item row="0" column="1">
-              <widget class="QLabel" name="lbl_axis_0_coord">
-               <property name="text">
-                <string>x_coord</string>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-               </property>
-              </widget>
-             </item>
-             <item row="2" column="1">
-              <widget class="QLabel" name="lbl_axis_2_coord">
-               <property name="text">
-                <string>y2_coord</string>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-               </property>
-              </widget>
-             </item>
              <item row="1" column="2">
-              <widget class="QPushButton" name="pb_jog_y1_plus">
+              <widget class="QPushButton" name="pb_jog_1_plus">
                <property name="minimumSize">
                 <size>
                  <width>0</width>
@@ -435,7 +415,7 @@
               </widget>
              </item>
              <item row="0" column="2">
-              <widget class="QPushButton" name="pb_jog_x_plus">
+              <widget class="QPushButton" name="pb_jog_0_plus">
                <property name="minimumSize">
                 <size>
                  <width>0</width>
@@ -493,16 +473,6 @@
                </property>
               </widget>
              </item>
-             <item row="3" column="1">
-              <widget class="QLabel" name="lbl_axis_3_coord">
-               <property name="text">
-                <string>z_coord</string>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-               </property>
-              </widget>
-             </item>
              <item row="2" column="0">
               <widget class="QLabel" name="lbl_axis_2">
                <property name="maximumSize">
@@ -524,7 +494,7 @@
               </widget>
              </item>
              <item row="3" column="2">
-              <widget class="QPushButton" name="pb_jog_z_plus">
+              <widget class="QPushButton" name="pb_jog_3_plus">
                <property name="minimumSize">
                 <size>
                  <width>0</width>
@@ -551,6 +521,9 @@
              </item>
              <item row="0" column="0">
               <widget class="QLabel" name="lbl_axis_0">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
                <property name="maximumSize">
                 <size>
                  <width>50</width>
@@ -573,7 +546,7 @@
               </widget>
              </item>
              <item row="3" column="3">
-              <widget class="QPushButton" name="pb_jog_z_minus">
+              <widget class="QPushButton" name="pb_jog_3_minus">
                <property name="minimumSize">
                 <size>
                  <width>0</width>
@@ -599,7 +572,7 @@
               </widget>
              </item>
              <item row="0" column="3">
-              <widget class="QPushButton" name="pb_jog_x_minus">
+              <widget class="QPushButton" name="pb_jog_0_minus">
                <property name="minimumSize">
                 <size>
                  <width>0</width>
@@ -644,7 +617,7 @@
               </widget>
              </item>
              <item row="1" column="3">
-              <widget class="QPushButton" name="pb_jog_y1_minus">
+              <widget class="QPushButton" name="pb_jog_1_minus">
                <property name="minimumSize">
                 <size>
                  <width>0</width>
@@ -680,7 +653,7 @@
               </widget>
              </item>
              <item row="2" column="2">
-              <widget class="QPushButton" name="pb_jog_y2_plus">
+              <widget class="QPushButton" name="pb_jog_2_plus">
                <property name="minimumSize">
                 <size>
                  <width>0</width>
@@ -705,13 +678,52 @@
                </property>
               </widget>
              </item>
-             <item row="1" column="1">
-              <widget class="QLabel" name="lbl_axis_1_coord">
-               <property name="text">
-                <string>y1_coord</string>
-               </property>
+             <item row="0" column="1">
+              <widget class="DROLabel" name="dro_label_0">
                <property name="alignment">
                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+               </property>
+               <property name="metric_template" stdset="0">
+                <string>%6.2f</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="DROLabel" name="dro_label_1">
+               <property name="alignment">
+                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+               </property>
+               <property name="Qjoint_number" stdset="0">
+                <number>1</number>
+               </property>
+               <property name="metric_template" stdset="0">
+                <string>%6.2f</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="DROLabel" name="dro_label_2">
+               <property name="alignment">
+                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+               </property>
+               <property name="Qjoint_number" stdset="0">
+                <number>2</number>
+               </property>
+               <property name="metric_template" stdset="0">
+                <string>%6.2f</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="1">
+              <widget class="DROLabel" name="dro_label_3">
+               <property name="alignment">
+                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+               </property>
+               <property name="Qjoint_number" stdset="0">
+                <number>3</number>
+               </property>
+               <property name="metric_template" stdset="0">
+                <string>%6.2f</string>
                </property>
               </widget>
              </item>
@@ -2334,6 +2346,12 @@
    <container>1</container>
   </customwidget>
   <customwidget>
+   <class>DROLabel</class>
+   <extends>QLabel</extends>
+   <header>qtvcp.widgets.dro_widget</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
    <class>MDILine</class>
    <extends>QLineEdit</extends>
    <header>qtvcp.widgets.mdi_line</header>
@@ -2381,8 +2399,8 @@
    <slot>close()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1350</x>
-     <y>55</y>
+     <x>1358</x>
+     <y>42</y>
     </hint>
     <hint type="destinationlabel">
      <x>682</x>
@@ -2397,8 +2415,8 @@
    <slot>showMinimized()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1255</x>
-     <y>64</y>
+     <x>1105</x>
+     <y>42</y>
     </hint>
     <hint type="destinationlabel">
      <x>682</x>
@@ -2413,12 +2431,12 @@
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>623</x>
-     <y>530</y>
+     <x>769</x>
+     <y>345</y>
     </hint>
     <hint type="destinationlabel">
-     <x>289</x>
-     <y>722</y>
+     <x>290</x>
+     <y>46</y>
     </hint>
    </hints>
   </connection>

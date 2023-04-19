@@ -11,7 +11,7 @@ from qtvcp.widgets.mdi_line import MDILine as MDI_WIDGET
 from qtvcp.widgets.gcode_editor import GcodeEditor as GCODE
 from qtvcp.widgets.stylesheeteditor import  StyleSheetEditor as SSE
 from qtvcp.lib.keybindings import Keylookup
-from qtvcp.core import Status, Action
+from qtvcp.core import Status, Action, Info
 
 
 # Set up logging
@@ -28,6 +28,7 @@ LOG = logger.getLogger(__name__)
 KEYBIND = Keylookup()
 STATUS = Status()
 ACTION = Action()
+INFO = Info()
 STYLEEDITOR = SSE()
 INIPATH = os.environ.get('INI_FILE_NAME', '/dev/null')
 ###################################
@@ -48,6 +49,14 @@ class HandlerClass:
         self.stat = linuxcnc.stat()
         self.cmd = linuxcnc.command()
         self.inifile = linuxcnc.ini(INIPATH)
+        self.coordinates = self.inifile.find('TRAJ', 'COORDINATES')
+        self.coord_labels = ('lbl_axis_0', 'lbl_axis_1', 'lbl_axis_2', 'lbl_axis_3',)
+        self.coord_dros = ('dro_label_0', 'dro_label_1', 'dro_label_2', 'dro_label_3', )
+        self.coord_push_buttons = ('pb_jog_0_plus', 'pb_jog_1_plus', 'pb_jog_2_plus', 'pb_jog_3_plus',
+                                  'pb_jog_0_minus', 'pb_jog_1_minus', 'pb_jog_2_minus', 'pb_jog_3_minus',
+                                  )
+
+
 
     ##########################################
     # Special Functions called from QTSCREEN
@@ -74,10 +83,15 @@ class HandlerClass:
         self.w.pb_home_all.setEnabled(False)
         self.w.pb_home_all.toggled.connect(self.homing_state)
 
-        self.joints = self.inifile.find('KINS', 'JOINTS')
-        self.w.label_2.setText('{}'.format(self.joints))
+        for i in range(0, len(self.coord_labels)):
+            self.w['lbl_axis_%s'%i].close()
+            self.w['dro_label_%s'%i].close()
+            self.w['pb_jog_%s_plus'%i].close()
+            self.w['pb_jog_%s_minus'%i].close()
 
 
+
+        self.w.label_2.setText('{}'.format(INFO.GET_NAME_FROM_JOINT.get(1)))
 
 
     def estop_state(self, state):
@@ -87,16 +101,6 @@ class HandlerClass:
                 self.w.pb_power.setChecked(False)
                 self.w.pb_power.setEnabled(False)
                 self.w.pb_home_all.setEnabled(False)
-
-    def motion_mode(self, obj, mode):
-        for i in ('lbl_axis_0', 'lbl_axis_1', 'lbl_axis_2', 'lbl_axis_3', )
-            if mode == 1:
-                # TODO !!!
-
-
-
-        self.w.label_5.setText('{}'.format(mode))
-
 
     def estop_change(self, state):
         if isinstance(state, bool):
@@ -131,11 +135,11 @@ class HandlerClass:
                 self.cmd.wait_complete()
         self.stat.poll()
 
-
-
-
-
-
+    def motion_mode(self, obj, mode):
+        #self.w.label_2.setText('{}'.format(mode))
+        if mode == 1:
+            for i in self.coordinates:
+                pass
 
     def processed_key_event__(self,receiver,event,is_pressed,key,code,shift,cntrl):
         # when typing in MDI, we don't want keybinding to call functions
