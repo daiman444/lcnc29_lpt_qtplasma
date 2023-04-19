@@ -53,8 +53,9 @@ class HandlerClass:
         self.coord_labels = ('lbl_axis_0', 'lbl_axis_1', 'lbl_axis_2', 'lbl_axis_3',)
         self.coord_dros = ('dro_label_0', 'dro_label_1', 'dro_label_2', 'dro_label_3', )
         self.coord_push_buttons = ('pb_jog_0_plus', 'pb_jog_1_plus', 'pb_jog_2_plus', 'pb_jog_3_plus',
-                                  'pb_jog_0_minus', 'pb_jog_1_minus', 'pb_jog_2_minus', 'pb_jog_3_minus',
-                                  )
+                                   'pb_jog_0_minus', 'pb_jog_1_minus', 'pb_jog_2_minus', 'pb_jog_3_minus',
+                                   )
+        #self.axes_mask = {}
 
 
 
@@ -68,9 +69,6 @@ class HandlerClass:
     def initialized__(self):
         KEYBIND.add_call('Key_F12','on_keycall_F12')
 
-        STATUS.connect('state-estop', lambda w: self.estop_state(True))
-        STATUS.connect('motion-mode-changed', self.motion_mode)
-
         self.w.pb_estop.setCheckable(True)
         self.w.pb_estop.setChecked(True)
         self.w.pb_estop.toggled.connect(self.estop_change)
@@ -83,16 +81,10 @@ class HandlerClass:
         self.w.pb_home_all.setEnabled(False)
         self.w.pb_home_all.toggled.connect(self.homing_state)
 
-        for i in range(0, len(self.coord_labels)):
-            self.w['lbl_axis_%s'%i].close()
-            self.w['dro_label_%s'%i].close()
-            self.w['pb_jog_%s_plus'%i].close()
-            self.w['pb_jog_%s_minus'%i].close()
-
-
-
         self.w.label_2.setText('{}'.format(INFO.GET_NAME_FROM_JOINT.get(1)))
 
+        STATUS.connect('state-estop', lambda w: self.estop_state(True))
+        STATUS.connect('motion-mode-changed', self.motion_mode)
 
     def estop_state(self, state):
         if isinstance(state, bool):
@@ -136,10 +128,48 @@ class HandlerClass:
         self.stat.poll()
 
     def motion_mode(self, obj, mode):
-        #self.w.label_2.setText('{}'.format(mode))
+        self.w.label_3.setText('{}, {}, {}'.format(mode, self.coordinates, linuxcnc.stat.axis_mask))
+#        if mode == linuxcnc.TRAJ_MODE_COORD:
+#            pass
+#            # Joint mode
+#        elif mode == linuxcnc.TRAJ_MODE_FREE:
+#            if STATUS.stat.kinematics_type == linuxcnc.KINEMATICS_IDENTITY:
+#                self.show_axes()
+#            else:
+#                self.show_joints()
+#        elif mode == linuxcnc.TRAJ_MODE_TELEOP:
+#            self.show_axes()
         if mode == 1:
-            for i in self.coordinates:
-                pass
+            self.show_joints()
+        if mode == 3:
+            self.show_axes()
+
+    def show_joints(self):
+        for i in range(0, 4):
+            self.w['lbl_axis_%s' % i].close()
+            self.w['dro_label_%s' % i].close()
+            self.w['pb_jog_%s_plus' % i].close()
+            self.w['pb_jog_%s_minus' % i].close()
+            if i in range(0, len(self.coordinates)):
+                self.w['lbl_axis_%s' % i].show()
+                self.w['lbl_axis_%s' % i].setText('%s'%i)
+                self.w['dro_label_%s' % i].show()
+                self.w['pb_jog_%s_plus' % i].show()
+                self.w['pb_jog_%s_minus' % i].show()
+
+    def show_axes(self):
+        for i in range(0, 4):
+            self.w['lbl_axis_%s' % i].close()
+            self.w['dro_label_%s' % i].close()
+            self.w['pb_jog_%s_plus' % i].close()
+            self.w['pb_jog_%s_minus' % i].close()
+            if i in range(0, len(set(self.coordinates))):
+                axis_name = "XYZ"[i]
+                self.w['lbl_axis_%s' % i].show()
+                self.w['lbl_axis_%s' % i].setText('%s'% axis_name)
+                self.w['dro_label_%s' % i].show()
+                self.w['pb_jog_%s_plus' % i].show()
+                self.w['pb_jog_%s_minus' % i].show()
 
     def processed_key_event__(self,receiver,event,is_pressed,key,code,shift,cntrl):
         # when typing in MDI, we don't want keybinding to call functions
