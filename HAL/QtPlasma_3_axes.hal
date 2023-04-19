@@ -62,31 +62,18 @@ net ydir <= stepgen.1.dir
 net yenable joint.1.amp-enable-out => stepgen.1.enable
 net all-home => joint.1.home-sw-in
 
-setp stepgen.2.position-scale [JOINT_1]SCALE
+setp stepgen.2.position-scale [JOINT_2]SCALE
 setp stepgen.2.steplen 1
 setp stepgen.2.stepspace 0
 setp stepgen.2.dirhold 35000
 setp stepgen.2.dirsetup 35000
-setp stepgen.2.maxaccel [JOINT_1]STEPGEN_MAXACCEL
-net y2pos-cmd joint.2.motor-pos-cmd => stepgen.2.position-cmd
-net y2pos-fb stepgen.2.position-fb => joint.2.motor-pos-fb
-net y2step <= stepgen.2.step
-net y2dir <= stepgen.2.dir
-net y2enable joint.2.amp-enable-out => stepgen.2.enable
+setp stepgen.2.maxaccel [JOINT_2]STEPGEN_MAXACCEL
+net zpos-cmd joint.2.motor-pos-cmd => stepgen.2.position-cmd
+net zpos-fb stepgen.2.position-fb => joint.2.motor-pos-fb
+net zstep <= stepgen.2.step
+net zdir <= stepgen.2.dir
+net zenable joint.2.amp-enable-out => stepgen.2.enable
 net all-home => joint.2.home-sw-in
-
-setp stepgen.3.position-scale [JOINT_3]SCALE
-setp stepgen.3.steplen 1
-setp stepgen.3.stepspace 0
-setp stepgen.3.dirhold 35000
-setp stepgen.3.dirsetup 35000
-setp stepgen.3.maxaccel [JOINT_3]STEPGEN_MAXACCEL
-net zpos-cmd joint.3.motor-pos-cmd => stepgen.3.position-cmd
-net zpos-fb stepgen.3.position-fb => joint.3.motor-pos-fb
-net zstep <= stepgen.3.step
-net zdir <= stepgen.3.dir
-net zenable joint.3.amp-enable-out => stepgen.3.enable
-net all-home => joint.3.home-sw-in
 
 net estop-out <= iocontrol.0.user-enable-out
 net estop-out => iocontrol.0.emc-enable-in

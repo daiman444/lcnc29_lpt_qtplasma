@@ -128,22 +128,13 @@ class HandlerClass:
         self.stat.poll()
 
     def motion_mode(self, obj, mode):
-        self.w.label_3.setText('{}, {}, {}'.format(mode, self.coordinates, linuxcnc.stat.axis_mask))
-#        if mode == linuxcnc.TRAJ_MODE_COORD:
-#            pass
-#            # Joint mode
-#        elif mode == linuxcnc.TRAJ_MODE_FREE:
-#            if STATUS.stat.kinematics_type == linuxcnc.KINEMATICS_IDENTITY:
-#                self.show_axes()
-#            else:
-#                self.show_joints()
-#        elif mode == linuxcnc.TRAJ_MODE_TELEOP:
-#            self.show_axes()
+        self.w.label_3.setText('{}, {}'.format(mode, self.coordinates ))
         if mode == 1:
             self.show_joints()
         if mode == 3:
             self.show_axes()
 
+# TODO exlude dro_labels and make a methods to display coordinates in labels
     def show_joints(self):
         for i in range(0, 4):
             self.w['lbl_axis_%s' % i].close()
