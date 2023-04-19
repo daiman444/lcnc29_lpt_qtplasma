@@ -173,7 +173,7 @@ class HandlerClass:
         self.w.lbl_vel_val.setText('%s' % self.stat.velocity)
 
     def current_pos(self, w, pos1, pos2, pos3, pos4):
-        self.w.label_4.setText('{}'.format(pos1))
+        self.w.label_4.setText('{}'.format(pos2))
 
 
     def processed_key_event__(self,receiver,event,is_pressed,key,code,shift,cntrl):
