@@ -4,6 +4,7 @@
 import sys
 import os
 import linuxcnc
+import math
 
 from PyQt5 import QtCore, QtWidgets
 
@@ -56,10 +57,8 @@ class HandlerClass:
                                    'pb_jog_0_minus', 'pb_jog_1_minus', 'pb_jog_2_minus', 'pb_jog_3_minus',
                                    )
         self.counter = 0
-        # MDI commands for coordinates
-        self.mdi_pbuttons = ['pb_g0x0y0z0', 'pb_g92x0y0z0', 'pb_g92x0',
-                             'pb_g92y0', 'pb_g92z0', 'pb_g53xmax_ymax',
-                             ]
+
+
 
 
 
@@ -84,6 +83,15 @@ class HandlerClass:
         self.w.pb_home_all.setChecked(False)
         self.w.pb_home_all.setEnabled(False)
         self.w.pb_home_all.toggled.connect(self.homing_state)
+
+        # MDI commands for coordinates
+        self.mdi_pbuttons = ('pb_g0x0y0z0', 'pb_g92x0y0z0', 'pb_g92x0',
+                             'pb_g92y0', 'pb_g92z0',
+                             )
+        for i in self.mdi_pbuttons:
+            command = i.replace('pb_', '')
+            self.w[i].clicked.connect(lambda w: self.mdi_commands(command))
+
 
 
 
@@ -173,8 +181,27 @@ class HandlerClass:
     def current_pos(self, w, pos1, pos2, pos3, pos4):
         self.w.label_2.setText('%.2f, %.2f, %.2f, %.2f' % (pos1[0], pos1[1], pos1[2], pos1[3] ))
         self.w.label_3.setText('%.2f, %.2f, %.2f, %.2f' % (pos2[0], pos2[1], pos2[2], pos2[3] ))
-        self.w.label_4.setText('%.2f, %.2f, %.2f, %.2f' % (pos3[0], pos3[1], pos3[2], pos3[3] ))
-        self.w.label_5.setText('%.2f, %.2f, %.2f, %.2f' % (pos4[0], pos4[1], pos4[2], pos4[3] ))
+        #self.w.label_4.setText('%.2f, %.2f, %.2f, %.2f' % (pos3[0], pos3[1], pos3[2], pos3[3] ))
+        #self.w.label_5.setText('%.2f, %.2f, %.2f, %.2f' % (pos4[0], pos4[1], pos4[2], pos4[3] ))
+
+    def mdi_commands(self, mdi):
+        complete_time = 10
+        if mdi == 'g53xmax_ymax':
+            y_coord = self.inifile.find('AXIS_Y', 'MAX_LIMIT')
+            x_max = self.inifile.find('AXIS_X', 'MAX_LIMIT')
+            x_min = self.inifile.find('AXIS_X', 'MIN_LIMIT')
+            if abs(float(x_min)) > float(x_max):
+                x_coord = x_min
+            else:
+                x_coord = x_max
+            mdi = 'g53g0 x %s y %s' % (x_coord, y_coord)
+            #complete_time = [180]
+        self.w.label_5.setText('%s' % mdi)
+        self.cmd.mode(linuxcnc.MODE_MDI)
+        self.cmd.mdi(mdi)
+        self.cmd.wait_complete(complete_time)
+        self.cmd.mode(linuxcnc.MODE_MANUAL)
+
 
 
     def processed_key_event__(self,receiver,event,is_pressed,key,code,shift,cntrl):
