@@ -1328,7 +1328,7 @@
               <number>5</number>
              </property>
              <item row="1" column="0" rowspan="4">
-              <widget class="QPushButton" name="pb_g0x0y0z0">
+              <widget class="QPushButton" name="pb_g0x0y0_zsafe">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
                  <horstretch>0</horstretch>
@@ -1350,7 +1350,8 @@
                </property>
                <property name="text">
                 <string>Go to
- XYZ = 0</string>
+ XY = 0
+ Z = SAFE</string>
                </property>
               </widget>
              </item>

@@ -56,7 +56,7 @@ class HandlerClass:
         self.coord_push_buttons = ('pb_jog_0_plus', 'pb_jog_1_plus', 'pb_jog_2_plus', 'pb_jog_3_plus',
                                    'pb_jog_0_minus', 'pb_jog_1_minus', 'pb_jog_2_minus', 'pb_jog_3_minus',
                                    )
-        self.mdi_pbuttons = ('pb_g0x0y0z0', 'pb_g92x0y0z0', 'pb_g92x0',
+        self.mdi_pbuttons = ('pb_g0x0y0_zsafe', 'pb_g92x0y0z0', 'pb_g92x0',
                              'pb_g92y0', 'pb_g92z0', 'pb_g53xmax_ymax',
                              )
 
@@ -196,7 +196,11 @@ class HandlerClass:
             else:
                 x_coord = x_max
             mdi = 'g53g0 x %s y %s' % (x_coord, y_coord)
-            #complete_time = [180]
+            complete_time = [180]
+        if mdi == 'g0x0y0_zsafe':
+            safe = self.inifile.find('UD_PARAMS', 'SAFE_Z')
+            mdi = mdi.replace('_zsafe', 'z %s' % safe)
+            complete_time = [180]
         self.w.label_5.setText('%s' % mdi)
         self.cmd.mode(linuxcnc.MODE_MDI)
         self.cmd.mdi(mdi)
