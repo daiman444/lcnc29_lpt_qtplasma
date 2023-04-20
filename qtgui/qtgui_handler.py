@@ -204,6 +204,7 @@ class HandlerClass:
         self.w.label_5.setText('%s' % mdi)
         self.cmd.mode(linuxcnc.MODE_MDI)
         self.cmd.mdi(mdi)
+        # TODO deal with wait_complete
         self.cmd.wait_complete(complete_time)
         self.cmd.mode(linuxcnc.MODE_MANUAL)
 
