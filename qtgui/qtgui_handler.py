@@ -56,8 +56,11 @@ class HandlerClass:
         self.coord_push_buttons = ('pb_jog_0_plus', 'pb_jog_1_plus', 'pb_jog_2_plus', 'pb_jog_3_plus',
                                    'pb_jog_0_minus', 'pb_jog_1_minus', 'pb_jog_2_minus', 'pb_jog_3_minus',
                                    )
-        self.counter = 0
+        self.mdi_pbuttons = ('pb_g0x0y0z0', 'pb_g92x0y0z0', 'pb_g92x0',
+                             'pb_g92y0', 'pb_g92z0', 'pb_g53xmax_ymax',
+                             )
 
+        self.counter = 0
 
 
 
@@ -85,9 +88,7 @@ class HandlerClass:
         self.w.pb_home_all.toggled.connect(self.homing_state)
 
         # MDI commands for coordinates
-        self.mdi_pbuttons = ('pb_g0x0y0z0', 'pb_g92x0y0z0', 'pb_g92x0',
-                             'pb_g92y0', 'pb_g92z0',
-                             )
+
         for i in self.mdi_pbuttons:
             command = i.replace('pb_', '')
             self.w[i].clicked.connect(lambda w: self.mdi_commands(command))
