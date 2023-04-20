@@ -91,7 +91,7 @@ class HandlerClass:
 
         for i in self.mdi_pbuttons:
             command = i.replace('pb_', '')
-            self.w[i].clicked.connect(lambda w: self.mdi_commands(command))
+            self.w[i].clicked.connect(lambda w, cmd=command: self.mdi_commands(cmd))
 
 
 
