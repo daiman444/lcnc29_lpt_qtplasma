@@ -1328,7 +1328,7 @@
               <number>5</number>
              </property>
              <item row="1" column="0" rowspan="4">
-              <widget class="QPushButton" name="pushButton_40">
+              <widget class="QPushButton" name="pb_g0x0y0z0">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
                  <horstretch>0</horstretch>
@@ -1355,7 +1355,7 @@
               </widget>
              </item>
              <item row="1" column="3" rowspan="4">
-              <widget class="QPushButton" name="pushButton_41">
+              <widget class="QPushButton" name="pb_g53xmax_ymax">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
                  <horstretch>0</horstretch>
@@ -1382,7 +1382,7 @@
               </widget>
              </item>
              <item row="1" column="1" rowspan="4">
-              <widget class="QPushButton" name="pushButton_36">
+              <widget class="QPushButton" name="pb_g92x0y0z0">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
                  <horstretch>0</horstretch>
@@ -1435,7 +1435,7 @@
               </widget>
              </item>
              <item row="1" column="2">
-              <widget class="QPushButton" name="pushButton_37">
+              <widget class="QPushButton" name="pb_g92x0">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
                  <horstretch>0</horstretch>
@@ -1461,7 +1461,7 @@
               </widget>
              </item>
              <item row="2" column="2">
-              <widget class="QPushButton" name="pushButton_38">
+              <widget class="QPushButton" name="pb_g92y0">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
                  <horstretch>0</horstretch>
@@ -1487,7 +1487,7 @@
               </widget>
              </item>
              <item row="3" column="2">
-              <widget class="QPushButton" name="pushButton_39">
+              <widget class="QPushButton" name="pb_g92z0">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
                  <horstretch>0</horstretch>
@@ -1612,6 +1612,54 @@
              <property name="spacing">
               <number>5</number>
              </property>
+             <item row="9" column="2">
+              <widget class="QPushButton" name="pushButton_30">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>30</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>14</pointsize>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>+</string>
+               </property>
+              </widget>
+             </item>
+             <item row="7" column="3">
+              <widget class="QPushButton" name="pushButton_73">
+               <property name="font">
+                <font>
+                 <pointsize>14</pointsize>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>-</string>
+               </property>
+              </widget>
+             </item>
+             <item row="9" column="0">
+              <widget class="QLabel" name="label_27">
+               <property name="font">
+                <font>
+                 <pointsize>14</pointsize>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>Search vel.:</string>
+               </property>
+              </widget>
+             </item>
              <item row="9" column="3">
               <widget class="QPushButton" name="pushButton_31">
                <property name="maximumSize">
@@ -1632,6 +1680,23 @@
                </property>
               </widget>
              </item>
+             <item row="2" column="1">
+              <widget class="QLabel" name="label_38">
+               <property name="font">
+                <font>
+                 <pointsize>14</pointsize>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>val</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
              <item row="7" column="2">
               <widget class="QPushButton" name="pushButton_74">
                <property name="font">
@@ -1646,8 +1711,21 @@
                </property>
               </widget>
              </item>
-             <item row="6" column="0">
-              <widget class="QLabel" name="label_43">
+             <item row="11" column="0">
+              <widget class="QLabel" name="label_3">
+               <property name="text">
+                <string>TextLabel</string>
+               </property>
+              </widget>
+             </item>
+             <item row="8" column="3">
+              <widget class="QPushButton" name="pushButton_9">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>30</height>
+                </size>
+               </property>
                <property name="font">
                 <font>
                  <pointsize>14</pointsize>
@@ -1656,7 +1734,28 @@
                 </font>
                </property>
                <property name="text">
-                <string>Cut:</string>
+                <string>-</string>
+               </property>
+              </widget>
+             </item>
+             <item row="14" column="0" colspan="4">
+              <widget class="QPushButton" name="pushButton_2">
+               <property name="text">
+                <string>PushButton</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="2">
+              <widget class="QPushButton" name="pushButton_65">
+               <property name="font">
+                <font>
+                 <pointsize>14</pointsize>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>+</string>
                </property>
               </widget>
              </item>
@@ -1674,75 +1773,6 @@
                </property>
               </widget>
              </item>
-             <item row="5" column="1">
-              <widget class="QLabel" name="label_47">
-               <property name="font">
-                <font>
-                 <pointsize>14</pointsize>
-                 <weight>75</weight>
-                 <bold>true</bold>
-                </font>
-               </property>
-               <property name="text">
-                <string>val</string>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignCenter</set>
-               </property>
-              </widget>
-             </item>
-             <item row="6" column="2">
-              <widget class="QPushButton" name="pushButton_72">
-               <property name="font">
-                <font>
-                 <pointsize>14</pointsize>
-                 <weight>75</weight>
-                 <bold>true</bold>
-                </font>
-               </property>
-               <property name="text">
-                <string>+</string>
-               </property>
-              </widget>
-             </item>
-             <item row="12" column="0" colspan="4">
-              <widget class="QPushButton" name="pushButton_2">
-               <property name="text">
-                <string>PushButton</string>
-               </property>
-              </widget>
-             </item>
-             <item row="8" column="1">
-              <widget class="QLabel" name="label_14">
-               <property name="font">
-                <font>
-                 <pointsize>14</pointsize>
-                 <weight>75</weight>
-                 <bold>true</bold>
-                </font>
-               </property>
-               <property name="text">
-                <string>val</string>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignCenter</set>
-               </property>
-              </widget>
-             </item>
-             <item row="5" column="2">
-              <widget class="QPushButton" name="pushButton_70">
-               <property name="font">
-                <font>
-                 <pointsize>14</pointsize>
-                 <weight>75</weight>
-                 <bold>true</bold>
-                </font>
-               </property>
-               <property name="text">
-                <string>+</string>
-               </property>
-              </widget>
-             </item>
              <item row="5" column="0">
               <widget class="QLabel" name="label_42">
                <property name="font">
@@ -1757,74 +1787,8 @@
                </property>
               </widget>
              </item>
-             <item row="10" column="2">
-              <widget class="QLabel" name="label_4">
-               <property name="text">
-                <string>TextLabel</string>
-               </property>
-              </widget>
-             </item>
-             <item row="10" column="1">
-              <widget class="QLabel" name="label_3">
-               <property name="text">
-                <string>TextLabel</string>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="0">
-              <widget class="QLabel" name="label_35">
-               <property name="font">
-                <font>
-                 <pointsize>14</pointsize>
-                 <weight>75</weight>
-                 <bold>true</bold>
-                </font>
-               </property>
-               <property name="text">
-                <string>Cor. vel:</string>
-               </property>
-              </widget>
-             </item>
-             <item row="6" column="1">
-              <widget class="QLabel" name="label_46">
-               <property name="font">
-                <font>
-                 <pointsize>14</pointsize>
-                 <weight>75</weight>
-                 <bold>true</bold>
-                </font>
-               </property>
-               <property name="text">
-                <string>val</string>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignCenter</set>
-               </property>
-              </widget>
-             </item>
-             <item row="10" column="0">
-              <widget class="QLabel" name="label_2">
-               <property name="text">
-                <string>TextLabel</string>
-               </property>
-              </widget>
-             </item>
-             <item row="2" column="0">
-              <widget class="QLabel" name="label_37">
-               <property name="font">
-                <font>
-                 <pointsize>14</pointsize>
-                 <weight>75</weight>
-                 <bold>true</bold>
-                </font>
-               </property>
-               <property name="text">
-                <string>Corner lock:</string>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="2">
-              <widget class="QPushButton" name="pushButton_61">
+             <item row="2" column="2">
+              <widget class="QPushButton" name="pushButton_63">
                <property name="font">
                 <font>
                  <pointsize>14</pointsize>
@@ -1837,8 +1801,50 @@
                </property>
               </widget>
              </item>
-             <item row="4" column="1">
-              <widget class="QLabel" name="label_45">
+             <item row="4" column="0">
+              <widget class="QLabel" name="label_41">
+               <property name="font">
+                <font>
+                 <pointsize>14</pointsize>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>Jump:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="2">
+              <widget class="QPushButton" name="pushButton_68">
+               <property name="font">
+                <font>
+                 <pointsize>14</pointsize>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>+</string>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="3">
+              <widget class="QPushButton" name="pushButton_71">
+               <property name="font">
+                <font>
+                 <pointsize>14</pointsize>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>-</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QLabel" name="label_36">
                <property name="font">
                 <font>
                  <pointsize>14</pointsize>
@@ -1868,34 +1874,6 @@
                </property>
               </widget>
              </item>
-             <item row="5" column="3">
-              <widget class="QPushButton" name="pushButton_69">
-               <property name="font">
-                <font>
-                 <pointsize>14</pointsize>
-                 <weight>75</weight>
-                 <bold>true</bold>
-                </font>
-               </property>
-               <property name="text">
-                <string>-</string>
-               </property>
-              </widget>
-             </item>
-             <item row="8" column="0">
-              <widget class="QLabel" name="label_13">
-               <property name="font">
-                <font>
-                 <pointsize>14</pointsize>
-                 <weight>75</weight>
-                 <bold>true</bold>
-                </font>
-               </property>
-               <property name="text">
-                <string>Safe Z:</string>
-               </property>
-              </widget>
-             </item>
              <item row="2" column="3">
               <widget class="QPushButton" name="pushButton_64">
                <property name="font">
@@ -1907,20 +1885,6 @@
                </property>
                <property name="text">
                 <string>-</string>
-               </property>
-              </widget>
-             </item>
-             <item row="4" column="0">
-              <widget class="QLabel" name="label_41">
-               <property name="font">
-                <font>
-                 <pointsize>14</pointsize>
-                 <weight>75</weight>
-                 <bold>true</bold>
-                </font>
-               </property>
-               <property name="text">
-                <string>Jump:</string>
                </property>
               </widget>
              </item>
@@ -1941,8 +1905,15 @@
                </property>
               </widget>
              </item>
-             <item row="6" column="3">
-              <widget class="QPushButton" name="pushButton_71">
+             <item row="13" column="0" colspan="4">
+              <widget class="QLabel" name="label_5">
+               <property name="text">
+                <string>TextLabel</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="label_37">
                <property name="font">
                 <font>
                  <pointsize>14</pointsize>
@@ -1951,26 +1922,12 @@
                 </font>
                </property>
                <property name="text">
-                <string>-</string>
+                <string>Corner lock:</string>
                </property>
               </widget>
              </item>
-             <item row="3" column="2">
-              <widget class="QPushButton" name="pushButton_65">
-               <property name="font">
-                <font>
-                 <pointsize>14</pointsize>
-                 <weight>75</weight>
-                 <bold>true</bold>
-                </font>
-               </property>
-               <property name="text">
-                <string>+</string>
-               </property>
-              </widget>
-             </item>
-             <item row="7" column="1">
-              <widget class="QLabel" name="label_48">
+             <item row="4" column="1">
+              <widget class="QLabel" name="label_45">
                <property name="font">
                 <font>
                  <pointsize>14</pointsize>
@@ -1983,34 +1940,6 @@
                </property>
                <property name="alignment">
                 <set>Qt::AlignCenter</set>
-               </property>
-              </widget>
-             </item>
-             <item row="4" column="2">
-              <widget class="QPushButton" name="pushButton_68">
-               <property name="font">
-                <font>
-                 <pointsize>14</pointsize>
-                 <weight>75</weight>
-                 <bold>true</bold>
-                </font>
-               </property>
-               <property name="text">
-                <string>+</string>
-               </property>
-              </widget>
-             </item>
-             <item row="4" column="3">
-              <widget class="QPushButton" name="pushButton_67">
-               <property name="font">
-                <font>
-                 <pointsize>14</pointsize>
-                 <weight>75</weight>
-                 <bold>true</bold>
-                </font>
-               </property>
-               <property name="text">
-                <string>-</string>
                </property>
               </widget>
              </item>
@@ -2028,8 +1957,53 @@
                </property>
               </widget>
              </item>
-             <item row="9" column="2">
-              <widget class="QPushButton" name="pushButton_30">
+             <item row="5" column="1">
+              <widget class="QLabel" name="label_47">
+               <property name="font">
+                <font>
+                 <pointsize>14</pointsize>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>val</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="3">
+              <widget class="QPushButton" name="pushButton_69">
+               <property name="font">
+                <font>
+                 <pointsize>14</pointsize>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>-</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="2">
+              <widget class="QPushButton" name="pushButton_70">
+               <property name="font">
+                <font>
+                 <pointsize>14</pointsize>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>+</string>
+               </property>
+              </widget>
+             </item>
+             <item row="8" column="2">
+              <widget class="QPushButton" name="pushButton_8">
                <property name="maximumSize">
                 <size>
                  <width>16777215</width>
@@ -2048,8 +2022,8 @@
                </property>
               </widget>
              </item>
-             <item row="2" column="1">
-              <widget class="QLabel" name="label_38">
+             <item row="6" column="0">
+              <widget class="QLabel" name="label_43">
                <property name="font">
                 <font>
                  <pointsize>14</pointsize>
@@ -2058,46 +2032,12 @@
                 </font>
                </property>
                <property name="text">
-                <string>val</string>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignCenter</set>
+                <string>Cut:</string>
                </property>
               </widget>
              </item>
-             <item row="0" column="1">
-              <widget class="QLabel" name="label_36">
-               <property name="font">
-                <font>
-                 <pointsize>14</pointsize>
-                 <weight>75</weight>
-                 <bold>true</bold>
-                </font>
-               </property>
-               <property name="text">
-                <string>val</string>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignCenter</set>
-               </property>
-              </widget>
-             </item>
-             <item row="7" column="3">
-              <widget class="QPushButton" name="pushButton_73">
-               <property name="font">
-                <font>
-                 <pointsize>14</pointsize>
-                 <weight>75</weight>
-                 <bold>true</bold>
-                </font>
-               </property>
-               <property name="text">
-                <string>-</string>
-               </property>
-              </widget>
-             </item>
-             <item row="2" column="2">
-              <widget class="QPushButton" name="pushButton_63">
+             <item row="6" column="2">
+              <widget class="QPushButton" name="pushButton_72">
                <property name="font">
                 <font>
                  <pointsize>14</pointsize>
@@ -2110,14 +2050,22 @@
                </property>
               </widget>
              </item>
-             <item row="8" column="3">
-              <widget class="QPushButton" name="pushButton_9">
-               <property name="maximumSize">
-                <size>
-                 <width>16777215</width>
-                 <height>30</height>
-                </size>
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_35">
+               <property name="font">
+                <font>
+                 <pointsize>14</pointsize>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                </font>
                </property>
+               <property name="text">
+                <string>Cor. vel:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="3">
+              <widget class="QPushButton" name="pushButton_67">
                <property name="font">
                 <font>
                  <pointsize>14</pointsize>
@@ -2127,11 +2075,73 @@
                </property>
                <property name="text">
                 <string>-</string>
+               </property>
+              </widget>
+             </item>
+             <item row="8" column="1">
+              <widget class="QLabel" name="label_14">
+               <property name="font">
+                <font>
+                 <pointsize>14</pointsize>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>val</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="2">
+              <widget class="QPushButton" name="pushButton_61">
+               <property name="font">
+                <font>
+                 <pointsize>14</pointsize>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>+</string>
+               </property>
+              </widget>
+             </item>
+             <item row="8" column="0">
+              <widget class="QLabel" name="label_13">
+               <property name="font">
+                <font>
+                 <pointsize>14</pointsize>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>Safe Z:</string>
                </property>
               </widget>
              </item>
              <item row="3" column="1">
               <widget class="QLabel" name="label_40">
+               <property name="font">
+                <font>
+                 <pointsize>14</pointsize>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>val</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="1">
+              <widget class="QLabel" name="label_46">
                <property name="font">
                 <font>
                  <pointsize>14</pointsize>
@@ -2161,8 +2171,8 @@
                </property>
               </widget>
              </item>
-             <item row="9" column="0">
-              <widget class="QLabel" name="label_27">
+             <item row="7" column="1">
+              <widget class="QLabel" name="label_48">
                <property name="font">
                 <font>
                  <pointsize>14</pointsize>
@@ -2171,32 +2181,22 @@
                 </font>
                </property>
                <property name="text">
-                <string>Search vel.:</string>
+                <string>val</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
                </property>
               </widget>
              </item>
-             <item row="8" column="2">
-              <widget class="QPushButton" name="pushButton_8">
-               <property name="maximumSize">
-                <size>
-                 <width>16777215</width>
-                 <height>30</height>
-                </size>
-               </property>
-               <property name="font">
-                <font>
-                 <pointsize>14</pointsize>
-                 <weight>75</weight>
-                 <bold>true</bold>
-                </font>
-               </property>
+             <item row="10" column="0">
+              <widget class="QLabel" name="label_2">
                <property name="text">
-                <string>+</string>
+                <string>TextLabel</string>
                </property>
               </widget>
              </item>
-             <item row="11" column="0" colspan="4">
-              <widget class="QLabel" name="label_5">
+             <item row="12" column="0">
+              <widget class="QLabel" name="label_4">
                <property name="text">
                 <string>TextLabel</string>
                </property>
