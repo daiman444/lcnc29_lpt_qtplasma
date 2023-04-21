@@ -3,6 +3,9 @@
 ############################
 import sys
 import os
+import time
+
+import hal
 import linuxcnc
 import math
 import threading
@@ -45,7 +48,7 @@ class HandlerClass:
     # widgets allows access to  widgets from the qtvcp files
     # at this point the widgets and hal pins are not instantiated
     def __init__(self, halcomp,widgets,paths):
-        self.hal = halcomp
+        self.halcomp = halcomp
         self.w = widgets
         self.PATHS = paths
         self.stat = linuxcnc.stat()
@@ -94,7 +97,7 @@ class HandlerClass:
 
         for i in self.mdi_pbuttons:
             command = i.replace('pb_', '')
-            self.w[i].clicked.connect(lambda w, cmd=command: self.mdi_commands(cmd))
+            self.w[i].clicked.connect(lambda w, cmd=command: MDIThread(cmd, self.halcomp).start())
 
 
 
@@ -205,12 +208,8 @@ class HandlerClass:
             mdi = mdi.replace('_zsafe', 'z %s' % safe)
             #complete_time = 180
         self.w.label_5.setText('%s' % mdi)
-        self.cmd.mode(linuxcnc.MODE_MDI)
-        self.cmd.wait_complete()
-        self.cmd.mdi(mdi)
-        # TODO deal with wait_complete
-        #self.cmd.wait_complete(complete_time)
-        self.cmd.mode(linuxcnc.MODE_MANUAL)
+        mdi_tread = MDIThread(mdi)
+        mdi_tread.start()
 
 
 
@@ -363,14 +362,14 @@ class HandlerClass:
 ################################
 
 class MDIThread(threading.Thread):
-    def __init__(self, cmd, mdi_command):
+    def __init__(self, cmd, halcomp):
         threading.Thread.__init__(self)
         self.cmd = cmd
-        self.mdi_command - mdi_command
+        self.mdi_command = 'G91 G21 ' + cmd + '\n'
+        self.halcomp = halcomp
 
     def run(self):
-        pass
-
+        self.halcomp.command_call(self.mdi_command)
 
 
 
