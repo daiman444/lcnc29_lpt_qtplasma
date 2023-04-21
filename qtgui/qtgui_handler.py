@@ -19,6 +19,7 @@ from qtvcp.lib.keybindings import Keylookup
 from qtvcp.core import Status, Action, Info
 
 
+
 # Set up logging
 from qtvcp import logger
 LOG = logger.getLogger(__name__)
@@ -64,6 +65,7 @@ class HandlerClass:
         self.mdi_pbuttons = ('pb_g0x0y0_zsafe', 'pb_g92x0y0z0', 'pb_g92x0',
                              'pb_g92y0', 'pb_g92z0', 'pb_g53xmax_ymax',
                              )
+        self.mdi_commands: {}
 
         self.counter = 0
 
@@ -97,7 +99,8 @@ class HandlerClass:
 
         for i in self.mdi_pbuttons:
             command = i.replace('pb_', '')
-            self.w[i].clicked.connect(lambda w, cmd=command: MDIThread(cmd, self.halcomp).start())
+            mdithread = MDIThread(self.halcomp)
+            self.w[i].clicked.connect(lambda cmd=command: mdithread.mdi.emit(command))
 
 
 
@@ -361,15 +364,16 @@ class HandlerClass:
 # required handler boiler code #
 ################################
 
-class MDIThread(threading.Thread):
-    def __init__(self, cmd, halcomp):
-        threading.Thread.__init__(self)
-        self.cmd = cmd
-        self.mdi_command = 'G91 G21 ' + cmd + '\n'
+from PyQt5.QtCore import pyqtSignal, QObject
+class MDIThread(QObject):
+    mdi = pyqtSignal(str)
+    def __init__(self, halcomp):
+        super().__init__()
         self.halcomp = halcomp
+        self.mdi.connect(self.run)
 
-    def run(self):
-        self.halcomp.command_call(self.mdi_command)
+    def run(self, cmd):
+        self.halcomp.command('set mdi %s' % cmd)
 
 
 
