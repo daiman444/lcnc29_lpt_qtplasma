@@ -5,6 +5,7 @@ import sys
 import os
 import linuxcnc
 import math
+import threading
 
 from PyQt5 import QtCore, QtWidgets
 
@@ -188,7 +189,7 @@ class HandlerClass:
         #self.w.label_5.setText('%.2f, %.2f, %.2f, %.2f' % (pos4[0], pos4[1], pos4[2], pos4[3] ))
 
     def mdi_commands(self, mdi):
-        complete_time = 10
+        #complete_time = 10
         if mdi == 'g53xmax_ymax':
             y_coord = self.inifile.find('AXIS_Y', 'MAX_LIMIT')
             x_max = self.inifile.find('AXIS_X', 'MAX_LIMIT')
@@ -198,16 +199,17 @@ class HandlerClass:
             else:
                 x_coord = x_max
             mdi = 'g53g0 x %s y %s' % (x_coord, y_coord)
-            complete_time = 180
+            #complete_time = 180
         if mdi == 'g0x0y0_zsafe':
             safe = self.inifile.find('UD_PARAMS', 'SAFE_Z')
             mdi = mdi.replace('_zsafe', 'z %s' % safe)
-            complete_time = 180
+            #complete_time = 180
         self.w.label_5.setText('%s' % mdi)
         self.cmd.mode(linuxcnc.MODE_MDI)
+        self.cmd.wait_complete()
         self.cmd.mdi(mdi)
         # TODO deal with wait_complete
-        self.cmd.wait_complete(complete_time)
+        #self.cmd.wait_complete(complete_time)
         self.cmd.mode(linuxcnc.MODE_MANUAL)
 
 
@@ -359,6 +361,18 @@ class HandlerClass:
 ################################
 # required handler boiler code #
 ################################
+
+class MDIThread(threading.Thread):
+    def __init__(self, cmd, mdi_command):
+        threading.Thread.__init__(self)
+        self.cmd = cmd
+        self.mdi_command - mdi_command
+
+    def run(self):
+        pass
+
+
+
 
 def get_handlers(halcomp,widgets,paths):
      return [HandlerClass(halcomp,widgets,paths)]
