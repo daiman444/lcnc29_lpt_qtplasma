@@ -50,6 +50,7 @@ class HandlerClass:
         self.stat = linuxcnc.stat()
         self.cmd = linuxcnc.command()
         self.inifile = linuxcnc.ini(INIPATH)
+
         self.coordinates = self.inifile.find('TRAJ', 'COORDINATES')
         self.coord_labels = ('lbl_axis_0', 'lbl_axis_1', 'lbl_axis_2', 'lbl_axis_3',)
         self.coord_dros = ('dro_label_0', 'dro_label_1', 'dro_label_2', 'dro_label_3', )
@@ -86,6 +87,7 @@ class HandlerClass:
         self.w.pb_home_all.setChecked(False)
         self.w.pb_home_all.setEnabled(False)
         self.w.pb_home_all.toggled.connect(self.homing_state)
+        self.w.screen_options.setProperty('play_sound_option', False)
 
         # MDI commands for coordinates
 
@@ -203,8 +205,7 @@ class HandlerClass:
             complete_time = 180
         self.w.label_5.setText('%s' % mdi)
         self.cmd.mode(linuxcnc.MODE_MDI)
-        #self.cmd.mdi(mdi)
-        ACTION.CALL_MDI(mdi)
+        self.cmd.mdi(mdi)
         # TODO deal with wait_complete
         self.cmd.wait_complete(complete_time)
         self.cmd.mode(linuxcnc.MODE_MANUAL)

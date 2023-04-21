@@ -47,6 +47,9 @@
       <property name="play_sounds_option" stdset="0">
        <bool>false</bool>
       </property>
+      <property name="pref_filename_string" stdset="0">
+       <string>~/qtgui.ini</string>
+      </property>
       <layout class="QHBoxLayout" name="horizontalLayout_4">
        <property name="spacing">
         <number>0</number>
@@ -2394,13 +2397,13 @@
  <resources/>
  <connections>
   <connection>
-   <sender>pushButton_4</sender>
+   <sender>pushButton_3</sender>
    <signal>clicked()</signal>
    <receiver>MainWindow</receiver>
-   <slot>close()</slot>
+   <slot>showMinimized()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1358</x>
+     <x>1105</x>
      <y>42</y>
     </hint>
     <hint type="destinationlabel">
@@ -2410,13 +2413,13 @@
    </hints>
   </connection>
   <connection>
-   <sender>pushButton_3</sender>
+   <sender>pushButton_4</sender>
    <signal>clicked()</signal>
    <receiver>MainWindow</receiver>
-   <slot>showMinimized()</slot>
+   <slot>close()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1105</x>
+     <x>1358</x>
      <y>42</y>
     </hint>
     <hint type="destinationlabel">
