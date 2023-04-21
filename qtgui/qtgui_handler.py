@@ -196,14 +196,15 @@ class HandlerClass:
             else:
                 x_coord = x_max
             mdi = 'g53g0 x %s y %s' % (x_coord, y_coord)
-            complete_time = [180]
+            complete_time = 180
         if mdi == 'g0x0y0_zsafe':
             safe = self.inifile.find('UD_PARAMS', 'SAFE_Z')
             mdi = mdi.replace('_zsafe', 'z %s' % safe)
-            complete_time = [180]
+            complete_time = 180
         self.w.label_5.setText('%s' % mdi)
         self.cmd.mode(linuxcnc.MODE_MDI)
-        self.cmd.mdi(mdi)
+        #self.cmd.mdi(mdi)
+        ACTION.CALL_MDI(mdi)
         # TODO deal with wait_complete
         self.cmd.wait_complete(complete_time)
         self.cmd.mode(linuxcnc.MODE_MANUAL)
