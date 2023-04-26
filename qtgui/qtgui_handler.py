@@ -65,12 +65,6 @@ class HandlerClass:
         self.mdi_pbuttons = ('pb_g0x0y0_zsafe', 'pb_g92x0y0z0', 'pb_g92x0',
                              'pb_g92y0', 'pb_g92z0', 'pb_g53xmax_ymax',
                              )
-        self.mdi_commands: {}
-
-        self.counter = 0
-
-
-
 
     ##########################################
     # Special Functions called from QTSCREEN
@@ -99,8 +93,7 @@ class HandlerClass:
 
         for i in self.mdi_pbuttons:
             command = i.replace('pb_', '')
-            mdithread = MDIThread(self.halcomp)
-            self.w[i].clicked.connect(lambda cmd=command: mdithread.mdi.emit(command))
+            self.w[i].clicked.connect(lambda w, cmd=command: self.mdi_commands(command))
 
 
 
@@ -211,8 +204,11 @@ class HandlerClass:
             mdi = mdi.replace('_zsafe', 'z %s' % safe)
             #complete_time = 180
         self.w.label_5.setText('%s' % mdi)
-        mdi_tread = MDIThread(mdi)
-        mdi_tread.start()
+        self.cmd.mode(linuxcnc.MODE_MDI)
+        self.cmd.wait_complete()
+        self.cmd.mdi('%s' % mdi)
+        self.cmd.mode(linuxcnc.MODE_MANUAL)
+
 
 
 
@@ -345,7 +341,7 @@ class HandlerClass:
 
     def on_keycall_ANEG(self,event,state,shift,cntrl):
         pass
-        #self.kb_jog(state, 3, -1, shift, linear=False)
+        # self.kb_jog(state, 3, -1, shift, linear=False)
 
     ###########################
     # **** closing event **** #
@@ -364,18 +360,6 @@ class HandlerClass:
 # required handler boiler code #
 ################################
 
-from PyQt5.QtCore import pyqtSignal, QObject
-class MDIThread(QObject):
-    mdi = pyqtSignal(str)
-    def __init__(self, halcomp):
-        super().__init__()
-        self.halcomp = halcomp
-        self.mdi.connect(self.run)
 
-    def run(self, cmd):
-        self.halcomp.command('set mdi %s' % cmd)
-
-
-
-def get_handlers(halcomp,widgets,paths):
-     return [HandlerClass(halcomp,widgets,paths)]
+def get_handlers(halcomp, widgets, paths):
+     return[HandlerClass(halcomp, widgets, paths)]
