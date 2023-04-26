@@ -1,17 +1,15 @@
 ############################
 # **** IMPORT SECTION **** #
 ############################
-import sys
-import os
-import time
 
+import os
 import hal
 import linuxcnc
 import math
 import threading
 
+from hal_glib import GStat
 from PyQt5 import QtCore, QtWidgets
-
 from qtvcp.widgets.mdi_line import MDILine as MDI_WIDGET
 from qtvcp.widgets.gcode_editor import GcodeEditor as GCODE
 from qtvcp.widgets.stylesheeteditor import  StyleSheetEditor as SSE
@@ -37,12 +35,13 @@ ACTION = Action()
 INFO = Info()
 STYLEEDITOR = SSE()
 INIPATH = os.environ.get('INI_FILE_NAME', '/dev/null')
+
+GSTAT = GStat()
 ###################################
 # **** HANDLER CLASS SECTION **** #
 ###################################
 
 class HandlerClass:
-
     ########################
     # **** INITIALIZE **** #
     ########################
@@ -93,12 +92,14 @@ class HandlerClass:
 
         for i in self.mdi_pbuttons:
             command = i.replace('pb_', '')
-            self.w[i].clicked.connect(lambda w, cmd=command: self.mdi_commands(command))
+            self.w[i].clicked.connect(lambda w, cmd=command: self.mdi_commands(cmd))
 
 
 
 
         STATUS.connect('periodic', self.some_def)
+        STATUS.connect('periodic', self.show_joints)
+        STATUS.connect('periodic', self.show_axes)
         STATUS.connect('state-estop', lambda w: self.estop_state(True))
         STATUS.connect('motion-mode-changed', self.motion_mode)
         STATUS.connect('current-position', self.current_pos)
@@ -146,12 +147,12 @@ class HandlerClass:
 
     def motion_mode(self, obj, mode):
         if mode == 1:
-            self.show_joints()
+            self.show_joints
         if mode == 3:
-            self.show_axes()
+            self.show_axes
 
 # TODO exlude dro_labels and make a methods to display coordinates in labels
-    def show_joints(self):
+    def show_joints(self, w, data=None):
         for i in range(0, 4):
             self.w['lbl_axis_%s' % i].close()
             self.w['dro_label_%s' % i].close()
@@ -161,10 +162,21 @@ class HandlerClass:
                 self.w['lbl_axis_%s' % i].show()
                 self.w['lbl_axis_%s' % i].setText('%s'%i)
                 self.w['dro_label_%s' % i].show()
+                self.w['dro_label_%s' % i].setText('---')
                 self.w['pb_jog_%s_plus' % i].show()
                 self.w['pb_jog_%s_minus' % i].show()
 
-    def show_axes(self):
+    def show_axes(self, w, data=None):
+        self.stat.poll()
+        pos = self.pos_from_linuxcnc_stat()
+        x = round(pos[0], 2)
+        y = round(pos[1], 2)
+        z = round(pos[2], 2)
+        # a = round(pos[3], 2)
+
+        coord = (x, y, z,)
+
+        self.w.label_5.setText(str(coord))
         for i in range(0, 4):
             self.w['lbl_axis_%s' % i].close()
             self.w['dro_label_%s' % i].close()
@@ -179,13 +191,30 @@ class HandlerClass:
                 self.w['pb_jog_%s_minus' % i].show()
 
     def some_def(self, w, data=None):
+        #self.stat.poll()
+        #pos = self.pos_from_linuxcnc_stat()
+
+        #self.w.label_4.setText(str(pos))
         pass
 
     def current_pos(self, w, pos1, pos2, pos3, pos4):
+        p = self.stat.actual_position
+        x = (p[0], p[1], p[2], p[3])
         self.w.label_2.setText('%.2f, %.2f, %.2f, %.2f' % (pos1[0], pos1[1], pos1[2], pos1[3] ))
         self.w.label_3.setText('%.2f, %.2f, %.2f, %.2f' % (pos2[0], pos2[1], pos2[2], pos2[3] ))
-        #self.w.label_4.setText('%.2f, %.2f, %.2f, %.2f' % (pos3[0], pos3[1], pos3[2], pos3[3] ))
+        # self.w.label_4.setText(str(x))
         #self.w.label_5.setText('%.2f, %.2f, %.2f, %.2f' % (pos4[0], pos4[1], pos4[2], pos4[3] ))
+
+    def pos_from_linuxcnc_stat(self):
+        p = self.stat.actual_position
+        x = p[0]
+        y = p[1]
+        z = p[2]
+        coordinates = (x, y, z, )
+        self.w.label_4.setText(str(coordinates))
+        return coordinates
+
+
 
     def mdi_commands(self, mdi):
         #complete_time = 10
@@ -207,6 +236,9 @@ class HandlerClass:
         self.cmd.mode(linuxcnc.MODE_MDI)
         self.cmd.wait_complete()
         self.cmd.mdi('%s' % mdi)
+        while not STATUS.is_interp_idle():
+            self.w.gcodegraphics.updateGL()
+            QtWidgets.QApplication.processEvents()
         self.cmd.mode(linuxcnc.MODE_MANUAL)
 
 
@@ -353,6 +385,7 @@ class HandlerClass:
 
     def __getitem__(self, item):
         return getattr(self, item)
+
     def __setitem__(self, item, value):
         return setattr(self, item, value)
 
@@ -362,4 +395,4 @@ class HandlerClass:
 
 
 def get_handlers(halcomp, widgets, paths):
-     return[HandlerClass(halcomp, widgets, paths)]
+    return[HandlerClass(halcomp, widgets, paths)]
