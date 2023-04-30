@@ -47,20 +47,14 @@ class HandlerClass:
     ########################
     # widgets allows access to  widgets from the qtvcp files
     # at this point the widgets and hal pins are not instantiated
-    def __init__(self, halcomp,widgets,paths):
+    def __init__(self, halcomp, widgets, paths):
         self.halcomp = halcomp
         self.w = widgets
         self.PATHS = paths
         self.stat = linuxcnc.stat()
         self.cmd = linuxcnc.command()
         self.inifile = linuxcnc.ini(INIPATH)
-
         self.coordinates = self.inifile.find('TRAJ', 'COORDINATES')
-        self.coord_labels = ('lbl_axis_0', 'lbl_axis_1', 'lbl_axis_2', 'lbl_axis_3',)
-        self.coord_dros = ('dro_label_0', 'dro_label_1', 'dro_label_2', 'dro_label_3', )
-        self.coord_push_buttons = ('pb_jog_0_plus', 'pb_jog_1_plus', 'pb_jog_2_plus', 'pb_jog_3_plus',
-                                   'pb_jog_0_minus', 'pb_jog_1_minus', 'pb_jog_2_minus', 'pb_jog_3_minus',
-                                   )
         self.mdi_pbuttons = ('pb_g0x0y0_zsafe', 'pb_g92x0y0z0', 'pb_g92x0',
                              'pb_g92y0', 'pb_g92z0', 'pb_g53xmax_ymax',
                              )
@@ -75,6 +69,7 @@ class HandlerClass:
     def initialized__(self):
         KEYBIND.add_call('Key_F12','on_keycall_F12')
 
+
         self.w.pb_estop.setCheckable(True)
         self.w.pb_estop.setChecked(True)
         self.w.pb_estop.toggled.connect(self.estop_change)
@@ -87,6 +82,8 @@ class HandlerClass:
         self.w.pb_home_all.setEnabled(False)
         self.w.pb_home_all.toggled.connect(self.homing_state)
         self.w.screen_options.setProperty('play_sound_option', False)
+
+        #self.w.pb_set_coord_sys.clicked.connect(lambda w: self.)
 
         # MDI commands for coordinates
 
@@ -131,17 +128,17 @@ class HandlerClass:
                 self.cmd.state(linuxcnc.STATE_OFF)
 
     def homing_state(self, state):
-        STATUS.stat.poll()
+        self.stat.poll()
         if isinstance(state, bool) and linuxcnc.MODE_MANUAL:
             if state:
                 self.cmd.teleop_enable(False)
-                ACTION.SET_MACHINE_HOMING(-1)
+                self.cmd.home(-1)
                 self.cmd.wait_complete()
                 self.cmd.teleop_enable(True)
                 self.cmd.wait_complete()
             else:
                 self.cmd.teleop_enable(False)
-                ACTION.SET_MACHINE_UNHOMED(-1)
+                self.cmd.unhome(-1)
                 self.cmd.wait_complete()
         self.stat.poll()
 
@@ -150,9 +147,18 @@ class HandlerClass:
             self.show_joints
         if mode == 3:
             self.show_axes
+        self.w.label_4.setText(str(mode))
 
 # TODO exlude dro_labels and make a methods to display coordinates in labels
     def show_joints(self, w, data=None):
+        self.stat.poll()
+        pos = self.stat.joint_position
+        join_0 = pos[0]
+        join_1 = pos[1]
+        join_2 = pos[2]
+        join_3 = pos[3]
+        coord = (join_0, join_1, join_2, join_3)
+
         for i in range(0, 4):
             self.w['lbl_axis_%s' % i].close()
             self.w['dro_label_%s' % i].close()
@@ -160,23 +166,19 @@ class HandlerClass:
             self.w['pb_jog_%s_minus' % i].close()
             if i in range(0, len(self.coordinates)):
                 self.w['lbl_axis_%s' % i].show()
-                self.w['lbl_axis_%s' % i].setText('%s'%i)
+                self.w['lbl_axis_%s' % i].setText('%s' % i)
                 self.w['dro_label_%s' % i].show()
-                self.w['dro_label_%s' % i].setText('---')
+                self.w['dro_label_%s' % i].setText('%.2f' % coord[i])
                 self.w['pb_jog_%s_plus' % i].show()
                 self.w['pb_jog_%s_minus' % i].show()
 
     def show_axes(self, w, data=None):
         self.stat.poll()
-        pos = self.pos_from_linuxcnc_stat()
-        x = round(pos[0], 2)
-        y = round(pos[1], 2)
-        z = round(pos[2], 2)
-        # a = round(pos[3], 2)
-
+        pos = self.stat.actual_position
+        x = pos[0]
+        y = pos[1]
+        z = pos[2]
         coord = (x, y, z,)
-
-        self.w.label_5.setText(str(coord))
         for i in range(0, 4):
             self.w['lbl_axis_%s' % i].close()
             self.w['dro_label_%s' % i].close()
@@ -187,37 +189,22 @@ class HandlerClass:
                 self.w['lbl_axis_%s' % i].show()
                 self.w['lbl_axis_%s' % i].setText('%s'% axis_name)
                 self.w['dro_label_%s' % i].show()
+                self.w['dro_label_%s' % i].setText('%.2f' % coord[i])
                 self.w['pb_jog_%s_plus' % i].show()
                 self.w['pb_jog_%s_minus' % i].show()
 
     def some_def(self, w, data=None):
-        #self.stat.poll()
-        #pos = self.pos_from_linuxcnc_stat()
-
-        #self.w.label_4.setText(str(pos))
-        pass
+        self.stat.poll()
+        self.w.label_5.setText(str(self.stat.interp_state))
+        #pass
 
     def current_pos(self, w, pos1, pos2, pos3, pos4):
         p = self.stat.actual_position
         x = (p[0], p[1], p[2], p[3])
         self.w.label_2.setText('%.2f, %.2f, %.2f, %.2f' % (pos1[0], pos1[1], pos1[2], pos1[3] ))
         self.w.label_3.setText('%.2f, %.2f, %.2f, %.2f' % (pos2[0], pos2[1], pos2[2], pos2[3] ))
-        # self.w.label_4.setText(str(x))
-        #self.w.label_5.setText('%.2f, %.2f, %.2f, %.2f' % (pos4[0], pos4[1], pos4[2], pos4[3] ))
-
-    def pos_from_linuxcnc_stat(self):
-        p = self.stat.actual_position
-        x = p[0]
-        y = p[1]
-        z = p[2]
-        coordinates = (x, y, z, )
-        self.w.label_4.setText(str(coordinates))
-        return coordinates
-
-
 
     def mdi_commands(self, mdi):
-        #complete_time = 10
         if mdi == 'g53xmax_ymax':
             y_coord = self.inifile.find('AXIS_Y', 'MAX_LIMIT')
             x_max = self.inifile.find('AXIS_X', 'MAX_LIMIT')
@@ -227,16 +214,13 @@ class HandlerClass:
             else:
                 x_coord = x_max
             mdi = 'g53g0 x %s y %s' % (x_coord, y_coord)
-            #complete_time = 180
         if mdi == 'g0x0y0_zsafe':
             safe = self.inifile.find('UD_PARAMS', 'SAFE_Z')
             mdi = mdi.replace('_zsafe', 'z %s' % safe)
-            #complete_time = 180
-        self.w.label_5.setText('%s' % mdi)
         self.cmd.mode(linuxcnc.MODE_MDI)
         self.cmd.wait_complete()
         self.cmd.mdi('%s' % mdi)
-        while not STATUS.is_interp_idle():
+        while not GSTAT.is_interp_idle():
             self.w.gcodegraphics.updateGL()
             QtWidgets.QApplication.processEvents()
         self.cmd.mode(linuxcnc.MODE_MANUAL)
