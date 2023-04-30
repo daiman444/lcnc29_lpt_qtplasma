@@ -6,7 +6,6 @@ import os
 import hal
 import linuxcnc
 import math
-import threading
 
 from hal_glib import GStat
 from PyQt5 import QtCore, QtWidgets
@@ -15,8 +14,6 @@ from qtvcp.widgets.gcode_editor import GcodeEditor as GCODE
 from qtvcp.widgets.stylesheeteditor import  StyleSheetEditor as SSE
 from qtvcp.lib.keybindings import Keylookup
 from qtvcp.core import Status, Action, Info
-
-
 
 # Set up logging
 from qtvcp import logger
@@ -55,6 +52,7 @@ class HandlerClass:
         self.cmd = linuxcnc.command()
         self.inifile = linuxcnc.ini(INIPATH)
         self.coordinates = self.inifile.find('TRAJ', 'COORDINATES')
+        self.g5x_dro = 'g54'
         self.mdi_pbuttons = ('pb_g0x0y0_zsafe', 'pb_g92x0y0z0', 'pb_g92x0',
                              'pb_g92y0', 'pb_g92z0', 'pb_g53xmax_ymax',
                              )
@@ -67,7 +65,7 @@ class HandlerClass:
     # the widgets are instantiated.
     # the HAL pins are built but HAL is not set ready
     def initialized__(self):
-        KEYBIND.add_call('Key_F12','on_keycall_F12')
+        KEYBIND.add_call('Key_F12', 'on_keycall_F12')
         self.w.pb_estop.setCheckable(True)
         self.w.pb_estop.setChecked(True)
         self.w.pb_estop.toggled.connect(self.estop_change)
@@ -80,17 +78,18 @@ class HandlerClass:
         self.w.pb_home_all.setEnabled(False)
         self.w.pb_home_all.toggled.connect(self.homing_state)
         self.w.screen_options.setProperty('play_sound_option', False)
+        self.w.pb_gx_plane.clicked.connect(self.g5x_dro_change)
 
         # MDI commands for coordinates
         for i in self.mdi_pbuttons:
             command = i.replace('pb_', '')
             self.w[i].clicked.connect(lambda w, cmd=command: self.mdi_commands(cmd))
         STATUS.connect('periodic', self.some_def)
-        STATUS.connect('periodic', self.show_joints)
-        STATUS.connect('periodic', self.show_axes)
+        STATUS.connect('periodic', self.motion_mode)
         STATUS.connect('state-estop', lambda w: self.estop_state(True))
-        STATUS.connect('motion-mode-changed', self.motion_mode)
+        #STATUS.connect('motion-mode-changed', self.motion_mode)
         STATUS.connect('current-position', self.current_pos)
+
 
     def estop_state(self, state):
         if isinstance(state, bool):
@@ -133,15 +132,23 @@ class HandlerClass:
                 self.cmd.wait_complete()
         self.stat.poll()
 
-    def motion_mode(self, obj, mode):
-        if mode == 1:
-            self.show_joints
-        if mode == 3:
-            self.show_axes
-        self.w.label_4.setText(str(mode))
+    def g5x_dro_change(self):
+        if self.g5x_dro == 'g54':
+            self.g5x_dro = 'g53'
+            self.w.pb_gx_plane.setText('G53')
+        else:
+            self.g5x_dro = 'g54'
+            self.w.pb_gx_plane.setText('G54')
+        self.w.label_5.setText(str(self.g5x_dro))
 
-# TODO exlude dro_labels and make a methods to display coordinates in labels
-    def show_joints(self, w, data=None):
+# TODO доделаль вызовы движения для кнопок dro
+    def motion_mode(self, *args, **kwargs):
+        if self.stat.motion_mode == 1:
+            self.show_joints()
+        else:
+            self.show_axes()
+
+    def show_joints(self, *args, **kwargs):
         self.stat.poll()
         pos = self.stat.joint_position
         join_0 = pos[0]
@@ -149,44 +156,51 @@ class HandlerClass:
         join_2 = pos[2]
         join_3 = pos[3]
         coord = (join_0, join_1, join_2, join_3)
-
         for i in range(0, 4):
             self.w['lbl_axis_%s' % i].close()
             self.w['dro_label_%s' % i].close()
             self.w['pb_jog_%s_plus' % i].close()
             self.w['pb_jog_%s_minus' % i].close()
-            if i in range(0, len(self.coordinates)):
-                self.w['lbl_axis_%s' % i].show()
-                self.w['lbl_axis_%s' % i].setText('%s' % i)
-                self.w['dro_label_%s' % i].show()
-                self.w['dro_label_%s' % i].setText('%.2f' % coord[i])
-                self.w['pb_jog_%s_plus' % i].show()
-                self.w['pb_jog_%s_minus' % i].show()
+        for i in range(0, len(self.coordinates)):
+            self.w['lbl_axis_%s' % i].show()
+            self.w['lbl_axis_%s' % i].setText('%s' % i)
+            self.w['dro_label_%s' % i].show()
+            self.w['dro_label_%s' % i].setText('%.2f' % coord[i])
+            self.w['pb_jog_%s_plus' % i].show()
+            self.w['pb_jog_%s_minus' % i].show()
 
-    def show_axes(self, w, data=None):
+
+    def show_axes(self, *args, **kwargs):
         self.stat.poll()
         pos = self.stat.actual_position
-        x = pos[0]
-        y = pos[1]
-        z = pos[2]
-        coord = (x, y, z,)
+        offset = self.stat.g92_offset
+        if self.g5x_dro == 'g54':
+            x = pos[0] - offset[0]
+            y = pos[1] - offset[1]
+            z = pos[2] - offset[2]
+            coord = (x, y, z,)
+        else:
+            x = pos[0]
+            y = pos[1]
+            z = pos[2]
+            coord = (x, y, z,)
         for i in range(0, 4):
             self.w['lbl_axis_%s' % i].close()
             self.w['dro_label_%s' % i].close()
             self.w['pb_jog_%s_plus' % i].close()
             self.w['pb_jog_%s_minus' % i].close()
-            if i in range(0, len(set(self.coordinates))):
-                axis_name = "XYZ"[i]
-                self.w['lbl_axis_%s' % i].show()
-                self.w['lbl_axis_%s' % i].setText('%s'% axis_name)
-                self.w['dro_label_%s' % i].show()
-                self.w['dro_label_%s' % i].setText('%.2f' % coord[i])
-                self.w['pb_jog_%s_plus' % i].show()
-                self.w['pb_jog_%s_minus' % i].show()
+        for i in range(0, len(set(self.coordinates))):
+            axis_name = "XYZ"[i]
+            self.w['lbl_axis_%s' % i].show()
+            self.w['lbl_axis_%s' % i].setText('%s'% axis_name)
+            self.w['dro_label_%s' % i].show()
+            self.w['dro_label_%s' % i].setText('%.2f' % coord[i])
+            self.w['pb_jog_%s_plus' % i].show()
+            self.w['pb_jog_%s_minus' % i].show()
 
     def some_def(self, w, data=None):
         self.stat.poll()
-        self.w.label_5.setText(str(self.stat.interp_state))
+        #self.w.label_5.setText(str(self.stat.motion_mode))
         #pass
 
     def current_pos(self, w, pos1, pos2, pos3, pos4):

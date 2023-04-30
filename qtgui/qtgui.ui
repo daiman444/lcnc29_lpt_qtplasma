@@ -359,7 +359,7 @@
               <number>0</number>
              </property>
              <item row="0" column="4" rowspan="5">
-              <widget class="QPushButton" name="pb_set_coord_sys">
+              <widget class="QPushButton" name="pb_gx_plane">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
                  <horstretch>0</horstretch>
@@ -2394,8 +2394,8 @@
    <slot>showMinimized()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1105</x>
-     <y>42</y>
+     <x>1013</x>
+     <y>41</y>
     </hint>
     <hint type="destinationlabel">
      <x>682</x>
@@ -2410,8 +2410,8 @@
    <slot>close()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1358</x>
-     <y>42</y>
+     <x>1272</x>
+     <y>41</y>
     </hint>
     <hint type="destinationlabel">
      <x>682</x>
@@ -2427,7 +2427,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>769</x>
-     <y>345</y>
+     <y>349</y>
     </hint>
     <hint type="destinationlabel">
      <x>290</x>
