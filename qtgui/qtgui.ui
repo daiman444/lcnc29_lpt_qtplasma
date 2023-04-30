@@ -928,11 +928,11 @@
                 </size>
                </property>
                <property name="currentIndex">
-                <number>2</number>
+                <number>0</number>
                </property>
                <widget class="QWidget" name="page">
                 <layout class="QGridLayout" name="gridLayout_4">
-                 <item row="2" column="0">
+                 <item row="1" column="0">
                   <widget class="QPushButton" name="pb_gcode_load">
                    <property name="maximumSize">
                     <size>
@@ -952,7 +952,27 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="2" column="1">
+                 <item row="1" column="2">
+                  <widget class="QPushButton" name="pb_gcode_reload">
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>30</height>
+                    </size>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <pointsize>14</pointsize>
+                     <weight>75</weight>
+                     <bold>true</bold>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string>Reload</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="1">
                   <widget class="QPushButton" name="pb_gcode_edit">
                    <property name="maximumSize">
                     <size>
@@ -973,32 +993,9 @@
                   </widget>
                  </item>
                  <item row="0" column="0" colspan="3">
-                  <widget class="GcodeEditor" name="gcodeeditor">
-                   <property name="minimumSize">
-                    <size>
-                     <width>300</width>
-                     <height>0</height>
-                    </size>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="2" column="2">
-                  <widget class="QPushButton" name="pb_gcode_reload">
-                   <property name="maximumSize">
-                    <size>
-                     <width>16777215</width>
-                     <height>30</height>
-                    </size>
-                   </property>
-                   <property name="font">
-                    <font>
-                     <pointsize>14</pointsize>
-                     <weight>75</weight>
-                     <bold>true</bold>
-                    </font>
-                   </property>
-                   <property name="text">
-                    <string>Reload</string>
+                  <widget class="GcodeDisplay" name="gcode_display">
+                   <property name="auto_show_mdi_status" stdset="0">
+                    <bool>false</bool>
                    </property>
                   </widget>
                  </item>
@@ -2357,8 +2354,8 @@
    <header>qtvcp.widgets.mdi_history</header>
   </customwidget>
   <customwidget>
-   <class>GcodeEditor</class>
-   <extends>QWidget</extends>
+   <class>GcodeDisplay</class>
+   <extends>QFrame</extends>
    <header>qtvcp.widgets.gcode_editor</header>
    <container>1</container>
   </customwidget>
@@ -2416,22 +2413,6 @@
     <hint type="destinationlabel">
      <x>682</x>
      <y>383</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>gcodeeditor</sender>
-   <signal>percentDone(int)</signal>
-   <receiver>progressBar</receiver>
-   <slot>setValue(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>769</x>
-     <y>349</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>290</x>
-     <y>46</y>
     </hint>
    </hints>
   </connection>

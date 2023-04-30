@@ -3,7 +3,7 @@
 ############################
 
 import os
-#import subprocess
+import subprocess
 import hal
 import linuxcnc
 import math
@@ -240,7 +240,15 @@ class HandlerClass:
                 self.w.sw_other.setCurrentIndex(i)
 
     def gcode_tab_pbuttons(self, pbutton):
-        pass
+        if pbutton == 'load':
+            STATUS.emit('dialog-request', {'NAME':'LOAD', 'ID':None})
+        elif pbutton == 'edit':
+            os.popen('gedit %s' % self.stat.file)
+        elif pbutton == 'reload':
+            STATUS.emit('reload-display')
+
+
+
 
     def settings_tab_buttons(self, pbutton):
         process = ['halshow', 'halscope', 'halmeter', ]
@@ -251,9 +259,6 @@ class HandlerClass:
             os.popen("tclsh %s/bin/emccalib.tcl -- -ini %s > /dev/null &" % (TCLPATH, INIPATH), "w")
         if pbutton == 'status':
             os.popen("linuxcnctop  > /dev/null &", "w")
-
-
-
 
     def processed_key_event__(self,receiver,event,is_pressed,key,code,shift,cntrl):
         # when typing in MDI, we don't want keybinding to call functions
