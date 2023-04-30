@@ -59,6 +59,14 @@ QPushButton:pressed{
     background-color: rgb(230, 97, 0);
 }
 
+#pb_gcode_load:checked{
+    background-color: rgb(230, 97, 0);
+}
+
+#pb_gcode_edit:checked{
+    background-color: rgb(230, 97, 0);
+}
+
 
 
 

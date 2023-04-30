@@ -993,10 +993,28 @@
                   </widget>
                  </item>
                  <item row="0" column="0" colspan="3">
-                  <widget class="GcodeDisplay" name="gcode_display">
-                   <property name="auto_show_mdi_status" stdset="0">
-                    <bool>false</bool>
+                  <widget class="QStackedWidget" name="sw_gcode">
+                   <property name="currentIndex">
+                    <number>0</number>
                    </property>
+                   <widget class="QWidget" name="page_4">
+                    <layout class="QGridLayout" name="gridLayout_8">
+                     <item row="0" column="0">
+                      <widget class="GcodeEditor" name="gcodeeditor">
+                       <property name="auto_show_mdi_status" stdset="0">
+                        <bool>false</bool>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </widget>
+                   <widget class="QWidget" name="page_5">
+                    <layout class="QGridLayout" name="gridLayout_12">
+                     <item row="0" column="0">
+                      <widget class="FileManager" name="filemanager"/>
+                     </item>
+                    </layout>
+                   </widget>
                   </widget>
                  </item>
                 </layout>
@@ -1147,6 +1165,7 @@
                  </item>
                 </layout>
                </widget>
+               <widget class="QWidget" name="page_3"/>
               </widget>
              </item>
             </layout>
@@ -2337,6 +2356,11 @@
  </widget>
  <customwidgets>
   <customwidget>
+   <class>FileManager</class>
+   <extends>QWidget</extends>
+   <header>qtvcp.widgets.file_manager</header>
+  </customwidget>
+  <customwidget>
    <class>GCodeGraphics</class>
    <extends>QWidget</extends>
    <header>qtvcp.widgets.gcode_graphics</header>
@@ -2354,8 +2378,8 @@
    <header>qtvcp.widgets.mdi_history</header>
   </customwidget>
   <customwidget>
-   <class>GcodeDisplay</class>
-   <extends>QFrame</extends>
+   <class>GcodeEditor</class>
+   <extends>QWidget</extends>
    <header>qtvcp.widgets.gcode_editor</header>
    <container>1</container>
   </customwidget>

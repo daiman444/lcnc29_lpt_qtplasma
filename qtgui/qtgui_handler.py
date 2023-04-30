@@ -89,8 +89,12 @@ class HandlerClass:
         self.w.pb_gcode_tab.clicked.connect(lambda: self.sw_other_tab_change(0))
         self.w.pb_mdi_tab.clicked.connect(lambda: self.sw_other_tab_change(1))
         self.w.pb_settings_tab.clicked.connect(lambda: self.sw_other_tab_change(2))
-        self.w.pb_gcode_load.clicked.connect(lambda: self.gcode_tab_pbuttons('load'))
-        self.w.pb_gcode_edit.clicked.connect(lambda: self.gcode_tab_pbuttons('edit'))
+        self.w.sw_gcode.setCurrentIndex(0)
+        self.w.pb_gcode_load.setCheckable(True)
+        self.w.pb_gcode_load.toggled.connect(self.gcode_load)
+        self.w.gcodeeditor.readOnlyMode()
+        self.w.pb_gcode_edit.setCheckable(True)
+        self.w.pb_gcode_edit.toggled.connect(self.gcode_edit)
         self.w.pb_gcode_reload.clicked.connect(lambda: self.gcode_tab_pbuttons('reload'))
         self.w.pb_halshow.clicked.connect(lambda: self.settings_tab_buttons('halshow'))
         self.w.pb_halscope.clicked.connect(lambda: self.settings_tab_buttons('halscope'))
@@ -239,10 +243,32 @@ class HandlerClass:
             if i == num:
                 self.w.sw_other.setCurrentIndex(i)
 
+    def gcode_load(self, state):
+        if state:
+            self.w.sw_gcode.setCurrentIndex(1)
+            self.w.pb_gcode_edit.setChecked(False)
+        else:
+            self.w.sw_gcode.setCurrentIndex(0)
+
+    def gcode_edit(self, state):
+        if state:
+            self.w.sw_gcode.setCurrentIndex(0)
+            self.w.pb_gcode_edit.setChecked(True)
+            self.w.pb_gcode_load.setChecked(False)
+            self.w.frame_3.hide()
+            self.w.frame_5.hide()
+            self.w.gcodeeditor.editMode()
+        else:
+            self.w.gcodeeditor.readOnlyMode()
+            self.w.pb_gcode_edit.setChecked(False)
+            self.w.frame_3.show()
+            self.w.frame_5.show()
+
+
+
+
     def gcode_tab_pbuttons(self, pbutton):
-        if pbutton == 'load':
-            STATUS.emit('dialog-request', {'NAME':'LOAD', 'ID':None})
-        elif pbutton == 'edit':
+        if pbutton == 'edit':
             os.popen('gedit %s' % self.stat.file)
         elif pbutton == 'reload':
             STATUS.emit('reload-display')
