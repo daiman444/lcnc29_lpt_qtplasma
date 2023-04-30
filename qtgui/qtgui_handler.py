@@ -3,6 +3,7 @@
 ############################
 
 import os
+#import subprocess
 import hal
 import linuxcnc
 import math
@@ -13,7 +14,9 @@ from qtvcp.widgets.mdi_line import MDILine as MDI_WIDGET
 from qtvcp.widgets.gcode_editor import GcodeEditor as GCODE
 from qtvcp.widgets.stylesheeteditor import  StyleSheetEditor as SSE
 from qtvcp.lib.keybindings import Keylookup
+from qtvcp.lib.aux_program_loader import Aux_program_loader
 from qtvcp.core import Status, Action, Info
+
 
 # Set up logging
 from qtvcp import logger
@@ -31,6 +34,8 @@ STATUS = Status()
 ACTION = Action()
 INFO = Info()
 STYLEEDITOR = SSE()
+
+TCLPATH = os.environ['LINUXCNC_TCL_DIR']
 INIPATH = os.environ.get('INI_FILE_NAME', '/dev/null')
 
 GSTAT = GStat()
@@ -57,6 +62,7 @@ class HandlerClass:
                              'pb_g92y0', 'pb_g92z0', 'pb_g53xmax_ymax',
                              )
 
+
     ##########################################
     # Special Functions called from QTSCREEN
     ##########################################
@@ -79,16 +85,25 @@ class HandlerClass:
         self.w.pb_home_all.toggled.connect(self.homing_state)
         self.w.screen_options.setProperty('play_sound_option', False)
         self.w.pb_gx_plane.clicked.connect(self.g5x_dro_change)
+        self.w.sw_other.setCurrentIndex(0)
+        self.w.pb_gcode_tab.clicked.connect(lambda: self.sw_other_tab_change(0))
+        self.w.pb_mdi_tab.clicked.connect(lambda: self.sw_other_tab_change(1))
+        self.w.pb_settings_tab.clicked.connect(lambda: self.sw_other_tab_change(2))
+        self.w.pb_gcode_load.clicked.connect(lambda: self.gcode_tab_pbuttons('load'))
+        self.w.pb_gcode_edit.clicked.connect(lambda: self.gcode_tab_pbuttons('edit'))
+        self.w.pb_gcode_reload.clicked.connect(lambda: self.gcode_tab_pbuttons('reload'))
+        self.w.pb_halshow.clicked.connect(lambda: self.settings_tab_buttons('halshow'))
+        self.w.pb_halscope.clicked.connect(lambda: self.settings_tab_buttons('halscope'))
+        self.w.pb_halmeter.clicked.connect(lambda: self.settings_tab_buttons('halmeter'))
+        self.w.pb_status.clicked.connect(lambda: self.settings_tab_buttons('status'))
+        self.w.pb_calibration.clicked.connect(lambda: self.settings_tab_buttons('calibration'))
 
         # MDI commands for coordinates
         for i in self.mdi_pbuttons:
             command = i.replace('pb_', '')
             self.w[i].clicked.connect(lambda w, cmd=command: self.mdi_commands(cmd))
-        STATUS.connect('periodic', self.some_def)
         STATUS.connect('periodic', self.motion_mode)
         STATUS.connect('state-estop', lambda w: self.estop_state(True))
-        #STATUS.connect('motion-mode-changed', self.motion_mode)
-        STATUS.connect('current-position', self.current_pos)
 
 
     def estop_state(self, state):
@@ -198,17 +213,6 @@ class HandlerClass:
             self.w['pb_jog_%s_plus' % i].show()
             self.w['pb_jog_%s_minus' % i].show()
 
-    def some_def(self, w, data=None):
-        self.stat.poll()
-        #self.w.label_5.setText(str(self.stat.motion_mode))
-        #pass
-
-    def current_pos(self, w, pos1, pos2, pos3, pos4):
-        p = self.stat.actual_position
-        x = (p[0], p[1], p[2], p[3])
-        self.w.label_2.setText('%.2f, %.2f, %.2f, %.2f' % (pos1[0], pos1[1], pos1[2], pos1[3] ))
-        self.w.label_3.setText('%.2f, %.2f, %.2f, %.2f' % (pos2[0], pos2[1], pos2[2], pos2[3] ))
-
     def mdi_commands(self, mdi):
         if mdi == 'g53xmax_ymax':
             y_coord = self.inifile.find('AXIS_Y', 'MAX_LIMIT')
@@ -229,6 +233,27 @@ class HandlerClass:
             self.w.gcodegraphics.updateGL()
             QtWidgets.QApplication.processEvents()
         self.cmd.mode(linuxcnc.MODE_MANUAL)
+
+    def sw_other_tab_change(self, num):
+        for i in range(0, 4):
+            if i == num:
+                self.w.sw_other.setCurrentIndex(i)
+
+    def gcode_tab_pbuttons(self, pbutton):
+        pass
+
+    def settings_tab_buttons(self, pbutton):
+        process = ['halshow', 'halscope', 'halmeter', ]
+        for i in process:
+            if i == pbutton:
+                os.popen('/usr/bin/%s' % i)
+        if pbutton == 'calibration':
+            os.popen("tclsh %s/bin/emccalib.tcl -- -ini %s > /dev/null &" % (TCLPATH, INIPATH), "w")
+        if pbutton == 'status':
+            os.popen("linuxcnctop  > /dev/null &", "w")
+
+
+
 
     def processed_key_event__(self,receiver,event,is_pressed,key,code,shift,cntrl):
         # when typing in MDI, we don't want keybinding to call functions

@@ -1,3 +1,5 @@
 *.var
 *.bak
 *.pyc
+autosave.halscope
+halshow.preferences

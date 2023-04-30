@@ -43,7 +43,7 @@
      <number>0</number>
     </property>
     <item>
-     <widget class="ScreenOptions" name="screen_options" native="true">
+     <widget class="ScreenOptions" name="screen_options">
       <property name="play_sounds_option" stdset="0">
        <bool>false</bool>
       </property>
@@ -165,7 +165,7 @@
            </widget>
           </item>
           <item row="2" column="0" colspan="4">
-           <widget class="GCodeGraphics" name="gcodegraphics" native="true">
+           <widget class="GCodeGraphics" name="gcodegraphics">
             <property name="_view" stdset="0">
              <string>z</string>
             </property>
@@ -928,7 +928,7 @@
                 </size>
                </property>
                <property name="currentIndex">
-                <number>1</number>
+                <number>2</number>
                </property>
                <widget class="QWidget" name="page">
                 <layout class="QGridLayout" name="gridLayout_4">
@@ -973,7 +973,7 @@
                   </widget>
                  </item>
                  <item row="0" column="0" colspan="3">
-                  <widget class="GcodeEditor" name="gcodeeditor" native="true">
+                  <widget class="GcodeEditor" name="gcodeeditor">
                    <property name="minimumSize">
                     <size>
                      <width>300</width>
@@ -1005,7 +1005,7 @@
                 </layout>
                </widget>
                <widget class="QWidget" name="page_2">
-                <widget class="MDIHistory" name="mdihistory" native="true">
+                <widget class="MDIHistory" name="mdihistory">
                  <property name="geometry">
                   <rect>
                    <x>9</x>
@@ -2329,7 +2329,7 @@
          <height>41</height>
         </rect>
        </property>
-       <property name="state" stdset="0">
+       <property name="state">
         <bool>false</bool>
        </property>
       </widget>
