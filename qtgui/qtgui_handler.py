@@ -230,9 +230,6 @@ class HandlerClass:
             QtWidgets.QApplication.processEvents()
         self.cmd.mode(linuxcnc.MODE_MANUAL)
 
-
-
-
     def processed_key_event__(self,receiver,event,is_pressed,key,code,shift,cntrl):
         # when typing in MDI, we don't want keybinding to call functions
         # so we catch and process the events directly.
