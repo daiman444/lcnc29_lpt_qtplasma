@@ -34,15 +34,12 @@ STATUS = Status()
 ACTION = Action()
 INFO = Info()
 STYLEEDITOR = SSE()
-
 TCLPATH = os.environ['LINUXCNC_TCL_DIR']
 INIPATH = os.environ.get('INI_FILE_NAME', '/dev/null')
-
 GSTAT = GStat()
 ###################################
 # **** HANDLER CLASS SECTION **** #
 ###################################
-
 class HandlerClass:
     ########################
     # **** INITIALIZE **** #
@@ -61,8 +58,6 @@ class HandlerClass:
         self.mdi_pbuttons = ('pb_g0x0y0_zsafe', 'pb_g92x0y0z0', 'pb_g92x0',
                              'pb_g92y0', 'pb_g92z0', 'pb_g53xmax_ymax',
                              )
-
-
     ##########################################
     # Special Functions called from QTSCREEN
     ##########################################
@@ -108,7 +103,6 @@ class HandlerClass:
             self.w[i].clicked.connect(lambda w, cmd=command: self.mdi_commands(cmd))
         STATUS.connect('periodic', self.motion_mode)
         STATUS.connect('state-estop', lambda w: self.estop_state(True))
-
 
     def estop_state(self, state):
         if isinstance(state, bool):
@@ -188,7 +182,6 @@ class HandlerClass:
             self.w['pb_jog_%s_plus' % i].show()
             self.w['pb_jog_%s_minus' % i].show()
 
-
     def show_axes(self, *args, **kwargs):
         self.stat.poll()
         pos = self.stat.actual_position
@@ -264,17 +257,11 @@ class HandlerClass:
             self.w.frame_3.show()
             self.w.frame_5.show()
 
-
-
-
     def gcode_tab_pbuttons(self, pbutton):
         if pbutton == 'edit':
             os.popen('gedit %s' % self.stat.file)
         elif pbutton == 'reload':
             STATUS.emit('reload-display')
-
-
-
 
     def settings_tab_buttons(self, pbutton):
         process = ['halshow', 'halscope', 'halmeter', ]
