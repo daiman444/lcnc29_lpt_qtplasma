@@ -53,6 +53,19 @@ class HandlerClass:
     # the HAL pins are built but HAL is not set ready
     def initialized__(self):
         KEYBIND.add_call('Key_F12','on_keycall_F12')
+        self.coordinates = 'xyz'
+        self.w.jog_x_plus.pressed.connect(lambda:self.gui_button_jog(1, 'x', 1))
+        self.w.jog_x_plus.released.connect(lambda:self.gui_button_jog(0, 'x', 1))
+        self.w.jog_x_minus.pressed.connect(lambda:self.gui_button_jog(1, 'x', -1))
+        self.w.jog_x_minus.released.connect(lambda:self.gui_button_jog(0, 'x', -1))
+        self.w.jog_y_plus.pressed.connect(lambda:self.gui_button_jog(1, 'y', 1))
+        self.w.jog_y_plus.released.connect(lambda:self.gui_button_jog(0, 'y', 1))
+        self.w.jog_y_minus.pressed.connect(lambda:self.gui_button_jog(1, 'y', -1))
+        self.w.jog_y_minus.released.connect(lambda:self.gui_button_jog(0, 'y', -1))
+        self.w.jog_z_plus.pressed.connect(lambda:self.gui_button_jog(1, 'z', 1))
+        self.w.jog_z_plus.released.connect(lambda:self.gui_button_jog(0, 'z', 1))
+        self.w.jog_z_minus.pressed.connect(lambda:self.gui_button_jog(1, 'z', -1))
+        self.w.jog_z_minus.released.connect(lambda:self.gui_button_jog(0, 'z', -1))
 
     def processed_key_event__(self,receiver,event,is_pressed,key,code,shift,cntrl):
         # when typing in MDI, we don't want keybinding to call functions
@@ -108,6 +121,15 @@ class HandlerClass:
     #######################
     # callbacks from form #
     #######################
+
+    def gui_button_jog(self, state, joint, direction):
+        shift = False
+        #if state and joint == 'z' and direction == 1 and self.zPlusOverrideJog and self.w.chk_override_jog.isEnabled():
+        #        self.w.chk_override_jog.setChecked(True)
+        if STATUS.is_joint_mode():
+            self.kb_jog(state, self.coordinates.index(joint), direction, shift)
+        else:
+            self.kb_jog(state, ['x','y','z','a','b'].index(joint), direction, shift)
 
     #####################
     # general functions #
