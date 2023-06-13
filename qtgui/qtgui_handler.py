@@ -84,7 +84,7 @@ class HandlerClass:
         self.w.pb_gcode_tab.clicked.connect(lambda: self.sw_other_tab_change(0))
         self.w.pb_mdi_tab.clicked.connect(lambda: self.sw_other_tab_change(1))
         self.w.pb_settings_tab.clicked.connect(lambda: self.sw_other_tab_change(2))
-        self.w.sw_gcode.setCurrentIndex(0)
+        #self.w.sw_gcode.setCurrentIndex(0)
         self.w.pb_gcode_load.setCheckable(True)
         self.w.pb_gcode_load.toggled.connect(self.gcode_load)
         self.w.gcodeeditor.readOnlyMode()
