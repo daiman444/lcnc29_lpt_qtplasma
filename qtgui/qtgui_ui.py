@@ -14,6 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
+<<<<<<< HEAD
         MainWindow.resize(1280, 720)
         MainWindow.setMinimumSize(QtCore.QSize(1280, 720))
         MainWindow.setMaximumSize(QtCore.QSize(1440, 900))
@@ -1110,11 +1111,72 @@ class Ui_MainWindow(object):
         self.pushButton_3.clicked.connect(MainWindow.showMinimized)
         self.pushButton_4.clicked.connect(MainWindow.close)
         self.gcodeeditor.percentDone['int'].connect(self.progressBar.setValue)
+=======
+        MainWindow.resize(800, 600)
+        self.centralwidget = QtWidgets.QWidget(MainWindow)
+        self.centralwidget.setObjectName("centralwidget")
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.centralwidget)
+        self.verticalLayout.setContentsMargins(1, 1, 1, 1)
+        self.verticalLayout.setSpacing(1)
+        self.verticalLayout.setObjectName("verticalLayout")
+        self.frame = QtWidgets.QFrame(self.centralwidget)
+        self.frame.setMinimumSize(QtCore.QSize(0, 55))
+        self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame.setObjectName("frame")
+        self.horizontalLayout = QtWidgets.QHBoxLayout(self.frame)
+        self.horizontalLayout.setContentsMargins(1, 1, 1, 1)
+        self.horizontalLayout.setSpacing(1)
+        self.horizontalLayout.setObjectName("horizontalLayout")
+        self.pushButton = QtWidgets.QPushButton(self.frame)
+        self.pushButton.setMinimumSize(QtCore.QSize(0, 45))
+        self.pushButton.setObjectName("pushButton")
+        self.horizontalLayout.addWidget(self.pushButton)
+        self.pushButton_2 = QtWidgets.QPushButton(self.frame)
+        self.pushButton_2.setMinimumSize(QtCore.QSize(0, 45))
+        self.pushButton_2.setObjectName("pushButton_2")
+        self.horizontalLayout.addWidget(self.pushButton_2)
+        self.verticalLayout.addWidget(self.frame)
+        self.stackedWidget = QtWidgets.QStackedWidget(self.centralwidget)
+        self.stackedWidget.setObjectName("stackedWidget")
+        self.page = QtWidgets.QWidget()
+        self.page.setObjectName("page")
+        self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.page)
+        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
+        self.frame_view = QtWidgets.QFrame(self.page)
+        self.frame_view.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame_view.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_view.setObjectName("frame_view")
+        self.pushButton_3 = QtWidgets.QPushButton(self.frame_view)
+        self.pushButton_3.setGeometry(QtCore.QRect(30, 80, 397, 45))
+        self.pushButton_3.setMinimumSize(QtCore.QSize(0, 45))
+        self.pushButton_3.setObjectName("pushButton_3")
+        self.horizontalLayout_2.addWidget(self.frame_view)
+        self.frame_central = QtWidgets.QFrame(self.page)
+        self.frame_central.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame_central.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_central.setObjectName("frame_central")
+        self.horizontalLayout_2.addWidget(self.frame_central)
+        self.frame_add_panel = QtWidgets.QFrame(self.page)
+        self.frame_add_panel.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame_add_panel.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_add_panel.setObjectName("frame_add_panel")
+        self.horizontalLayout_2.addWidget(self.frame_add_panel)
+        self.stackedWidget.addWidget(self.page)
+        self.page_2 = QtWidgets.QWidget()
+        self.page_2.setObjectName("page_2")
+        self.stackedWidget.addWidget(self.page_2)
+        self.verticalLayout.addWidget(self.stackedWidget)
+        MainWindow.setCentralWidget(self.centralwidget)
+
+        self.retranslateUi(MainWindow)
+>>>>>>> 5ef69c4444dfd4f4ec1cef235090e67d81f29386
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+<<<<<<< HEAD
         self.screen_options.setProperty("pref_filename_string", _translate("MainWindow", "~/qtgui.ini"))
         self.statuslabel.setText(_translate("MainWindow", "File name"))
         self.pb_view_clear.setText(_translate("MainWindow", "Clear"))
@@ -1230,3 +1292,8 @@ from qtvcp.widgets.mdi_history import MDIHistory
 from qtvcp.widgets.mdi_line import MDILine
 from qtvcp.widgets.screen_options import ScreenOptions
 from qtvcp.widgets.status_label import StatusLabel
+=======
+        self.pushButton.setText(_translate("MainWindow", "PushButton"))
+        self.pushButton_2.setText(_translate("MainWindow", "PushButton"))
+        self.pushButton_3.setText(_translate("MainWindow", "PushButton"))
+>>>>>>> 5ef69c4444dfd4f4ec1cef235090e67d81f29386
