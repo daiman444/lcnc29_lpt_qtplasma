@@ -2,3 +2,7 @@
 *.bak
 *.pyc
 *.halscope
+
+autosave.halscope
+halshow.preferences
+
