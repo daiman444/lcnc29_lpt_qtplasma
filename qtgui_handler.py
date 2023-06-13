@@ -53,8 +53,6 @@ class HandlerClass:
     # the HAL pins are built but HAL is not set ready
     def initialized__(self):
         KEYBIND.add_call('Key_F12','on_keycall_F12')
-        self.w.toolButton.setText('Win')
-
 
     def processed_key_event__(self,receiver,event,is_pressed,key,code,shift,cntrl):
         # when typing in MDI, we don't want keybinding to call functions
