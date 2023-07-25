@@ -42,6 +42,7 @@ setp stepgen.0.stepspace 0
 setp stepgen.0.dirhold 35000
 setp stepgen.0.dirsetup 35000
 setp stepgen.0.maxaccel [JOINT_0]STEPGEN_MAXACCEL
+
 net xpos-cmd joint.0.motor-pos-cmd => stepgen.0.position-cmd
 net xpos-fb stepgen.0.position-fb => joint.0.motor-pos-fb
 net xstep <= stepgen.0.step
