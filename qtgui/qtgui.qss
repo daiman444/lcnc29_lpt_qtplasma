@@ -2,12 +2,13 @@
 QSlider::groove:horisontal {
     background: green;
     border-radius: 2px;
-    height: 20px }
+    height: 30px }
 
 
 QSlider::handle:horisontal {
     background: red;
     border: 0px solid foregnd;
+    width: 20px;
     border-radius: 4px;
     }
 
