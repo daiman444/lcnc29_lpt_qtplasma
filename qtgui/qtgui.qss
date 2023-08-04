@@ -1,35 +1,4 @@
-/****** VERTICAL SLIDER ************/
-QSlider::groove:horisontal {
-    background: green;
-    border-radius: 2px;
-    height: 30px }
+QMainWindow{
+    background: gui_background;
+}
 
-
-QSlider::handle:horisontal {
-    background: red;
-    border: 0px solid foregnd;
-    width: 20px;
-    border-radius: 4px;
-    }
-
-QSlider::add-page:horisontal {
-    background: black;
-    border: 1px solid foregnd;
-    border-radius: 4px;
-    width: 20px }
-
-QSlider::sub-page:horisontal {
-    background: white;
-    border: 1px solid backalt;
-    border-radius: 4px;
-    width: 16px }
-
-QSlider::add-page:horisontal:disabled,
-QSlider::sub-page:horisontal:disabled,
-QSlider::handle:horisontal:disabled,
-QSlider::groove:horisontal:disabled {
-    color: gray;
-    background: backalt;
-    border: 1px solid inactive;
-    border-radius: 4px 
-    
