@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1366</width>
-    <height>768</height>
+    <width>1280</width>
+    <height>680</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -46,7 +46,7 @@
      <number>0</number>
     </property>
     <item>
-     <widget class="ScreenOptions" name="screen_options">
+     <widget class="ScreenOptions" name="screen_options" native="true">
       <widget class="QFrame" name="frame_3">
        <property name="geometry">
         <rect>
@@ -336,7 +336,7 @@
           <number>1</number>
          </property>
          <item>
-          <widget class="GCodeGraphics" name="gcodegraphics"/>
+          <widget class="GCodeGraphics" name="gcodegraphics" native="true"/>
          </item>
          <item>
           <widget class="QFrame" name="frame_5">

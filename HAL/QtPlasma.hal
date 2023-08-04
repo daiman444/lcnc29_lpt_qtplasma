@@ -63,12 +63,12 @@ net ydir <= stepgen.1.dir
 net yenable joint.1.amp-enable-out => stepgen.1.enable
 net all-home => joint.1.home-sw-in
 
-setp stepgen.2.position-scale [JOINT_1]SCALE
+setp stepgen.2.position-scale [JOINT_2]SCALE
 setp stepgen.2.steplen 1
 setp stepgen.2.stepspace 0
 setp stepgen.2.dirhold 35000
 setp stepgen.2.dirsetup 35000
-setp stepgen.2.maxaccel [JOINT_1]STEPGEN_MAXACCEL
+setp stepgen.2.maxaccel [JOINT_2]STEPGEN_MAXACCEL
 net y2pos-cmd joint.2.motor-pos-cmd => stepgen.2.position-cmd
 net y2pos-fb stepgen.2.position-fb => joint.2.motor-pos-fb
 net y2step <= stepgen.2.step
