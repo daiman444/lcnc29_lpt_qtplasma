@@ -230,7 +230,10 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pb_bottom_10">
+           <widget class="QPushButton" name="pb_bottom_11">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -238,21 +241,43 @@
              </sizepolicy>
             </property>
             <property name="text">
-             <string>PushButton</string>
+             <string/>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pb_bottom_11">
+           <widget class="QComboBox" name="cb_window_2">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="text">
-             <string>PushButton</string>
-            </property>
+            <item>
+             <property name="text">
+              <string>W</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Coll</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Min</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Full</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Close</string>
+             </property>
+            </item>
            </widget>
           </item>
           <item>
@@ -639,7 +664,68 @@
        </item>
        <item row="0" column="1">
         <widget class="QStackedWidget" name="stw">
-         <widget class="QWidget" name="page"/>
+         <widget class="QWidget" name="page">
+          <widget class="QFrame" name="fr_view">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>100</y>
+             <width>391</width>
+             <height>541</height>
+            </rect>
+           </property>
+           <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+           <widget class="QFrame" name="fr_view_buttons">
+            <property name="geometry">
+             <rect>
+              <x>120</x>
+              <y>420</y>
+              <width>201</width>
+              <height>60</height>
+             </rect>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+           </widget>
+          </widget>
+          <widget class="QFrame" name="fr_view_signals">
+           <property name="geometry">
+            <rect>
+             <x>470</x>
+             <y>220</y>
+             <width>201</width>
+             <height>60</height>
+            </rect>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>60</height>
+            </size>
+           </property>
+           <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+          </widget>
+         </widget>
          <widget class="QWidget" name="page_2"/>
         </widget>
        </item>
