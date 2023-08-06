@@ -9,6 +9,12 @@ QMainWindow{
     border-radius: 4px;
 }
 
+#fr_view_buttons,#cb_view_select, #pb_view_0,
+#pb_view_1, #pb_view_2, #pb_view_3, #pb_view_4{
+    background-color: transparent;
+    color: yellow;
+}
+
 QFrame{
     border-raduis: 10px;
     border: 1px solid frames;

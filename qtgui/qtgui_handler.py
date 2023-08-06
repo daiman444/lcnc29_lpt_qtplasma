@@ -55,7 +55,7 @@ class HandlerClass:
     def initialized__(self):
         KEYBIND.add_call('Key_F12','on_keycall_F12')
         
-        self.w.cb_window.currentIndexChanged.connect(self.on_combobox_changed)
+        #self.w.cb_window.currentIndexChanged.connect(self.on_combobox_changed)
         self.w.fr_left.close()
         self.w.fr_right.close()
         
