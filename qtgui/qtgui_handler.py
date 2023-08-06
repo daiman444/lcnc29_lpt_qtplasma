@@ -5,7 +5,7 @@ import sys
 import os
 import linuxcnc
 
-from PyQt5 import QtCore, QtWidgets,
+from PyQt5 import QtCore, QtWidgets
 
 from qtvcp.widgets.mdi_line import MDILine as MDI_WIDGET
 from qtvcp.widgets.gcode_editor import GcodeEditor as GCODE
@@ -43,6 +43,7 @@ class HandlerClass:
         self.hal = halcomp
         self.w = widgets
         self.PATHS = paths
+        
 
     ##########################################
     # Special Functions called from QTSCREEN
@@ -53,6 +54,7 @@ class HandlerClass:
     # the HAL pins are built but HAL is not set ready
     def initialized__(self):
         KEYBIND.add_call('Key_F12','on_keycall_F12')
+        
         self.w.cb_window.currentIndexChanged.connect(self.on_combobox_changed)
         self.w.fr_left.close()
         self.w.fr_right.close()
@@ -119,10 +121,8 @@ class HandlerClass:
     # callbacks from form #
     #######################
     def on_combobox_changed(self, index):
-        selected_item = self.sender().currentText()
-        if selected_item == "Coll":
-            # Если выбран "Свернуть окно", сворачиваем окно
-            self.window().showMinimized()
+        if index == 1:
+            self.w.mainwindow.showMinimized()
         
     #####################
     # general functions #

@@ -961,7 +961,7 @@
                   <number>0</number>
                  </property>
                  <item>
-                  <widget class="QLabel" name="label">
+                  <widget class="QLabel" name="lbl_filename">
                    <property name="text">
                     <string>File:</string>
                    </property>
@@ -993,6 +993,13 @@
                <widget class="QPushButton" name="pushButton">
                 <property name="text">
                  <string>PushButton</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_2">
+                <property name="text">
+                 <string>TextLabel</string>
                 </property>
                </widget>
               </item>
