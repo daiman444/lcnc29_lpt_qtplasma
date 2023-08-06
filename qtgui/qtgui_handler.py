@@ -53,6 +53,12 @@ class HandlerClass:
     # the HAL pins are built but HAL is not set ready
     def initialized__(self):
         KEYBIND.add_call('Key_F12','on_keycall_F12')
+        self.w.fr_left.close()
+        self.w.fr_right.close()
+        
+        STATUS.connect('periodic', lambda w: self.gui_update())
+ 
+
 
     def processed_key_event__(self,receiver,event,is_pressed,key,code,shift,cntrl):
         # when typing in MDI, we don't want keybinding to call functions
@@ -104,6 +110,9 @@ class HandlerClass:
     ########################
     # callbacks from STATUS #
     ########################
+    def gui_update(self, *args):
+        fr_view_width = int(self.w.stw.width() / 2)
+        self.w.fr_view.setMaximumWidth(fr_view_width)
 
     #######################
     # callbacks from form #
