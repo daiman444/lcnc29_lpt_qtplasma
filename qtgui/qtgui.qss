@@ -1,26 +1,9 @@
-/*
-102.153.255	51.102.255	0.0.255	0.0.204	0.51.204	0.0.51
-*/
-
 QMainWindow{
-    background: rgb(0, 0, 51);
-    border-color: rgb(0, 0, 51);
-    border: 1px solid frames;
-    border-radius: 4px;
+    background-color: rgb(0, 0, 51);
 }
 
-#fr_view_buttons,#cb_view_select, #pb_view_0,
-#pb_view_1, #pb_view_2, #pb_view_3, #pb_view_4{
-    background-color: transparent;
-    color: yellow;
+QPushButton {
+    background-color: rgb(0, 0, 51);
+    color: red;
 }
 
-QFrame{
-    border-raduis: 10px;
-    border: 1px solid frames;
-}
-
-QTabWidget{
-    background: rgb(0, 0, 51);
-    border-color: rgb(102, 153, 255);
-}
