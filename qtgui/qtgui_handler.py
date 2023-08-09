@@ -116,6 +116,8 @@ class HandlerClass:
     def gui_update(self, *args):
         fr_view_width = int(self.w.stw.width() / 2)
         self.w.fr_view.setMaximumWidth(fr_view_width)
+        g_code_view_width = int(self.w.frame_3.width() / 2)
+        self.w.gcode_display.setMinimumWidth(g_code_view_width)
 
     #######################
     # callbacks from form #

@@ -973,18 +973,413 @@
               <enum>QFrame::Raised</enum>
              </property>
              <layout class="QGridLayout" name="gridLayout_3">
+              <property name="leftMargin">
+               <number>2</number>
+              </property>
+              <property name="topMargin">
+               <number>2</number>
+              </property>
+              <property name="rightMargin">
+               <number>2</number>
+              </property>
+              <property name="bottomMargin">
+               <number>2</number>
+              </property>
+              <property name="spacing">
+               <number>2</number>
+              </property>
               <item row="1" column="0">
-               <widget class="QPushButton" name="pushButton">
-                <property name="text">
-                 <string>PushButton</string>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="0">
-               <widget class="QLabel" name="label_2">
-                <property name="text">
-                 <string>TextLabel</string>
-                </property>
+               <widget class="QStackedWidget" name="stackedWidget_2">
+                <widget class="QWidget" name="page_6">
+                 <layout class="QHBoxLayout" name="horizontalLayout_9" stretch="0,0">
+                  <property name="spacing">
+                   <number>2</number>
+                  </property>
+                  <property name="leftMargin">
+                   <number>2</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>2</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>2</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>2</number>
+                  </property>
+                  <item>
+                   <widget class="QFrame" name="frame_5">
+                    <property name="frameShape">
+                     <enum>QFrame::StyledPanel</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Raised</enum>
+                    </property>
+                    <layout class="QGridLayout" name="gridLayout_7">
+                     <item row="10" column="0" colspan="3">
+                      <widget class="Slider" name="slider">
+                       <property name="maximum">
+                        <number>100</number>
+                       </property>
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="12" column="0" colspan="3">
+                      <widget class="QSlider" name="horizontalSlider_5">
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="4" column="0" colspan="3">
+                      <widget class="QSlider" name="horizontalSlider_4">
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="2" column="0" colspan="3">
+                      <widget class="QSlider" name="horizontalSlider_2">
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="11" column="0">
+                      <widget class="QLabel" name="label_12">
+                       <property name="text">
+                        <string>Cor. vel:</string>
+                       </property>
+                       <property name="alignment">
+                        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="9" column="2">
+                      <widget class="QLabel" name="label_9">
+                       <property name="text">
+                        <string>XXX</string>
+                       </property>
+                       <property name="alignment">
+                        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="15" column="0" colspan="3">
+                      <widget class="QFrame" name="frame_7">
+                       <property name="frameShape">
+                        <enum>QFrame::NoFrame</enum>
+                       </property>
+                       <property name="frameShadow">
+                        <enum>QFrame::Raised</enum>
+                       </property>
+                       <layout class="QHBoxLayout" name="horizontalLayout_10">
+                        <property name="spacing">
+                         <number>2</number>
+                        </property>
+                        <property name="leftMargin">
+                         <number>2</number>
+                        </property>
+                        <property name="topMargin">
+                         <number>2</number>
+                        </property>
+                        <property name="rightMargin">
+                         <number>2</number>
+                        </property>
+                        <property name="bottomMargin">
+                         <number>2</number>
+                        </property>
+                        <item>
+                         <widget class="QPushButton" name="pb_bottom_28">
+                          <property name="sizePolicy">
+                           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                           </sizepolicy>
+                          </property>
+                          <property name="text">
+                           <string>Plasma</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QPushButton" name="pb_bottom_27">
+                          <property name="sizePolicy">
+                           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                           </sizepolicy>
+                          </property>
+                          <property name="text">
+                           <string>Oxygen</string>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </widget>
+                     </item>
+                     <item row="0" column="2">
+                      <widget class="QLabel" name="label_3">
+                       <property name="text">
+                        <string>XXX</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="11" column="2">
+                      <widget class="QLabel" name="label_14">
+                       <property name="text">
+                        <string>XXX</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="3" column="2">
+                      <widget class="QLabel" name="label_6">
+                       <property name="text">
+                        <string>XXX</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="9" column="0">
+                      <widget class="QLabel" name="label_7">
+                       <property name="text">
+                        <string>XXX</string>
+                       </property>
+                       <property name="alignment">
+                        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="7" column="1">
+                      <widget class="QLabel" name="label_17">
+                       <property name="text">
+                        <string>Direction</string>
+                       </property>
+                       <property name="alignment">
+                        <set>Qt::AlignCenter</set>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="0">
+                      <widget class="QLabel" name="label">
+                       <property name="text">
+                        <string>Feed:</string>
+                       </property>
+                       <property name="alignment">
+                        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="9" column="1">
+                      <widget class="QLabel" name="label_8">
+                       <property name="text">
+                        <string>Volts</string>
+                       </property>
+                       <property name="alignment">
+                        <set>Qt::AlignCenter</set>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="3" column="0">
+                      <widget class="QLabel" name="label_5">
+                       <property name="text">
+                        <string>Jog:</string>
+                       </property>
+                       <property name="alignment">
+                        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="1">
+                      <widget class="QLabel" name="label_11">
+                       <property name="text">
+                        <string/>
+                       </property>
+                       <property name="alignment">
+                        <set>Qt::AlignCenter</set>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="8" column="0" colspan="3">
+                      <widget class="QSlider" name="horizontalSlider_6">
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QFrame" name="frame_6">
+                    <property name="frameShape">
+                     <enum>QFrame::StyledPanel</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Raised</enum>
+                    </property>
+                    <layout class="QGridLayout" name="gridLayout_8">
+                     <item row="0" column="1">
+                      <widget class="QLabel" name="label_4">
+                       <property name="text">
+                        <string/>
+                       </property>
+                       <property name="alignment">
+                        <set>Qt::AlignCenter</set>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="1" column="0" colspan="3">
+                      <widget class="QSlider" name="horizontalSlider_3">
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="0">
+                      <widget class="QLabel" name="label_2">
+                       <property name="text">
+                        <string>Pierce:</string>
+                       </property>
+                       <property name="alignment">
+                        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="2" column="0">
+                      <widget class="QLabel" name="label_16">
+                       <property name="text">
+                        <string>Delay:</string>
+                       </property>
+                       <property name="alignment">
+                        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="9" column="0" colspan="3">
+                      <widget class="QSlider" name="horizontalSlider_10">
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="5" column="0" colspan="3">
+                      <widget class="QSlider" name="horizontalSlider_8">
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="2">
+                      <widget class="QLabel" name="label_15">
+                       <property name="text">
+                        <string>TextLabel</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="7" column="0" colspan="3">
+                      <widget class="QSlider" name="horizontalSlider_9">
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="6" column="0">
+                      <widget class="QLabel" name="label_19">
+                       <property name="text">
+                        <string>Cut:</string>
+                       </property>
+                       <property name="alignment">
+                        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="11" column="0" colspan="3">
+                      <widget class="QSlider" name="horizontalSlider_11">
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="8" column="0">
+                      <widget class="QLabel" name="label_20">
+                       <property name="text">
+                        <string>Blow:</string>
+                       </property>
+                       <property name="alignment">
+                        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="4" column="0">
+                      <widget class="QLabel" name="label_18">
+                       <property name="text">
+                        <string>Jump</string>
+                       </property>
+                       <property name="alignment">
+                        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="3" column="0" colspan="3">
+                      <widget class="QSlider" name="horizontalSlider_7">
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="10" column="0">
+                      <widget class="QLabel" name="label_21">
+                       <property name="text">
+                        <string>TextLabel</string>
+                       </property>
+                       <property name="alignment">
+                        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="10" column="2">
+                      <widget class="QLabel" name="label_23">
+                       <property name="text">
+                        <string>TextLabel</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="8" column="2">
+                      <widget class="QLabel" name="label_24">
+                       <property name="text">
+                        <string>TextLabel</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="2" column="2">
+                      <widget class="QLabel" name="label_22">
+                       <property name="text">
+                        <string>TextLabel</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="4" column="2">
+                      <widget class="QLabel" name="label_25">
+                       <property name="text">
+                        <string>TextLabel</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="6" column="2">
+                      <widget class="QLabel" name="label_26">
+                       <property name="text">
+                        <string>TextLabel</string>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+                <widget class="QWidget" name="page_7"/>
                </widget>
               </item>
               <item row="0" column="0">
@@ -1103,29 +1498,31 @@
                          </property>
                         </widget>
                        </item>
-                       <item>
-                        <widget class="QPushButton" name="pb_bottom_27">
-                         <property name="sizePolicy">
-                          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                           <horstretch>0</horstretch>
-                           <verstretch>0</verstretch>
-                          </sizepolicy>
-                         </property>
-                         <property name="text">
-                          <string>Offset</string>
-                         </property>
-                        </widget>
-                       </item>
                       </layout>
                      </widget>
                     </item>
                     <item>
                      <widget class="QStackedWidget" name="stackedWidget">
                       <property name="currentIndex">
-                       <number>2</number>
+                       <number>0</number>
                       </property>
                       <widget class="QWidget" name="page_3">
                        <layout class="QGridLayout" name="gridLayout_4">
+                        <property name="leftMargin">
+                         <number>2</number>
+                        </property>
+                        <property name="topMargin">
+                         <number>2</number>
+                        </property>
+                        <property name="rightMargin">
+                         <number>2</number>
+                        </property>
+                        <property name="bottomMargin">
+                         <number>2</number>
+                        </property>
+                        <property name="spacing">
+                         <number>2</number>
+                        </property>
                         <item row="3" column="1">
                          <widget class="QPushButton" name="pb_bottom_20">
                           <property name="sizePolicy">
@@ -1204,7 +1601,7 @@
                            </sizepolicy>
                           </property>
                           <property name="text">
-                           <string>X</string>
+                           <string>Y=0</string>
                           </property>
                          </widget>
                         </item>
@@ -1217,7 +1614,7 @@
                            </sizepolicy>
                           </property>
                           <property name="text">
-                           <string>X</string>
+                           <string>All = 0</string>
                           </property>
                          </widget>
                         </item>
@@ -1230,7 +1627,7 @@
                            </sizepolicy>
                           </property>
                           <property name="text">
-                           <string>X</string>
+                           <string>X=0</string>
                           </property>
                          </widget>
                         </item>
@@ -1243,7 +1640,7 @@
                            </sizepolicy>
                           </property>
                           <property name="text">
-                           <string>X</string>
+                           <string>Z=0</string>
                           </property>
                          </widget>
                         </item>
@@ -1308,116 +1705,7 @@
                        </layout>
                       </widget>
                       <widget class="QWidget" name="page_5">
-                       <layout class="QGridLayout" name="gridLayout_6">
-                        <item row="2" column="0" rowspan="2">
-                         <widget class="QPushButton" name="pb_bottom_31">
-                          <property name="sizePolicy">
-                           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                            <horstretch>0</horstretch>
-                            <verstretch>0</verstretch>
-                           </sizepolicy>
-                          </property>
-                          <property name="text">
-                           <string>Homing</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="4" column="1">
-                         <widget class="QLabel" name="label_6">
-                          <property name="text">
-                           <string>TextLabel</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="6" column="1">
-                         <widget class="QLabel" name="label_8">
-                          <property name="text">
-                           <string>TextLabel</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="2" column="1">
-                         <widget class="QLabel" name="label_4">
-                          <property name="text">
-                           <string>TextLabel</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="1" column="1">
-                         <widget class="QLabel" name="label_3">
-                          <property name="text">
-                           <string>TextLabel</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="3" column="1">
-                         <widget class="QLabel" name="label_5">
-                          <property name="text">
-                           <string>TextLabel</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="0" column="2" rowspan="2">
-                         <widget class="QPushButton" name="pb_bottom_29">
-                          <property name="sizePolicy">
-                           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                            <horstretch>0</horstretch>
-                            <verstretch>0</verstretch>
-                           </sizepolicy>
-                          </property>
-                          <property name="text">
-                           <string>Homing</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="0" column="1">
-                         <widget class="QLabel" name="label">
-                          <property name="text">
-                           <string>TextLabel</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="5" column="1">
-                         <widget class="QLabel" name="label_7">
-                          <property name="text">
-                           <string>TextLabel</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="0" column="0" rowspan="2">
-                         <widget class="QPushButton" name="pb_bottom_28">
-                          <property name="sizePolicy">
-                           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                            <horstretch>0</horstretch>
-                            <verstretch>0</verstretch>
-                           </sizepolicy>
-                          </property>
-                          <property name="text">
-                           <string>Homing</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="2" column="2" rowspan="2">
-                         <widget class="QPushButton" name="pb_bottom_30">
-                          <property name="sizePolicy">
-                           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                            <horstretch>0</horstretch>
-                            <verstretch>0</verstretch>
-                           </sizepolicy>
-                          </property>
-                          <property name="text">
-                           <string>Homing</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="7" column="1">
-                         <widget class="QLabel" name="label_9">
-                          <property name="text">
-                           <string>TextLabel</string>
-                          </property>
-                         </widget>
-                        </item>
-                       </layout>
+                       <layout class="QGridLayout" name="gridLayout_6"/>
                       </widget>
                      </widget>
                     </item>
@@ -1442,6 +1730,11 @@
   </widget>
  </widget>
  <customwidgets>
+  <customwidget>
+   <class>Slider</class>
+   <extends>QSlider</extends>
+   <header>qtvcp.widgets.simple_widgets</header>
+  </customwidget>
   <customwidget>
    <class>GCodeGraphics</class>
    <extends>QWidget</extends>
