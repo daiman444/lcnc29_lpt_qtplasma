@@ -60,10 +60,10 @@ class HandlerClass:
         self.w.fr_right.close()
         
         self.w.pb_view_full.setCheckable(True)
-        #self.w.pb_view_full.toggled.connect(self.view_fullscreen)
+        self.w.pb_view_full.toggled.connect(self.view_fullscreen)
         
         
-        STATUS.connect('periodic', lambda w: self.gui_update())
+        #STATUS.connect('periodic', lambda w: self.gui_update())
  
 
 
@@ -135,6 +135,19 @@ class HandlerClass:
     def on_combobox_changed(self, index):
         if index == 1:
             self.w.mainwindow.showMinimized()
+            
+    def view_fullscreen(self, state):
+        if state:
+            self.w.fr_view.setMaximumWidth(3000)
+            self.w.frame_2.close()
+        else:
+            fr_view_width = int(self.w.stw.width() / 2)
+            self.w.fr_view.setMaximumWidth(fr_view_width)
+            self.w.frame_2.show()
+            g_code_view_width = int(self.w.frame_3.width() / 2)
+            self.w.gcode_display.setMinimumWidth(g_code_view_width)
+
+        
             
     
             
