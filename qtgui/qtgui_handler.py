@@ -59,6 +59,10 @@ class HandlerClass:
         self.w.fr_left.close()
         self.w.fr_right.close()
         
+        self.w.pb_view_full.setCheckable(True)
+        #self.w.pb_view_full.toggled.connect(self.view_fullscreen)
+        
+        
         STATUS.connect('periodic', lambda w: self.gui_update())
  
 
@@ -114,10 +118,16 @@ class HandlerClass:
     # callbacks from STATUS #
     ########################
     def gui_update(self, *args):
-        fr_view_width = int(self.w.stw.width() / 2)
-        self.w.fr_view.setMaximumWidth(fr_view_width)
-        g_code_view_width = int(self.w.frame_3.width() / 2)
-        self.w.gcode_display.setMinimumWidth(g_code_view_width)
+        if self.w.pb_view_full.toggled(False):
+            fr_view_width = int(self.w.stw.width() / 2)
+            self.w.fr_view.setMaximumWidth(fr_view_width)
+            self.w.frame_2.show()
+            g_code_view_width = int(self.w.frame_3.width() / 2)
+            self.w.gcode_display.setMinimumWidth(g_code_view_width)
+        elif self.w.pb_view_full.toggled(True):
+            self.w.fr_view.setMaximumWidth(3000)
+            self.w.frame_2.close()
+            
 
     #######################
     # callbacks from form #
@@ -125,6 +135,9 @@ class HandlerClass:
     def on_combobox_changed(self, index):
         if index == 1:
             self.w.mainwindow.showMinimized()
+            
+    
+            
         
     #####################
     # general functions #

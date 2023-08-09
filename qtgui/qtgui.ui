@@ -829,7 +829,7 @@
                   </widget>
                  </item>
                  <item>
-                  <widget class="QPushButton" name="pb_view_0">
+                  <widget class="QPushButton" name="pb_view_full">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
                      <horstretch>0</horstretch>
@@ -838,6 +838,9 @@
                    </property>
                    <property name="text">
                     <string>Full</string>
+                   </property>
+                   <property name="checkable">
+                    <bool>false</bool>
                    </property>
                   </widget>
                  </item>
@@ -1504,7 +1507,7 @@
                     <item>
                      <widget class="QStackedWidget" name="stackedWidget">
                       <property name="currentIndex">
-                       <number>0</number>
+                       <number>2</number>
                       </property>
                       <widget class="QWidget" name="page_3">
                        <layout class="QGridLayout" name="gridLayout_4">
