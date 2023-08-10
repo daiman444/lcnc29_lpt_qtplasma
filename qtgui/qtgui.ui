@@ -1526,7 +1526,7 @@
                         <number>2</number>
                        </property>
                        <item>
-                        <widget class="QPushButton" name="pb_bottom_14">
+                        <widget class="QPushButton" name="pb_homing">
                          <property name="sizePolicy">
                           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
                            <horstretch>0</horstretch>
@@ -1539,7 +1539,7 @@
                         </widget>
                        </item>
                        <item>
-                        <widget class="QPushButton" name="pb_bottom_15">
+                        <widget class="QPushButton" name="pb_workpiece">
                          <property name="sizePolicy">
                           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
                            <horstretch>0</horstretch>
@@ -1552,7 +1552,7 @@
                         </widget>
                        </item>
                        <item>
-                        <widget class="QPushButton" name="pb_bottom_36">
+                        <widget class="QPushButton" name="pb_tests">
                          <property name="sizePolicy">
                           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
                            <horstretch>0</horstretch>
@@ -1568,9 +1568,9 @@
                      </widget>
                     </item>
                     <item>
-                     <widget class="QStackedWidget" name="stackedWidget">
+                     <widget class="QStackedWidget" name="stw_homing">
                       <property name="currentIndex">
-                       <number>2</number>
+                       <number>0</number>
                       </property>
                       <widget class="QWidget" name="page_3">
                        <layout class="QGridLayout" name="gridLayout_4">
@@ -2040,7 +2040,21 @@
            </item>
           </layout>
          </widget>
-         <widget class="QWidget" name="page_2"/>
+         <widget class="QWidget" name="page_2">
+          <widget class="QLabel" name="label_13">
+           <property name="geometry">
+            <rect>
+             <x>110</x>
+             <y>250</y>
+             <width>63</width>
+             <height>20</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>SETTINGS</string>
+           </property>
+          </widget>
+         </widget>
         </widget>
        </item>
       </layout>
