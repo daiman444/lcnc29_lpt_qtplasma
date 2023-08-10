@@ -2,11 +2,6 @@ QMainWindow{
     background-color: rgb(0, 0, 51);
 }
 
-QPushButton {
-    background: rgb(0, 0, 51);
-    color: red;
-}
-
 QLabel {
     font: 13pt 'DejaVuSans' bold;
     color: yellow;
