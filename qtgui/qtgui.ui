@@ -1589,19 +1589,6 @@
                         <property name="spacing">
                          <number>2</number>
                         </property>
-                        <item row="3" column="1">
-                         <widget class="QPushButton" name="pb_bottom_20">
-                          <property name="sizePolicy">
-                           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                            <horstretch>0</horstretch>
-                            <verstretch>0</verstretch>
-                           </sizepolicy>
-                          </property>
-                          <property name="text">
-                           <string>Z</string>
-                          </property>
-                         </widget>
-                        </item>
                         <item row="2" column="1">
                          <widget class="QPushButton" name="pb_bottom_19">
                           <property name="sizePolicy">
@@ -1628,19 +1615,6 @@
                           </property>
                          </widget>
                         </item>
-                        <item row="1" column="1">
-                         <widget class="QPushButton" name="pb_bottom_18">
-                          <property name="sizePolicy">
-                           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                            <horstretch>0</horstretch>
-                            <verstretch>0</verstretch>
-                           </sizepolicy>
-                          </property>
-                          <property name="text">
-                           <string>Y1</string>
-                          </property>
-                         </widget>
-                        </item>
                         <item row="0" column="2" rowspan="4">
                          <widget class="QPushButton" name="pb_bottom_16">
                           <property name="sizePolicy">
@@ -1651,6 +1625,32 @@
                           </property>
                           <property name="text">
                            <string>All</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="3" column="1">
+                         <widget class="QPushButton" name="pb_bottom_20">
+                          <property name="sizePolicy">
+                           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                           </sizepolicy>
+                          </property>
+                          <property name="text">
+                           <string>Z</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="1" column="1">
+                         <widget class="QPushButton" name="pb_bottom_18">
+                          <property name="sizePolicy">
+                           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                           </sizepolicy>
+                          </property>
+                          <property name="text">
+                           <string>Y1</string>
                           </property>
                          </widget>
                         </item>
