@@ -55,6 +55,18 @@ class HandlerClass:
     def initialized__(self):
         KEYBIND.add_call('Key_F12','on_keycall_F12')
         
+        self.w.stw_main.setCurrentIndex(0)
+        self.w.stw_homing.setCurrentIndex(0)
+        
+        self.frame_4_buttons = ['homing', 'workpiece', 'tests']
+        
+        for i in self.frame_4_buttons:
+            self.w['pb_' + i].setCheckable(True)
+        
+        
+        self.w.pb_bottom_10.setCheckable(True)
+        self.w.pb_bottom_10.toggled.connect(self.change_main)
+        
         #self.w.cb_window.currentIndexChanged.connect(self.on_combobox_changed)
         self.w.fr_left.close()
         self.w.fr_right.close()
@@ -117,6 +129,14 @@ class HandlerClass:
     ########################
     # callbacks from STATUS #
     ########################
+    
+    def change_main( self, state):
+        if state:
+            self.w.stw_main.setCurrentIndex(1)
+        else:
+            self.w.stw_main.setCurrentIndex(0)
+            
+            
     def gui_update(self, *args):
         if self.w.pb_view_full.toggled(False):
             fr_view_width = int(self.w.stw.width() / 2)
