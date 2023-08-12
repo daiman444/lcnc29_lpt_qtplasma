@@ -137,7 +137,20 @@
              </sizepolicy>
             </property>
             <property name="text">
-             <string>Load</string>
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="../../../linuxcnc/configs/lcnc29_lpt_qtplasma/qtgui/qtgui.qrc">
+              <normaloff>:/main/img/open_file.svg</normaloff>:/main/img/open_file.svg</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>40</width>
+              <height>40</height>
+             </size>
+            </property>
+            <property name="shortcut">
+             <string>Ctrl+S</string>
             </property>
            </widget>
           </item>
@@ -150,7 +163,17 @@
              </sizepolicy>
             </property>
             <property name="text">
-             <string>Reload</string>
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="../../../linuxcnc/configs/lcnc29_lpt_qtplasma/qtgui/qtgui.qrc">
+              <normaloff>:/main/img/refresh.svg</normaloff>:/main/img/refresh.svg</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>40</width>
+              <height>40</height>
+             </size>
             </property>
            </widget>
           </item>
@@ -163,7 +186,17 @@
              </sizepolicy>
             </property>
             <property name="text">
-             <string>Run</string>
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="../../../linuxcnc/configs/lcnc29_lpt_qtplasma/qtgui/qtgui.qrc">
+              <normaloff>:/main/img/play.png</normaloff>:/main/img/play.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>40</width>
+              <height>40</height>
+             </size>
             </property>
            </widget>
           </item>
@@ -195,7 +228,11 @@
              <string notr="true"/>
             </property>
             <property name="text">
-             <string>Pause</string>
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="../../../linuxcnc/configs/lcnc29_lpt_qtplasma/qtgui/qtgui.qrc">
+              <normaloff>:/main/img/pause.png</normaloff>:/main/img/pause.png</iconset>
             </property>
            </widget>
           </item>
@@ -234,7 +271,17 @@
              </sizepolicy>
             </property>
             <property name="text">
-             <string>MDI</string>
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="../../../linuxcnc/configs/lcnc29_lpt_qtplasma/qtgui/qtgui.qrc">
+              <normaloff>:/main/img/mode_mdi_active.png</normaloff>:/main/img/mode_mdi_active.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>40</width>
+              <height>40</height>
+             </size>
             </property>
            </widget>
           </item>
@@ -263,7 +310,17 @@
              </sizepolicy>
             </property>
             <property name="text">
-             <string>Settings</string>
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="../../../linuxcnc/configs/lcnc29_lpt_qtplasma/qtgui/qtgui.qrc">
+              <normaloff>:/main/img/mode_settings_active.png</normaloff>:/main/img/mode_settings_active.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>40</width>
+              <height>40</height>
+             </size>
             </property>
            </widget>
           </item>
@@ -806,24 +863,46 @@
                      <verstretch>0</verstretch>
                     </sizepolicy>
                    </property>
+                   <property name="iconSize">
+                    <size>
+                     <width>30</width>
+                     <height>30</height>
+                    </size>
+                   </property>
                    <item>
                     <property name="text">
-                     <string>View P</string>
+                     <string/>
+                    </property>
+                    <property name="icon">
+                     <iconset resource="../../../linuxcnc/configs/lcnc29_lpt_qtplasma/qtgui/qtgui.qrc">
+                      <normaloff>:/main/img/tool_axis_p.png</normaloff>:/main/img/tool_axis_p.png</iconset>
                     </property>
                    </item>
                    <item>
                     <property name="text">
-                     <string>View X</string>
+                     <string/>
+                    </property>
+                    <property name="icon">
+                     <iconset resource="../../../linuxcnc/configs/lcnc29_lpt_qtplasma/qtgui/qtgui.qrc">
+                      <normaloff>:/main/img/tool_axis_x.png</normaloff>:/main/img/tool_axis_x.png</iconset>
                     </property>
                    </item>
                    <item>
                     <property name="text">
-                     <string>View Y</string>
+                     <string/>
+                    </property>
+                    <property name="icon">
+                     <iconset resource="../../../linuxcnc/configs/lcnc29_lpt_qtplasma/qtgui/qtgui.qrc">
+                      <normaloff>:/main/img/tool_axis_y.png</normaloff>:/main/img/tool_axis_y.png</iconset>
                     </property>
                    </item>
                    <item>
                     <property name="text">
-                     <string>View Z</string>
+                     <string/>
+                    </property>
+                    <property name="icon">
+                     <iconset resource="../../../linuxcnc/configs/lcnc29_lpt_qtplasma/qtgui/qtgui.qrc">
+                      <normaloff>:/main/img/tool_axis_z.png</normaloff>:/main/img/tool_axis_z.png</iconset>
                     </property>
                    </item>
                   </widget>
@@ -2101,6 +2180,8 @@
    <container>1</container>
   </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="../../../linuxcnc/configs/lcnc29_lpt_qtplasma/qtgui/qtgui.qrc"/>
+ </resources>
  <connections/>
 </ui>
