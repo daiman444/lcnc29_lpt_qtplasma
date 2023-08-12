@@ -25,6 +25,10 @@ QSlider::add-page:horisontal {
     border-radius: 4px;
     height: 20px }
 
+/*#gcodegraphics{
+    qproperty-_view: z;
+}
+*/
 QSlider::sub-page:horisontal {
     background: backalt;
     border: 1px solid black;

@@ -54,6 +54,15 @@ class HandlerClass:
     # the HAL pins are built but HAL is not set ready
     def initialized__(self):
         KEYBIND.add_call('Key_F12','on_keycall_F12')
+    
+        self.w.cb_view_select.setCurrentIndex(1)
+        self.w.cb_view_select.currentIndexChanged.connect(self.change_view)
+        self.w.pb_view_1.clicked.connect(self.zoom_in_pressed)
+        self.w.pb_view_2.clicked.connect(self.zoom_out_pressed)
+        self.w.pb_view_3.clicked.connect(self.clear_pressed)
+        self.w.pb_view_4.setCheckable(True)
+        self.w.pb_view_4.setChecked(True)
+        self.w.pb_view_4.toggled.connect(self.overlay_state)
         
         self.w.stw_main.setCurrentIndex(0)
         self.w.stw_homing.setCurrentIndex(0)
@@ -135,6 +144,25 @@ class HandlerClass:
             self.w.stw_main.setCurrentIndex(1)
         else:
             self.w.stw_main.setCurrentIndex(0)
+            
+    def change_view(self, cur_index):
+        view_list = ['p', 'x',  'y', 'z', ]
+        self.w.gcodegraphics.set_view(view_list[cur_index])
+        
+    def zoom_in_pressed(self):
+        self.w.gcodegraphics.zoomin()
+
+    def zoom_out_pressed(self):
+        self.w.gcodegraphics.zoomout()
+        
+    def clear_pressed(self):
+        self.w.gcodegraphics.logger.clear()
+        
+    def overlay_state(self, state):
+        if state:
+            ACTION.SET_GRAPHICS_VIEW('overlay_dro_on')
+        else:
+            ACTION.SET_GRAPHICS_VIEW('overlay_dro_off')
             
             
     def gui_update(self, *args):
