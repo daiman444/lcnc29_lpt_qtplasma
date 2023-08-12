@@ -2057,19 +2057,11 @@
           </layout>
          </widget>
          <widget class="QWidget" name="page_2">
-          <widget class="QLabel" name="label_13">
-           <property name="geometry">
-            <rect>
-             <x>110</x>
-             <y>250</y>
-             <width>63</width>
-             <height>20</height>
-            </rect>
-           </property>
-           <property name="text">
-            <string>SETTINGS</string>
-           </property>
-          </widget>
+          <layout class="QVBoxLayout" name="verticalLayout_5">
+           <item>
+            <widget class="FileDialog" name="filedialog"/>
+           </item>
+          </layout>
          </widget>
         </widget>
        </item>
@@ -2096,6 +2088,11 @@
    <extends>QFrame</extends>
    <header>qtvcp.widgets.gcode_editor</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>FileDialog</class>
+   <extends>QDialog</extends>
+   <header>qtvcp.widgets.dialog_widget</header>
   </customwidget>
   <customwidget>
    <class>ScreenOptions</class>

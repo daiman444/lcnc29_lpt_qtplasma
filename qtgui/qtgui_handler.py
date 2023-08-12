@@ -42,6 +42,7 @@ class HandlerClass:
     def __init__(self, halcomp,widgets,paths):
         self.hal = halcomp
         self.w = widgets
+        self.cmd = linuxcnc.command()
         self.PATHS = paths
         
 
@@ -54,7 +55,22 @@ class HandlerClass:
     # the HAL pins are built but HAL is not set ready
     def initialized__(self):
         KEYBIND.add_call('Key_F12','on_keycall_F12')
+        # from status
+        STATUS.connect("state-estop", lambda w: self.update_estate_btn('ESTOP'))
+        STATUS.connect("state-estop-reset", lambda w: self.update_estate_btn('RESET'))
+        STATUS.connect("state-on",lambda w: self.update_power_btnl('ON'))
+        STATUS.connect("state-off",lambda w: self.update_power_btnl('OFF'))
+        
+        #stw main
+        self.w.stw_main.setCurrentIndex(0)
+        
+        # bottom frame
+        self.w.pb_bottom_0.setCheckable(True)
+        self.w.pb_bottom_0.setChecked(True)
+        self.w.pb_bottom_0.toggled.connect(self.estop_state)
+        
     
+        # view frame
         self.w.cb_view_select.setCurrentIndex(1)
         self.w.cb_view_select.currentIndexChanged.connect(self.change_view)
         self.w.pb_view_1.clicked.connect(lambda: self.view_pb_actions('zoom-in'))
@@ -66,9 +82,9 @@ class HandlerClass:
         self.w.pb_view_4.setChecked(True)
         self.w.pb_view_4.toggled.connect(self.overlay_state)
         '''
-        self.w.stw_main.setCurrentIndex(0)
-        self.w.stw_homing.setCurrentIndex(0)
         
+        
+        self.w.stw_homing.setCurrentIndex(0)
         self.frame_4_buttons = ['homing', 'workpiece', 'tests']
         
         for i in self.frame_4_buttons:
@@ -168,13 +184,27 @@ class HandlerClass:
             self.w.fr_view.setMaximumWidth(3000)
             self.w.frame_2.close()
             
+    def update_estate_btn(self, estatus):
+        if estatus == 'ESTOP':
+            self.w.pb_bottom_0.setChecked(True)
+        else:
+            self.w.pb_bottom_0.setChecked(False)
+        self.w.pb_bottom_0.setText(estatus)
+        
+    def update_power_btnl(self, pstatus):
+        self.w.pb_bottom_1.setText(pstatus)
+            
 
     #######################
     # callbacks from form #
     #######################
-    def on_combobox_changed(self, index):
-        if index == 1:
-            self.w.mainwindow.showMinimized()
+    # bottom frame
+    
+    def estop_state(self, state):
+        if state:
+            self.cmd.state(linuxcnc.STATE_ESTOP)
+        else:
+            self.cmd.state(linuxcnc.STATE_ESTOP_RESET)
             
     def view_fullscreen(self, state):
         if state:
@@ -187,11 +217,6 @@ class HandlerClass:
             g_code_view_width = int(self.w.frame_3.width() / 2)
             self.w.gcode_display.setMinimumWidth(g_code_view_width)
 
-        
-            
-    
-            
-        
     #####################
     # general functions #
     #####################
