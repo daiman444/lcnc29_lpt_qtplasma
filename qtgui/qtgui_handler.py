@@ -43,6 +43,7 @@ class HandlerClass:
         self.hal = halcomp
         self.w = widgets
         self.cmd = linuxcnc.command()
+        self.stat = linuxcnc.stat()
         self.PATHS = paths
         
 
@@ -56,55 +57,58 @@ class HandlerClass:
     def initialized__(self):
         KEYBIND.add_call('Key_F12','on_keycall_F12')
         # from status
-        STATUS.connect("state-estop", lambda w: self.update_estate_btn('ESTOP'))
-        STATUS.connect("state-estop-reset", lambda w: self.update_estate_btn('RESET'))
-        STATUS.connect("state-on",lambda w: self.update_power_btnl('ON'))
-        STATUS.connect("state-off",lambda w: self.update_power_btnl('OFF'))
+        STATUS.connect("state-estop", lambda w: self.update_estate('ESTOP'))
+        STATUS.connect("state-estop-reset", lambda w: self.update_estate('RESET'))
+        STATUS.connect("state-on",lambda w: self.update_power('ON'))
+        STATUS.connect("state-off",lambda w: self.update_power('OFF'))
         
         #stw main
         self.w.stw_main.setCurrentIndex(0)
         
         # bottom frame
-        self.w.pb_bottom_0.setCheckable(True)
-        self.w.pb_bottom_0.setChecked(True)
-        self.w.pb_bottom_0.toggled.connect(self.estop_state)
         
+        ## estop
+        self.w.pb_bottom_0.setCheckable(True)
+        self.w.pb_bottom_0.setChecked(False)
+        self.w.pb_bottom_0.clicked.connect(self.estop_state)
+        
+        ## power
+        self.w.pb_bottom_1.setEnabled(False)
+        self.w.pb_bottom_1.setCheckable(True)
+        self.w.pb_bottom_1.setChecked(False)
+        self.w.pb_bottom_1.clicked.connect(self.pwr_state)
+        
+
+        self.w.pb_bottom_10.setCheckable(True)
+        self.w.pb_bottom_10.toggled.connect(self.change_main)
     
         # view frame
-        self.w.cb_view_select.setCurrentIndex(1)
+        self.w.cb_view_select.setCurrentIndex(0)
         self.w.cb_view_select.currentIndexChanged.connect(self.change_view)
+        self.w.pb_view_full.setCheckable(True)
+        self.w.pb_view_full.toggled.connect(self.view_fullscreen)
         self.w.pb_view_1.clicked.connect(lambda: self.view_pb_actions('zoom-in'))
         self.w.pb_view_2.clicked.connect(lambda: self.view_pb_actions('zoom-out'))
         self.w.pb_view_3.clicked.connect(lambda: self.view_pb_actions('clear'))
         self.w.pb_view_4.clicked.connect(lambda: self.view_pb_actions('overlay-dro-off'))
         self.w.pb_view_5.clicked.connect(lambda: self.view_pb_actions('reload'))
-        '''self.w.pb_view_4.setCheckable(True)
-        self.w.pb_view_4.setChecked(True)
-        self.w.pb_view_4.toggled.connect(self.overlay_state)
-        '''
         
         
+        
+        # homing frame
         self.w.stw_homing.setCurrentIndex(0)
         self.frame_4_buttons = ['homing', 'workpiece', 'tests']
         
         for i in self.frame_4_buttons:
             self.w['pb_' + i].setCheckable(True)
         
+        # bottom frame
         
-        self.w.pb_bottom_10.setCheckable(True)
-        self.w.pb_bottom_10.toggled.connect(self.change_main)
+
         
-        #self.w.cb_window.currentIndexChanged.connect(self.on_combobox_changed)
+        # panels
         self.w.fr_left.close()
         self.w.fr_right.close()
-        
-        self.w.pb_view_full.setCheckable(True)
-        self.w.pb_view_full.toggled.connect(self.view_fullscreen)
-        
-        
-        #STATUS.connect('periodic', lambda w: self.gui_update())
- 
-
 
     def processed_key_event__(self,receiver,event,is_pressed,key,code,shift,cntrl):
         # when typing in MDI, we don't want keybinding to call functions
@@ -184,14 +188,20 @@ class HandlerClass:
             self.w.fr_view.setMaximumWidth(3000)
             self.w.frame_2.close()
             
-    def update_estate_btn(self, estatus):
-        if estatus == 'ESTOP':
+    def update_estate(self, estatus):
+        if estatus == 'RESET':
             self.w.pb_bottom_0.setChecked(True)
+            self.w.pb_bottom_1.setEnabled(True)
         else:
             self.w.pb_bottom_0.setChecked(False)
+            self.w.pb_bottom_1.setEnabled(False)
         self.w.pb_bottom_0.setText(estatus)
         
-    def update_power_btnl(self, pstatus):
+    def update_power(self, pstatus):
+        if pstatus == 'ON':
+            self.w.pb_bottom_1.setChecked(True)
+        else:
+            self.w.pb_bottom_1.setChecked(False)
         self.w.pb_bottom_1.setText(pstatus)
             
 
@@ -200,11 +210,19 @@ class HandlerClass:
     #######################
     # bottom frame
     
-    def estop_state(self, state):
-        if state:
+    def estop_state(self):
+        self.stat.poll()
+        if not self.stat.estop:
             self.cmd.state(linuxcnc.STATE_ESTOP)
         else:
             self.cmd.state(linuxcnc.STATE_ESTOP_RESET)
+            
+    def pwr_state(self):
+        self.stat.poll()
+        if not self.stat.enabled:
+            self.cmd.state(linuxcnc.STATE_ON)
+        else:
+            self.cmd.state(linuxcnc.STATE_OFF)
             
     def view_fullscreen(self, state):
         if state:
@@ -245,11 +263,14 @@ class HandlerClass:
 
     # Machine control
     def on_keycall_ESTOP(self,event,state,shift,cntrl):
+
         if state:
-            ACTION.SET_ESTOP_STATE(STATUS.estop_is_clear())
+            self.estop_state()
+        
     def on_keycall_POWER(self,event,state,shift,cntrl):
         if state:
-            ACTION.SET_MACHINE_STATE(not STATUS.machine_is_on())
+            self.pwr_state()
+        
     def on_keycall_HOME(self,event,state,shift,cntrl):
         if state:
             if STATUS.is_all_homed():

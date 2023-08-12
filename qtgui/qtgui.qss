@@ -21,17 +21,17 @@ QPushButton:pressed{
     background-color: rgb(200, 200, 200);
 }
 
-#pb_bottom_0{
-    background-color: rgb(0, 250, 0);
+#pb_bottom_0, #pb_bottom_1{
+    background-color: rgb(255, 0, 0);
     color: blue;
 }
 
-#pb_bottom_0:checked{
-    background-color: rgb(250, 0, 0);
+#pb_bottom_0:checked, #pb_bottom_1:checked{
+    background-color: rgb(0, 255, 0);
     color: yellow;
 }
 
-#pb_bottom_0:hover{
+#pb_bottom_0:hover, #pb_bottom_1:hover{
     background-color: rgb(230, 97, 0);
 }
 
