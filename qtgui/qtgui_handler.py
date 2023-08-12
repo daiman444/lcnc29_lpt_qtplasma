@@ -60,10 +60,12 @@ class HandlerClass:
         self.w.pb_view_1.clicked.connect(lambda: self.view_pb_actions('zoom-in'))
         self.w.pb_view_2.clicked.connect(lambda: self.view_pb_actions('zoom-out'))
         self.w.pb_view_3.clicked.connect(lambda: self.view_pb_actions('clear'))
-        self.w.pb_view_4.setCheckable(True)
+        self.w.pb_view_4.clicked.connect(lambda: self.view_pb_actions('overlay-dro-off'))
+        self.w.pb_view_5.clicked.connect(lambda: self.view_pb_actions('reload'))
+        '''self.w.pb_view_4.setCheckable(True)
         self.w.pb_view_4.setChecked(True)
         self.w.pb_view_4.toggled.connect(self.overlay_state)
-        
+        '''
         self.w.stw_main.setCurrentIndex(0)
         self.w.stw_homing.setCurrentIndex(0)
         
@@ -150,8 +152,11 @@ class HandlerClass:
         self.w.gcodegraphics.set_view(view_list[cur_index])
         
     def view_pb_actions(self, set_action):
-        ACTION.SET_GRAPHICS_VIEW(set_action)        
-            
+        if set_action == 'reload':
+            STATUS.emit('reload-display')
+        else:
+            ACTION.SET_GRAPHICS_VIEW(set_action)        
+        
     def gui_update(self, *args):
         if self.w.pb_view_full.toggled(False):
             fr_view_width = int(self.w.stw.width() / 2)
@@ -176,7 +181,7 @@ class HandlerClass:
             self.w.fr_view.setMaximumWidth(3000)
             self.w.frame_2.close()
         else:
-            fr_view_width = int(self.w.stw.width() / 2)
+            fr_view_width = int(self.w.stw_main.width() / 2)
             self.w.fr_view.setMaximumWidth(fr_view_width)
             self.w.frame_2.show()
             g_code_view_width = int(self.w.frame_3.width() / 2)
