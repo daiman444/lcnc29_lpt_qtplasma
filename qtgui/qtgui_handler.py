@@ -57,9 +57,9 @@ class HandlerClass:
     
         self.w.cb_view_select.setCurrentIndex(1)
         self.w.cb_view_select.currentIndexChanged.connect(self.change_view)
-        self.w.pb_view_1.clicked.connect(self.zoom_in_pressed)
-        self.w.pb_view_2.clicked.connect(self.zoom_out_pressed)
-        self.w.pb_view_3.clicked.connect(self.clear_pressed)
+        self.w.pb_view_1.clicked.connect(lambda: self.view_pb_actions('zoom-in'))
+        self.w.pb_view_2.clicked.connect(lambda: self.view_pb_actions('zoom-out'))
+        self.w.pb_view_3.clicked.connect(lambda: self.view_pb_actions('clear'))
         self.w.pb_view_4.setCheckable(True)
         self.w.pb_view_4.setChecked(True)
         self.w.pb_view_4.toggled.connect(self.overlay_state)
@@ -149,21 +149,8 @@ class HandlerClass:
         view_list = ['p', 'x',  'y', 'z', ]
         self.w.gcodegraphics.set_view(view_list[cur_index])
         
-    def zoom_in_pressed(self):
-        self.w.gcodegraphics.zoomin()
-
-    def zoom_out_pressed(self):
-        self.w.gcodegraphics.zoomout()
-        
-    def clear_pressed(self):
-        self.w.gcodegraphics.logger.clear()
-        
-    def overlay_state(self, state):
-        if state:
-            ACTION.SET_GRAPHICS_VIEW('overlay_dro_on')
-        else:
-            ACTION.SET_GRAPHICS_VIEW('overlay_dro_off')
-            
+    def view_pb_actions(self, set_action):
+        ACTION.SET_GRAPHICS_VIEW(set_action)        
             
     def gui_update(self, *args):
         if self.w.pb_view_full.toggled(False):
