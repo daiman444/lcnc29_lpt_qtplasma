@@ -92,10 +92,6 @@ class HandlerClass:
         
         ## programm run
         self.w.pb_bottom_4.clicked.connect(self.programm_run)
-        
-        ## settings
-        #self.w.pb_bottom_10.setCheckable(True)
-        #self.w.pb_bottom_10.toggled.connect(self.change_main)
     
         # view frame
         self.w.cb_view_select.setCurrentIndex(0)
@@ -108,22 +104,20 @@ class HandlerClass:
         self.w.pb_view_4.clicked.connect(lambda: self.view_pb_actions('overlay-dro-off'))
         self.w.pb_view_5.clicked.connect(lambda: self.view_pb_actions('reload'))
         
-        
-        
         # homing frame
         self.w.stw_homing.setCurrentIndex(0)
         self.frame_4_buttons = ['homing', 'workpiece', 'tests']
         
         for i in self.frame_4_buttons:
             self.w['pb_' + i].setCheckable(True)
-        
-        # bottom frame
-        
-
-        
+       
         # panels
         self.w.fr_left.close()
         self.w.fr_right.close()
+        
+        # stw_main index 1
+        ## filemanager
+        #self.w.filemanager.
 
     def processed_key_event__(self,receiver,event,is_pressed,key,code,shift,cntrl):
         # when typing in MDI, we don't want keybinding to call functions
