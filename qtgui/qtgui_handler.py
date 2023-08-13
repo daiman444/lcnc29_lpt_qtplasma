@@ -90,6 +90,8 @@ class HandlerClass:
         self.w.pb_bottom_3.setEnabled(False)
         self.w.pb_bottom_3.clicked.connect(self.file_reload)
         
+        ## programm run
+        self.w.pb_bottom_4.clicked.connect(self.programm_run)
         
         ## settings
         #self.w.pb_bottom_10.setCheckable(True)
@@ -227,6 +229,10 @@ class HandlerClass:
     def file_reload(self):
         if self.last_loaded_file is not None:
             ACTION.OPEN_PROGRAM(self.last_loaded_file)
+            
+    def programm_run(self):
+        self.w.pb_bottom_4.setEnabled(False)
+        ACTION.RUN(0)
             
 
     #######################
