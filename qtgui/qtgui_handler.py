@@ -86,6 +86,10 @@ class HandlerClass:
         self.w.pb_bottom_2.setCheckable(True)
         self.w.pb_bottom_2.toggled.connect(self.load_file_dialog)
         
+        ## reload file
+        self.w.pb_bottom_3.setEnabled(False)
+        self.w.pb_bottom_3.clicked.connect(self.file_reload)
+        
         
         ## settings
         #self.w.pb_bottom_10.setCheckable(True)
@@ -218,6 +222,12 @@ class HandlerClass:
         self.last_loaded_file = filename
         if filename is not None:
             self.w.stw_main.setCurrentIndex(0)
+            self.w.pb_bottom_3.setEnabled(True)
+            
+    def file_reload(self):
+        if self.last_loaded_file is not None:
+            ACTION.OPEN_PROGRAM(self.last_loaded_file)
+            
 
     #######################
     # callbacks from form #
