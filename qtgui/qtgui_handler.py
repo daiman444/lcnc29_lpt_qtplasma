@@ -47,6 +47,8 @@ class HandlerClass:
         self.stat = linuxcnc.stat()
         self.PATHS = paths
         
+        self.last_loaded_file = None
+        
 
     ##########################################
     # Special Functions called from QTSCREEN
@@ -62,8 +64,7 @@ class HandlerClass:
         STATUS.connect("state-estop-reset", lambda w: self.update_estate('RESET'))
         STATUS.connect("state-on",lambda w: self.update_power('ON'))
         STATUS.connect("state-off",lambda w: self.update_power('OFF'))
-        # TODO сделать загрузку файла
-        STATUS.connect('file-loaded', lambda w: self.file_load())
+        STATUS.connect('file-loaded', self.file_loaded)
         
         #stw main
         self.w.stw_main.setCurrentIndex(0)
@@ -212,9 +213,11 @@ class HandlerClass:
             self.w.pb_bottom_1.setChecked(False)
         self.w.pb_bottom_1.setText(pstatus)
     
-    def file_load(self, w, fileloaded):
-        self.w.lbl_signal_0.setText(w)
-        #self.w.lbl_signal_1.setText(fileloaded)
+    def file_loaded(self, obj, filename):
+        self.w.lbl_signal_0.setText(filename)
+        self.last_loaded_file = filename
+        if filename is not None:
+            self.w.stw_main.setCurrentIndex(0)
 
     #######################
     # callbacks from form #
