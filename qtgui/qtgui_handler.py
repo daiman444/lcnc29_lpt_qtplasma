@@ -11,7 +11,7 @@ from qtvcp.widgets.mdi_line import MDILine as MDI_WIDGET
 from qtvcp.widgets.gcode_editor import GcodeEditor as GCODE
 from qtvcp.widgets.stylesheeteditor import  StyleSheetEditor as SSE
 from qtvcp.lib.keybindings import Keylookup
-from qtvcp.core import Status, Action
+from qtvcp.core import Status, Action, Info
 
 # Set up logging
 from qtvcp import logger
@@ -27,6 +27,7 @@ LOG = logger.getLogger(__name__)
 KEYBIND = Keylookup()
 STATUS = Status()
 ACTION = Action()
+INFO = Info()
 STYLEEDITOR = SSE()
 ###################################
 # **** HANDLER CLASS SECTION **** #
@@ -61,6 +62,8 @@ class HandlerClass:
         STATUS.connect("state-estop-reset", lambda w: self.update_estate('RESET'))
         STATUS.connect("state-on",lambda w: self.update_power('ON'))
         STATUS.connect("state-off",lambda w: self.update_power('OFF'))
+        # TODO сделать загрузку файла
+        STATUS.connect('file-loaded', lambda w: self.file_load())
         
         #stw main
         self.w.stw_main.setCurrentIndex(0)
@@ -78,9 +81,14 @@ class HandlerClass:
         self.w.pb_bottom_1.setChecked(False)
         self.w.pb_bottom_1.clicked.connect(self.pwr_state)
         
-
-        self.w.pb_bottom_10.setCheckable(True)
-        self.w.pb_bottom_10.toggled.connect(self.change_main)
+        ## load file
+        self.w.pb_bottom_2.setCheckable(True)
+        self.w.pb_bottom_2.toggled.connect(self.load_file_dialog)
+        
+        
+        ## settings
+        #self.w.pb_bottom_10.setCheckable(True)
+        #self.w.pb_bottom_10.toggled.connect(self.change_main)
     
         # view frame
         self.w.cb_view_select.setCurrentIndex(0)
@@ -203,7 +211,10 @@ class HandlerClass:
         else:
             self.w.pb_bottom_1.setChecked(False)
         self.w.pb_bottom_1.setText(pstatus)
-            
+    
+    def file_load(self, w, fileloaded):
+        self.w.lbl_signal_0.setText(w)
+        #self.w.lbl_signal_1.setText(fileloaded)
 
     #######################
     # callbacks from form #
@@ -223,7 +234,14 @@ class HandlerClass:
             self.cmd.state(linuxcnc.STATE_ON)
         else:
             self.cmd.state(linuxcnc.STATE_OFF)
-            
+    
+    def load_file_dialog(self, state):
+        if state:
+            self.w.stw_main.setCurrentIndex(1)
+        else:
+            self.w.stw_main.setCurrentIndex(0)
+    
+    # view frame
     def view_fullscreen(self, state):
         if state:
             self.w.fr_view.setMaximumWidth(3000)

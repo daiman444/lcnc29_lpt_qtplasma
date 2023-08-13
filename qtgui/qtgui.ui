@@ -674,7 +674,7 @@
        <item row="0" column="1">
         <widget class="QStackedWidget" name="stw_main">
          <property name="currentIndex">
-          <number>0</number>
+          <number>1</number>
          </property>
          <widget class="QWidget" name="page">
           <layout class="QHBoxLayout" name="horizontalLayout_6">
@@ -2138,7 +2138,7 @@
          <widget class="QWidget" name="page_2">
           <layout class="QVBoxLayout" name="verticalLayout_5">
            <item>
-            <widget class="FileDialog" name="filedialog"/>
+            <widget class="FileManager" name="filemanager"/>
            </item>
           </layout>
          </widget>
@@ -2157,6 +2157,11 @@
    <header>qtvcp.widgets.simple_widgets</header>
   </customwidget>
   <customwidget>
+   <class>FileManager</class>
+   <extends>QWidget</extends>
+   <header>qtvcp.widgets.file_manager</header>
+  </customwidget>
+  <customwidget>
    <class>GCodeGraphics</class>
    <extends>QWidget</extends>
    <header>qtvcp.widgets.gcode_graphics</header>
@@ -2167,11 +2172,6 @@
    <extends>QFrame</extends>
    <header>qtvcp.widgets.gcode_editor</header>
    <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>FileDialog</class>
-   <extends>QDialog</extends>
-   <header>qtvcp.widgets.dialog_widget</header>
   </customwidget>
   <customwidget>
    <class>ScreenOptions</class>
