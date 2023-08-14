@@ -90,22 +90,23 @@ class HandlerClass:
         self.w.pb_bottom_programm_load.toggled.connect(self.load_file_dialog)
         
         ## edit file
+        self.w.pb_bottom_programm_edit.clicked.connect(self.file_edit)
         
         
         ## reload file
-        self.w.pb_bottom_5.setEnabled(False)
-        self.w.pb_bottom_5.clicked.connect(self.file_reload)
+        self.w.pb_bottom_programm_reload.setEnabled(False)
+        self.w.pb_bottom_programm_reload.clicked.connect(self.file_reload)
         
         ## programm run
-        self.w.pb_bottom_6.clicked.connect(self.programm_run)
+        self.w.pb_bottom_programm_run.clicked.connect(self.programm_run)
         
         ## programm pause
-        self.w.pb_bottom_8.setEnabled(False)
-        self.w.pb_bottom_8.clicked.connect(self.programm_pause)
+        self.w.pb_bottom_programm_pause.setEnabled(False)
+        self.w.pb_bottom_programm_pause.clicked.connect(self.programm_pause)
         
         ## programm abort
-        self.w.pb_bottom_9.setEnabled(False)
-        self.w.pb_bottom_9.clicked.connect(self.programm_abort)
+        self.w.pb_bottom_programm_abort.setEnabled(False)
+        self.w.pb_bottom_programm_abort.clicked.connect(self.programm_abort)
     
         # view frame
         self.w.cb_view_select.setCurrentIndex(0)
@@ -247,7 +248,11 @@ class HandlerClass:
         self.last_loaded_file = filename
         if filename is not None:
             self.w.stw_main.setCurrentIndex(0)
-            self.w.pb_bottom_5.setEnabled(True)
+            self.w.pb_bottom_programm_reload.setEnabled(True)
+
+# TODO            
+    def file_edit(self):
+        pass
             
     def file_reload(self):
         if self.last_loaded_file is not None:
@@ -256,28 +261,28 @@ class HandlerClass:
     
            
     def programm_run(self):
-        self.w.pb_bottom_6.setEnabled(False)
-        self.w.pb_bottom_7.setEnabled(False)
-        self.w.pb_bottom_8.setEnabled(True)
-        self.w.pb_bottom_9.setEnabled(True)
+        self.w.pb_bottom_programm_run.setEnabled(False)
+        self.w.pb_bottom_programm_rfl.setEnabled(False)
+        self.w.pb_bottom_programm_pause.setEnabled(True)
+        self.w.pb_bottom_programm_abort.setEnabled(True)
         ACTION.RUN(0)
             
     def programm_pause(self):
         if not STATUS.stat.paused:
             self.cmd.auto(linuxcnc.AUTO_PAUSE)
-            self.w.pb_bottom_8.setChecked(True)
+            self.w.pb_bottom_programm_pause.setChecked(True)
         else:
             LOG.debug('resume')
             self.cmd.auto(linuxcnc.AUTO_RESUME)
-            self.w.pb_bottom_8.setChecked(False)
+            self.w.pb_bottom_programm_pause.setChecked(False)
             
     def programm_abort(self):
         self.cmd.abort()
         self.cmd.mode(linuxcnc.MODE_MANUAL)
-        self.w.pb_bottom_6.setEnabled(True)
-        self.w.pb_bottom_7.setEnabled(True)
-        self.w.pb_bottom_8.setEnabled(False)
-        self.w.pb_bottom_9.setEnabled(False)
+        self.w.pb_bottom_programm_run.setEnabled(True)
+        self.w.pb_bottom_programm_rfl.setEnabled(True)
+        self.w.pb_bottom_programm_pause.setEnabled(False)
+        self.w.pb_bottom_programm_abort.setEnabled(False)
 
     #######################
     # callbacks from form #

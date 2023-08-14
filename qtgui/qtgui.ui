@@ -103,7 +103,7 @@
            <number>2</number>
           </property>
           <item>
-           <widget class="QPushButton" name="pb_bottom_0">
+           <widget class="QPushButton" name="pb_bottom_estop">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -116,7 +116,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pb_bottom_1">
+           <widget class="QPushButton" name="pb_bottom_pwr">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -129,7 +129,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pb_bottom_2">
+           <widget class="QPushButton" name="pb_bottom_homing">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -142,7 +142,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pb_bottom_3">
+           <widget class="QPushButton" name="pb_bottom_programm_load">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -168,7 +168,20 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pb_bottom_4">
+           <widget class="QPushButton" name="pb_bottom_programm_edit">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Edit</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pb_bottom_programm_reload">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -191,7 +204,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pb_bottom_5">
+           <widget class="QPushButton" name="pb_bottom_programm_run">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -214,7 +227,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pb_bottom_6">
+           <widget class="QPushButton" name="pb_bottom_programm_rfl">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -230,7 +243,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pb_bottom_7">
+           <widget class="QPushButton" name="pb_bottom_programm_pause">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -250,7 +263,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pb_bottom_8">
+           <widget class="QPushButton" name="pb_bottom_programm_abort">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -263,7 +276,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pb_bottom_9">
+           <widget class="QPushButton" name="pb_bottom_10">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -276,7 +289,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pb_bottom_10">
+           <widget class="QPushButton" name="pb_bottom_11">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -299,7 +312,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pb_bottom_11">
+           <widget class="QPushButton" name="pb_bottom_12">
             <property name="enabled">
              <bool>false</bool>
             </property>
@@ -315,7 +328,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pb_bottom_12">
+           <widget class="QPushButton" name="pb_bottom_13">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -1717,6 +1730,13 @@ p, li { white-space: pre-wrap; }
                        </layout>
                       </widget>
                      </item>
+                     <item row="21" column="0" colspan="3">
+                      <widget class="QSlider" name="horizontalSlider_8">
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                      </widget>
+                     </item>
                      <item row="16" column="0">
                       <widget class="QLabel" name="label_2">
                        <property name="text">
@@ -1802,6 +1822,23 @@ p, li { white-space: pre-wrap; }
                        </property>
                        <property name="alignment">
                         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="25" column="0" colspan="3">
+                      <widget class="QSlider" name="horizontalSlider_10">
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="13" column="0" colspan="3">
+                      <widget class="QLabel" name="label_4">
+                       <property name="text">
+                        <string>Manual cutting with:</string>
+                       </property>
+                       <property name="alignment">
+                        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
                        </property>
                       </widget>
                      </item>
@@ -1911,6 +1948,13 @@ p, li { white-space: pre-wrap; }
                        </property>
                       </widget>
                      </item>
+                     <item row="23" column="0" colspan="3">
+                      <widget class="QSlider" name="horizontalSlider_9">
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                      </widget>
+                     </item>
                      <item row="4" column="0" colspan="3">
                       <widget class="QSlider" name="horizontalSlider_4">
                        <property name="orientation">
@@ -1928,27 +1972,6 @@ p, li { white-space: pre-wrap; }
                        </property>
                       </widget>
                      </item>
-                     <item row="21" column="0" colspan="3">
-                      <widget class="QSlider" name="horizontalSlider_8">
-                       <property name="orientation">
-                        <enum>Qt::Horizontal</enum>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="23" column="0" colspan="3">
-                      <widget class="QSlider" name="horizontalSlider_9">
-                       <property name="orientation">
-                        <enum>Qt::Horizontal</enum>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="25" column="0" colspan="3">
-                      <widget class="QSlider" name="horizontalSlider_10">
-                       <property name="orientation">
-                        <enum>Qt::Horizontal</enum>
-                       </property>
-                      </widget>
-                     </item>
                      <item row="27" column="0" colspan="3">
                       <widget class="QSlider" name="horizontalSlider_11">
                        <property name="orientation">
@@ -1956,13 +1979,13 @@ p, li { white-space: pre-wrap; }
                        </property>
                       </widget>
                      </item>
-                     <item row="13" column="0" colspan="3">
-                      <widget class="QLabel" name="label_4">
+                     <item row="28" column="0" colspan="3">
+                      <widget class="QLabel" name="label_27">
                        <property name="text">
-                        <string>Manual cutting with:</string>
+                        <string>by ddd aka N.E.</string>
                        </property>
                        <property name="alignment">
-                        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                        </property>
                       </widget>
                      </item>
