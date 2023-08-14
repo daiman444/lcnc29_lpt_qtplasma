@@ -129,50 +129,20 @@
            </widget>
           </item>
           <item>
-           <widget class="QComboBox" name="cb_homing">
+           <widget class="QPushButton" name="pb_bottom_2">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="modelColumn">
-             <number>0</number>
+            <property name="text">
+             <string>Homing</string>
             </property>
-            <item>
-             <property name="text">
-              <string>Homing</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>All</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>X</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Y1</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Y2</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Z</string>
-             </property>
-            </item>
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pb_bottom_2">
+           <widget class="QPushButton" name="pb_bottom_3">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -198,7 +168,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pb_bottom_3">
+           <widget class="QPushButton" name="pb_bottom_4">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -221,7 +191,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pb_bottom_4">
+           <widget class="QPushButton" name="pb_bottom_5">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -244,7 +214,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pb_bottom_5">
+           <widget class="QPushButton" name="pb_bottom_6">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -260,7 +230,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pb_bottom_6">
+           <widget class="QPushButton" name="pb_bottom_7">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -280,7 +250,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pb_bottom_7">
+           <widget class="QPushButton" name="pb_bottom_8">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -293,7 +263,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pb_bottom_8">
+           <widget class="QPushButton" name="pb_bottom_9">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -306,7 +276,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pb_bottom_9">
+           <widget class="QPushButton" name="pb_bottom_10">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -345,7 +315,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pb_bottom_10">
+           <widget class="QPushButton" name="pb_bottom_12">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
