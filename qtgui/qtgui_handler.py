@@ -65,7 +65,6 @@ class HandlerClass:
         STATUS.connect("state-on",lambda w: self.update_power('ON'))
         STATUS.connect("state-off",lambda w: self.update_power('OFF'))
         STATUS.connect('file-loaded', self.file_loaded)
-        STATUS.connect('all-homed', self.all_homed)
         
         #stw main
         self.w.stw_main.setCurrentIndex(0)
@@ -114,22 +113,17 @@ class HandlerClass:
         self.w.pb_view_5.clicked.connect(lambda: self.view_pb_actions('reload'))
         
         # homing frame
-        self.w.stw_homing.setCurrentIndex(0)
-        
-        ## pb_homing
-        self.w.pb_homing.setCheckable(True)
-        self.w.pb_homing.setChecked(True)
-        self.w.pb_homing.toggled.connect(lambda: self.stw_homing_index(0))
+        self.w.stw_workpiece.setCurrentIndex(0)
         
         ## pb_workpiece
         self.w.pb_workpiece.setCheckable(True)
-        self.w.pb_workpiece.setChecked(False)
-        self.w.pb_workpiece.toggled.connect(lambda: self.stw_homing_index(1))
+        self.w.pb_workpiece.setChecked(True)
+        self.w.pb_workpiece.toggled.connect(lambda: self.stw_workpiece_index(0))
         
         ## pb_tests
         self.w.pb_tests.setCheckable(True)
         self.w.pb_tests.setChecked(False)
-        self.w.pb_tests.toggled.connect(lambda: self.stw_homing_index(2))
+        self.w.pb_tests.toggled.connect(lambda: self.stw_workpiece_index(1))
         
         ### pb_x_zero
         self.w.pb_x_zero.clicked.connect(lambda: self.mdi_command('G92X0'))
@@ -246,9 +240,6 @@ class HandlerClass:
     def file_reload(self):
         if self.last_loaded_file is not None:
             ACTION.OPEN_PROGRAM(self.last_loaded_file)
-
-    def all_homed(self, *args):
-        self.w.stw_homing.setCurrentIndex(1)
            
     def programm_run(self):
         self.w.pb_bottom_4.setEnabled(False)
@@ -312,8 +303,8 @@ class HandlerClass:
             self.w.gcode_display.setMinimumWidth(g_code_view_width)
             
     # stw_homing
-    def stw_homing_index(self, index):
-        self.w.stw_homing.setCurrentIndex(index)
+    def stw_workpiece_index(self, index):
+        self.w.stw_workpiece.setCurrentIndex(index)
         
     def mdi_command(self, mdi):
         self.cmd.mode(linuxcnc.MODE_MDI)
