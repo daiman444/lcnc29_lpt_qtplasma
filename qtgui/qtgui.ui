@@ -111,7 +111,18 @@
              </sizepolicy>
             </property>
             <property name="text">
-             <string>Estop</string>
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="../../../linuxcnc/configs/lcnc29_lpt_qtplasma/qtgui/qtgui.qrc">
+              <normaloff>:/main/img/main_switch_on.png</normaloff>
+              <normalon>:/main/img/main_switch_off.png</normalon>:/main/img/main_switch_on.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>50</width>
+              <height>50</height>
+             </size>
             </property>
            </widget>
           </item>
@@ -124,7 +135,18 @@
              </sizepolicy>
             </property>
             <property name="text">
-             <string>Power</string>
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="../../../linuxcnc/configs/lcnc29_lpt_qtplasma/qtgui/qtgui.qrc">
+              <normaloff>:/main/img/power_off.png</normaloff>
+              <normalon>:/main/img/power_on.png</normalon>:/main/img/power_off.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>50</width>
+              <height>50</height>
+             </size>
             </property>
            </widget>
           </item>
@@ -137,7 +159,17 @@
              </sizepolicy>
             </property>
             <property name="text">
-             <string>Homing</string>
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="../../../linuxcnc/configs/lcnc29_lpt_qtplasma/qtgui/qtgui.qrc">
+              <normaloff>:/main/img/home_folder.svg</normaloff>:/main/img/home_folder.svg</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>40</width>
+              <height>40</height>
+             </size>
             </property>
            </widget>
           </item>
@@ -972,7 +1004,17 @@
                     </sizepolicy>
                    </property>
                    <property name="text">
-                    <string>Full</string>
+                    <string/>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="../../../linuxcnc/configs/lcnc29_lpt_qtplasma/qtgui/qtgui.qrc">
+                     <normaloff>:/main/img/fullscreen_close.png</normaloff>:/main/img/fullscreen_close.png</iconset>
+                   </property>
+                   <property name="iconSize">
+                    <size>
+                     <width>40</width>
+                     <height>40</height>
+                    </size>
                    </property>
                    <property name="checkable">
                     <bool>false</bool>
@@ -988,7 +1030,17 @@
                     </sizepolicy>
                    </property>
                    <property name="text">
-                    <string>+</string>
+                    <string/>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="../../../linuxcnc/configs/lcnc29_lpt_qtplasma/qtgui/qtgui.qrc">
+                     <normaloff>:/main/img/tool_zoomin.gif</normaloff>:/main/img/tool_zoomin.gif</iconset>
+                   </property>
+                   <property name="iconSize">
+                    <size>
+                     <width>40</width>
+                     <height>40</height>
+                    </size>
                    </property>
                   </widget>
                  </item>
@@ -1001,7 +1053,17 @@
                     </sizepolicy>
                    </property>
                    <property name="text">
-                    <string>-</string>
+                    <string/>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="../../../linuxcnc/configs/lcnc29_lpt_qtplasma/qtgui/qtgui.qrc">
+                     <normaloff>:/main/img/tool_zoomout.gif</normaloff>:/main/img/tool_zoomout.gif</iconset>
+                   </property>
+                   <property name="iconSize">
+                    <size>
+                     <width>40</width>
+                     <height>40</height>
+                    </size>
                    </property>
                   </widget>
                  </item>
@@ -1017,7 +1079,17 @@
                     <string notr="true"/>
                    </property>
                    <property name="text">
-                    <string>Clear</string>
+                    <string/>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="../../../linuxcnc/configs/lcnc29_lpt_qtplasma/qtgui/qtgui.qrc">
+                     <normaloff>:/main/img/clear.png</normaloff>:/main/img/clear.png</iconset>
+                   </property>
+                   <property name="iconSize">
+                    <size>
+                     <width>40</width>
+                     <height>40</height>
+                    </size>
                    </property>
                   </widget>
                  </item>
