@@ -22,14 +22,16 @@ QPushButton:pressed{
 }
 
 #pb_bottom_estop, #pb_bottom_pwr{
-    background-color: rgb(255, 0, 0);
+    background-color: #000c54;
+    border: none;
     color: blue;
 }
 
-#pb_bottom_estop:checked, #pb_bottom_pwr:checked{
+/*#pb_bottom_estop:checked, #pb_bottom_pwr:checked{
     background-color: rgb(0, 255, 0);
     color: yellow;
 }
+*/
 
 #pb_bottom_estop:hover, #pb_bottom_pwr:hover{
     background-color: rgb(230, 97, 0);

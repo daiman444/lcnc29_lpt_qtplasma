@@ -228,14 +228,14 @@ class HandlerClass:
         else:
             self.w.pb_bottom_estop.setChecked(False)
             self.w.pb_bottom_pwr.setEnabled(False)
-        self.w.pb_bottom_estop.setText(estatus)
+        #self.w.pb_bottom_estop.setText(estatus)
         
     def update_power(self, pstatus):
         if pstatus == 'ON':
             self.w.pb_bottom_pwr.setChecked(True)
         else:
             self.w.pb_bottom_pwr.setChecked(False)
-        self.w.pb_bottom_pwr.setText(pstatus)
+        #self.w.pb_bottom_pwr.setText(pstatus)
     
     def homing(self):
         if STATUS.is_all_homed():
