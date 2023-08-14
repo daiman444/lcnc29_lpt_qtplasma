@@ -72,37 +72,40 @@ class HandlerClass:
         # bottom frame
         
         ## estop
-        self.w.pb_bottom_0.setCheckable(True)
-        self.w.pb_bottom_0.setChecked(False)
-        self.w.pb_bottom_0.clicked.connect(self.estop_state)
+        self.w.pb_bottom_estop.setCheckable(True)
+        self.w.pb_bottom_estop.setChecked(False)
+        self.w.pb_bottom_estop.clicked.connect(self.estop_state)
         
         ## power
-        self.w.pb_bottom_1.setEnabled(False)
-        self.w.pb_bottom_1.setCheckable(True)
-        self.w.pb_bottom_1.setChecked(False)
-        self.w.pb_bottom_1.clicked.connect(self.pwr_state)
+        self.w.pb_bottom_pwr.setEnabled(False)
+        self.w.pb_bottom_pwr.setCheckable(True)
+        self.w.pb_bottom_pwr.setChecked(False)
+        self.w.pb_bottom_pwr.clicked.connect(self.pwr_state)
         
         ## homing
-        self.w.pb_bottom_2.clicked.connect(self.homing)
+        self.w.pb_bottom_homing.clicked.connect(self.homing)
         
         ## load file
-        self.w.pb_bottom_3.setCheckable(True)
-        self.w.pb_bottom_3.toggled.connect(self.load_file_dialog)
+        self.w.pb_bottom_programm_load.setCheckable(True)
+        self.w.pb_bottom_programm_load.toggled.connect(self.load_file_dialog)
+        
+        ## edit file
+        
         
         ## reload file
-        self.w.pb_bottom_4.setEnabled(False)
-        self.w.pb_bottom_4.clicked.connect(self.file_reload)
+        self.w.pb_bottom_5.setEnabled(False)
+        self.w.pb_bottom_5.clicked.connect(self.file_reload)
         
         ## programm run
-        self.w.pb_bottom_5.clicked.connect(self.programm_run)
+        self.w.pb_bottom_6.clicked.connect(self.programm_run)
         
         ## programm pause
-        self.w.pb_bottom_7.setEnabled(False)
-        self.w.pb_bottom_7.clicked.connect(self.programm_pause)
+        self.w.pb_bottom_8.setEnabled(False)
+        self.w.pb_bottom_8.clicked.connect(self.programm_pause)
         
         ## programm abort
-        self.w.pb_bottom_8.setEnabled(False)
-        self.w.pb_bottom_8.clicked.connect(self.programm_abort)
+        self.w.pb_bottom_9.setEnabled(False)
+        self.w.pb_bottom_9.clicked.connect(self.programm_abort)
     
         # view frame
         self.w.cb_view_select.setCurrentIndex(0)
@@ -219,19 +222,19 @@ class HandlerClass:
             
     def update_estate(self, estatus):
         if estatus == 'RESET':
-            self.w.pb_bottom_0.setChecked(True)
-            self.w.pb_bottom_1.setEnabled(True)
+            self.w.pb_bottom_estop.setChecked(True)
+            self.w.pb_bottom_pwr.setEnabled(True)
         else:
-            self.w.pb_bottom_0.setChecked(False)
-            self.w.pb_bottom_1.setEnabled(False)
-        self.w.pb_bottom_0.setText(estatus)
+            self.w.pb_bottom_estop.setChecked(False)
+            self.w.pb_bottom_pwr.setEnabled(False)
+        self.w.pb_bottom_estop.setText(estatus)
         
     def update_power(self, pstatus):
         if pstatus == 'ON':
-            self.w.pb_bottom_1.setChecked(True)
+            self.w.pb_bottom_pwr.setChecked(True)
         else:
-            self.w.pb_bottom_1.setChecked(False)
-        self.w.pb_bottom_1.setText(pstatus)
+            self.w.pb_bottom_pwr.setChecked(False)
+        self.w.pb_bottom_pwr.setText(pstatus)
     
     def homing(self):
         if STATUS.is_all_homed():
@@ -244,7 +247,7 @@ class HandlerClass:
         self.last_loaded_file = filename
         if filename is not None:
             self.w.stw_main.setCurrentIndex(0)
-            self.w.pb_bottom_4.setEnabled(True)
+            self.w.pb_bottom_5.setEnabled(True)
             
     def file_reload(self):
         if self.last_loaded_file is not None:
@@ -253,28 +256,28 @@ class HandlerClass:
     
            
     def programm_run(self):
-        self.w.pb_bottom_5.setEnabled(False)
         self.w.pb_bottom_6.setEnabled(False)
-        self.w.pb_bottom_7.setEnabled(True)
+        self.w.pb_bottom_7.setEnabled(False)
         self.w.pb_bottom_8.setEnabled(True)
+        self.w.pb_bottom_9.setEnabled(True)
         ACTION.RUN(0)
             
     def programm_pause(self):
         if not STATUS.stat.paused:
             self.cmd.auto(linuxcnc.AUTO_PAUSE)
-            self.w.pb_bottom_7.setChecked(True)
+            self.w.pb_bottom_8.setChecked(True)
         else:
             LOG.debug('resume')
             self.cmd.auto(linuxcnc.AUTO_RESUME)
-            self.w.pb_bottom_7.setChecked(False)
+            self.w.pb_bottom_8.setChecked(False)
             
     def programm_abort(self):
         self.cmd.abort()
         self.cmd.mode(linuxcnc.MODE_MANUAL)
-        self.w.pb_bottom_5.setEnabled(True)
         self.w.pb_bottom_6.setEnabled(True)
-        self.w.pb_bottom_7.setEnabled(False)
+        self.w.pb_bottom_7.setEnabled(True)
         self.w.pb_bottom_8.setEnabled(False)
+        self.w.pb_bottom_9.setEnabled(False)
 
     #######################
     # callbacks from form #
@@ -313,7 +316,7 @@ class HandlerClass:
             g_code_view_width = int(self.w.frame_3.width() / 2)
             self.w.gcode_display.setMinimumWidth(g_code_view_width)
             
-    # stw_homing
+    # homing
     def stw_workpiece_index(self, index):
         self.w.stw_workpiece.setCurrentIndex(index)
         
@@ -361,12 +364,11 @@ class HandlerClass:
     def on_keycall_HOME(self,event,state,shift,cntrl):
         if state:
             self.homing()
+            
     def on_keycall_ABORT(self,event,state,shift,cntrl):
         if state:
-            if STATUS.stat.interp_state == linuxcnc.INTERP_IDLE:
-                self.w.close()
-            else:
-                self.cmnd.abort()
+            self.programm_abort()
+            
     def on_keycall_F12(self,event,state,shift,cntrl):
         if state:
             STYLEEDITOR.load_dialog()
