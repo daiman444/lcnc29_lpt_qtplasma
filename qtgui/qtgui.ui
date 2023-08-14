@@ -120,8 +120,8 @@
             </property>
             <property name="iconSize">
              <size>
-              <width>50</width>
-              <height>50</height>
+              <width>60</width>
+              <height>60</height>
              </size>
             </property>
            </widget>
@@ -144,8 +144,8 @@
             </property>
             <property name="iconSize">
              <size>
-              <width>50</width>
-              <height>50</height>
+              <width>60</width>
+              <height>60</height>
              </size>
             </property>
            </widget>
@@ -167,8 +167,8 @@
             </property>
             <property name="iconSize">
              <size>
-              <width>40</width>
-              <height>40</height>
+              <width>60</width>
+              <height>60</height>
              </size>
             </property>
            </widget>
@@ -190,8 +190,8 @@
             </property>
             <property name="iconSize">
              <size>
-              <width>40</width>
-              <height>40</height>
+              <width>60</width>
+              <height>60</height>
              </size>
             </property>
             <property name="shortcut">
@@ -216,8 +216,8 @@
             </property>
             <property name="iconSize">
              <size>
-              <width>40</width>
-              <height>40</height>
+              <width>60</width>
+              <height>60</height>
              </size>
             </property>
            </widget>
@@ -239,8 +239,8 @@
             </property>
             <property name="iconSize">
              <size>
-              <width>40</width>
-              <height>40</height>
+              <width>60</width>
+              <height>60</height>
              </size>
             </property>
            </widget>
@@ -262,8 +262,8 @@
             </property>
             <property name="iconSize">
              <size>
-              <width>40</width>
-              <height>40</height>
+              <width>60</width>
+              <height>60</height>
              </size>
             </property>
            </widget>
@@ -302,6 +302,12 @@
              <iconset resource="../../../linuxcnc/configs/lcnc29_lpt_qtplasma/qtgui/qtgui.qrc">
               <normaloff>:/main/img/pause.png</normaloff>:/main/img/pause.png</iconset>
             </property>
+            <property name="iconSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
            </widget>
           </item>
           <item>
@@ -321,8 +327,8 @@
             </property>
             <property name="iconSize">
              <size>
-              <width>40</width>
-              <height>40</height>
+              <width>60</width>
+              <height>60</height>
              </size>
             </property>
            </widget>
@@ -344,8 +350,8 @@
             </property>
             <property name="iconSize">
              <size>
-              <width>40</width>
-              <height>40</height>
+              <width>60</width>
+              <height>60</height>
              </size>
             </property>
            </widget>
@@ -367,8 +373,8 @@
             </property>
             <property name="iconSize">
              <size>
-              <width>40</width>
-              <height>40</height>
+              <width>60</width>
+              <height>60</height>
              </size>
             </property>
            </widget>
@@ -406,9 +412,12 @@
             </property>
             <property name="iconSize">
              <size>
-              <width>40</width>
-              <height>40</height>
+              <width>60</width>
+              <height>60</height>
              </size>
+            </property>
+            <property name="shortcut">
+             <string>Ctrl+S</string>
             </property>
            </widget>
           </item>
