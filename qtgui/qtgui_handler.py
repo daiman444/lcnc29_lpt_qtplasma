@@ -65,6 +65,7 @@ class HandlerClass:
         STATUS.connect("state-on",lambda w: self.update_power('ON'))
         STATUS.connect("state-off",lambda w: self.update_power('OFF'))
         STATUS.connect('file-loaded', self.file_loaded)
+        STATUS.connect('all-homed', self.all_homed)
         
         #stw main
         self.w.stw_main.setCurrentIndex(0)
@@ -92,6 +93,14 @@ class HandlerClass:
         
         ## programm run
         self.w.pb_bottom_4.clicked.connect(self.programm_run)
+        
+        ## programm pause
+        self.w.pb_bottom_6.setEnabled(False)
+        self.w.pb_bottom_6.clicked.connect(self.programm_pause)
+        
+        ## programm abort
+        self.w.pb_bottom_7.setEnabled(False)
+        self.w.pb_bottom_7.clicked.connect(self.programm_abort)
     
         # view frame
         self.w.cb_view_select.setCurrentIndex(0)
@@ -106,19 +115,33 @@ class HandlerClass:
         
         # homing frame
         self.w.stw_homing.setCurrentIndex(0)
-        self.frame_4_buttons = ['homing', 'workpiece', 'tests']
         
-        for i in self.frame_4_buttons:
-            self.w['pb_' + i].setCheckable(True)
-       
+        ## pb_homing
+        self.w.pb_homing.setCheckable(True)
+        self.w.pb_homing.setChecked(True)
+        self.w.pb_homing.toggled.connect(lambda: self.stw_homing_index(0))
+        
+        ## pb_workpiece
+        self.w.pb_workpiece.setCheckable(True)
+        self.w.pb_workpiece.setChecked(False)
+        self.w.pb_workpiece.toggled.connect(lambda: self.stw_homing_index(1))
+        
+        ## pb_tests
+        self.w.pb_tests.setCheckable(True)
+        self.w.pb_tests.setChecked(False)
+        self.w.pb_tests.toggled.connect(lambda: self.stw_homing_index(2))
+        
+        ### pb_x_zero
+        self.w.pb_x_zero.clicked.connect(lambda: self.mdi_command('G92X0'))
+        self.w.pb_y_zero.clicked.connect(lambda: self.mdi_command('G92y0'))
+        self.w.pb_z_zero.clicked.connect(lambda: self.mdi_command('G92z0'))
+        self.w.pb_xyz_zero.clicked.connect(lambda: self.mdi_command('G92xyz0'))
+        
+        
         # panels
         self.w.fr_left.close()
         self.w.fr_right.close()
         
-        # stw_main index 1
-        ## filemanager
-        #self.w.filemanager.
-
     def processed_key_event__(self,receiver,event,is_pressed,key,code,shift,cntrl):
         # when typing in MDI, we don't want keybinding to call functions
         # so we catch and process the events directly.
@@ -223,11 +246,33 @@ class HandlerClass:
     def file_reload(self):
         if self.last_loaded_file is not None:
             ACTION.OPEN_PROGRAM(self.last_loaded_file)
-            
+
+    def all_homed(self, *args):
+        self.w.stw_homing.setCurrentIndex(1)
+           
     def programm_run(self):
         self.w.pb_bottom_4.setEnabled(False)
+        self.w.pb_bottom_5.setEnabled(False)
+        self.w.pb_bottom_6.setEnabled(True)
+        self.w.pb_bottom_7.setEnabled(True)
         ACTION.RUN(0)
             
+    def programm_pause(self):
+        if not STATUS.stat.paused:
+            self.cmd.auto(linuxcnc.AUTO_PAUSE)
+            self.w.pb_bottom_6.setChecked(True)
+        else:
+            LOG.debug('resume')
+            self.cmd.auto(linuxcnc.AUTO_RESUME)
+            self.w.pb_bottom_6.setChecked(False)
+            
+    def programm_abort(self):
+        self.cmd.abort()
+        self.cmd.mode(linuxcnc.MODE_MANUAL)
+        self.w.pb_bottom_4.setEnabled(True)
+        self.w.pb_bottom_5.setEnabled(True)
+        self.w.pb_bottom_6.setEnabled(False)
+        self.w.pb_bottom_7.setEnabled(False)
 
     #######################
     # callbacks from form #
@@ -265,6 +310,15 @@ class HandlerClass:
             self.w.frame_2.show()
             g_code_view_width = int(self.w.frame_3.width() / 2)
             self.w.gcode_display.setMinimumWidth(g_code_view_width)
+            
+    # stw_homing
+    def stw_homing_index(self, index):
+        self.w.stw_homing.setCurrentIndex(index)
+        
+    def mdi_command(self, mdi):
+        self.cmd.mode(linuxcnc.MODE_MDI)
+        self.cmd.wait_complete()
+        self.cmd.mdi('%s' % mdi)
 
     #####################
     # general functions #
