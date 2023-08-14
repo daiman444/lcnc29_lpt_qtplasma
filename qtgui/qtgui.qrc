@@ -1,6 +1,30 @@
 <RCC>
   <qresource prefix="main">
     <file>img/edit_code.png</file>
+    <file>img/fullscreen_close.png</file>
+    <file>img/fullscreen_open.png</file>
+    <file>img/home_folder.svg</file>
+    <file>img/main_switch_off.png</file>
+    <file>img/main_switch_on.png</file>
+    <file>img/mode_manual_active.png</file>
+    <file>img/mode_mdi_active.png</file>
+    <file>img/mode_settings_active.png</file>
+    <file>img/open_file.svg</file>
+    <file>img/pause.png</file>
+    <file>img/play.png</file>
+    <file>img/power_off.png</file>
+    <file>img/power_on.png</file>
+    <file>img/refresh.svg</file>
+    <file>img/stop.png</file>
+    <file>img/tool_axis_p.png</file>
+    <file>img/tool_axis_x.png</file>
+    <file>img/tool_axis_y.png</file>
+    <file>img/tool_axis_z.png</file>
+    <file>img/tool_zoomin.gif</file>
+    <file>img/tool_zoomout.gif</file>
+    <file>img/zoom-in.png</file>
+    <file>img/zoom-out.png</file>
+    <file>img/edit_code.png</file>
     <file>img/mode_manual_active.png</file>
     <file>img/mode_mdi_active.png</file>
     <file>img/mode_settings_active.png</file>
