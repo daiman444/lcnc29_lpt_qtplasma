@@ -107,6 +107,12 @@ class HandlerClass:
         ## programm abort
         self.w.pb_bottom_programm_abort.setEnabled(False)
         self.w.pb_bottom_programm_abort.clicked.connect(self.programm_abort)
+        
+        ## MDI
+        self.w.stw_gcode.setCurrentIndex(0)
+        self.w.pb_bottom_mdi.setCheckable(True)
+        self.w.pb_bottom_mdi.setChecked(False)
+        self.w.pb_bottom_mdi.toggled.connect(self.mdi_input)
     
         # view frame
         self.w.cb_view_select.setCurrentIndex(0)
@@ -282,6 +288,12 @@ class HandlerClass:
         self.w.pb_bottom_programm_rfl.setEnabled(True)
         self.w.pb_bottom_programm_pause.setEnabled(False)
         self.w.pb_bottom_programm_abort.setEnabled(False)
+        
+    def mdi_input(self, state):
+        if state:
+            self.w.stw_gcode.setCurrentIndex(1)
+        else:
+            self.w.stw_gcode.setCurrentIndex(0)
 
     #######################
     # callbacks from form #

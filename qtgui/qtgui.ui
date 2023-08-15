@@ -335,6 +335,9 @@
           </item>
           <item>
            <widget class="QPushButton" name="pb_bottom_10">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -343,10 +346,6 @@
             </property>
             <property name="text">
              <string/>
-            </property>
-            <property name="icon">
-             <iconset resource="../../../linuxcnc/configs/lcnc29_lpt_qtplasma/qtgui/qtgui.qrc">
-              <normaloff>:/main/img/mode_manual_active.png</normaloff>:/main/img/mode_manual_active.png</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -357,7 +356,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pb_bottom_11">
+           <widget class="QPushButton" name="pb_bottom_mdi">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -1179,7 +1178,55 @@
                   <number>2</number>
                  </property>
                  <item>
-                  <widget class="GcodeDisplay" name="gcode_display"/>
+                  <widget class="QStackedWidget" name="stw_gcode">
+                   <property name="currentIndex">
+                    <number>1</number>
+                   </property>
+                   <widget class="QWidget" name="page_3">
+                    <layout class="QVBoxLayout" name="verticalLayout_4">
+                     <property name="spacing">
+                      <number>0</number>
+                     </property>
+                     <property name="leftMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="topMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="bottomMargin">
+                      <number>0</number>
+                     </property>
+                     <item>
+                      <widget class="GcodeDisplay" name="gcode_display"/>
+                     </item>
+                    </layout>
+                   </widget>
+                   <widget class="QWidget" name="page_8">
+                    <layout class="QVBoxLayout" name="verticalLayout_8">
+                     <property name="spacing">
+                      <number>0</number>
+                     </property>
+                     <property name="leftMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="topMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="bottomMargin">
+                      <number>0</number>
+                     </property>
+                     <item>
+                      <widget class="MDIHistory" name="mdihistory"/>
+                     </item>
+                    </layout>
+                   </widget>
+                  </widget>
                  </item>
                  <item>
                   <widget class="QFrame" name="frame_4">
@@ -2118,6 +2165,11 @@ p, li { white-space: pre-wrap; }
    <extends>QWidget</extends>
    <header>qtvcp.widgets.gcode_graphics</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>MDIHistory</class>
+   <extends>QWidget</extends>
+   <header>qtvcp.widgets.mdi_history</header>
   </customwidget>
   <customwidget>
    <class>GcodeDisplay</class>
