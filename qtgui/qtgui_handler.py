@@ -116,8 +116,7 @@ class HandlerClass:
         self.w.pb_view_1.clicked.connect(lambda: self.view_pb_actions('zoom-in'))
         self.w.pb_view_2.clicked.connect(lambda: self.view_pb_actions('zoom-out'))
         self.w.pb_view_3.clicked.connect(lambda: self.view_pb_actions('clear'))
-        self.w.pb_view_4.clicked.connect(lambda: self.view_pb_actions('overlay-dro-off'))
-        self.w.pb_view_5.clicked.connect(lambda: self.view_pb_actions('reload'))
+        self.w.pb_view_4.clicked.connect(lambda: self.view_pb_actions('reload'))
         
         # homing frame
         self.w.stw_workpiece.setCurrentIndex(0)
