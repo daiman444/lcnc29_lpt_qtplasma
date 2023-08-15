@@ -29,6 +29,7 @@ STATUS = Status()
 ACTION = Action()
 INFO = Info()
 STYLEEDITOR = SSE()
+INIPATH = os.environ.get('INI_FILE_NAME', '/dev/null')
 ###################################
 # **** HANDLER CLASS SECTION **** #
 ###################################
@@ -46,9 +47,9 @@ class HandlerClass:
         self.cmd = linuxcnc.command()
         self.stat = linuxcnc.stat()
         self.PATHS = paths
-        
         self.last_loaded_file = None
-        
+        self.inifile = linuxcnc.ini(INIPATH)
+        self.open_file = self.inifile.find('DISPLAY', 'OPEN_FILE')
 
     ##########################################
     # Special Functions called from QTSCREEN
@@ -59,6 +60,7 @@ class HandlerClass:
     # the HAL pins are built but HAL is not set ready
     def initialized__(self):
         KEYBIND.add_call('Key_F12','on_keycall_F12')
+        self.open_file_show()
         # from status
         STATUS.connect("state-estop", lambda w: self.update_estate('ESTOP'))
         STATUS.connect("state-estop-reset", lambda w: self.update_estate('RESET'))
@@ -344,6 +346,10 @@ class HandlerClass:
     #####################
     # general functions #
     #####################
+    
+    def open_file_show(self):
+        self.w.lbl_signal_1.setText(f'{INIPATH}{self.open_file}')
+        #ACTION.OPEN_PROGRAM(fname)
 
     # keyboard jogging from key binding calls
     # double the rate if fast is true 
