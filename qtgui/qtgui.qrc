@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="main">
+    <file>img/tool_axis_z2.png</file>
     <file>img/clear.png</file>
     <file>img/edit_code.png</file>
     <file>img/fullscreen_close.png</file>

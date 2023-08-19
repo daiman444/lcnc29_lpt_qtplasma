@@ -1001,6 +1001,15 @@
                       <normaloff>:/main/img/tool_axis_z.png</normaloff>:/main/img/tool_axis_z.png</iconset>
                     </property>
                    </item>
+                   <item>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="icon">
+                     <iconset resource="../../../linuxcnc/configs/lcnc29_lpt_qtplasma/qtgui/qtgui.qrc">
+                      <normaloff>:/main/img/tool_axis_z2.png</normaloff>:/main/img/tool_axis_z2.png</iconset>
+                    </property>
+                   </item>
                   </widget>
                  </item>
                  <item>

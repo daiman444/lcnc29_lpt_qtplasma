@@ -49,8 +49,7 @@ class HandlerClass:
         self.PATHS = paths
         self.last_loaded_file = None
         self.inifile = linuxcnc.ini(INIPATH)
-        self.conf_path = str(self.inifile)
-        self.conf_path = '/'.join(self.conf_path.split('/')[:-1])
+
         
         
 
@@ -120,7 +119,16 @@ class HandlerClass:
         self.w.pb_bottom_mdi.toggled.connect(self.mdi_input)
     
         # view frame
-        self.w.cb_view_select.setCurrentIndex(0)
+        self.start_view = self.inifile.find('DISPLAY', 'START_VIEW')
+        self.view_list = ['p', 'x',  'y', 'z', 'z2']
+        cb_view_select_index = 0
+        if self.start_view is not None:
+            for i in self.view_list:
+                if i == self.start_view:
+                    self.w.cb_view_select.setCurrentIndex(cb_view_select_index)
+                    self.w.gcodegraphics.set_view(i)
+                else:
+                    cb_view_select_index += 1   
         self.w.cb_view_select.currentIndexChanged.connect(self.change_view)
         self.w.pb_view_full.setCheckable(True)
         self.w.pb_view_full.toggled.connect(self.view_fullscreen)
@@ -211,8 +219,8 @@ class HandlerClass:
             self.w.stw_main.setCurrentIndex(0)
             
     def change_view(self, cur_index):
-        view_list = ['p', 'x',  'y', 'z', ]
-        self.w.gcodegraphics.set_view(view_list[cur_index])
+        
+        self.w.gcodegraphics.set_view(self.view_list[cur_index])
         
     def view_pb_actions(self, set_action):
         if set_action == 'reload':
