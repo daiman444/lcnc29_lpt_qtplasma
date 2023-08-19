@@ -29,6 +29,7 @@ STATUS = Status()
 ACTION = Action()
 INFO = Info()
 STYLEEDITOR = SSE()
+TCLPATH = os.environ['LINUXCNC_TCL_DIR']
 INIPATH = os.environ.get('INI_FILE_NAME', '/dev/null')
 ###################################
 # **** HANDLER CLASS SECTION **** #
@@ -162,6 +163,12 @@ class HandlerClass:
         self.w.pb_z_zero.clicked.connect(lambda: self.mdi_command('G92z0'))
         self.w.pb_xyz_zero.clicked.connect(lambda: self.mdi_command('G92xyz0'))
         
+        # Settings
+        self.w.pb_settings_halshow.clicked.connect(lambda: self.run_app('halshow'))
+        self.w.pb_settings_halmeter.clicked.connect(lambda: self.run_app('halmeter'))
+        self.w.pb_settings_halscope.clicked.connect(lambda: self.run_app('halscope'))
+        self.w.pb_settings_halstatus.clicked.connect(lambda: self.run_app('status'))
+        self.w.pb_settings_halcalibration.clicked.connect(lambda: self.run_app('calibration'))
         
         # panels
         self.w.fr_left.close()
@@ -366,6 +373,18 @@ class HandlerClass:
         self.cmd.mode(linuxcnc.MODE_MDI)
         self.cmd.wait_complete()
         self.cmd.mdi('%s' % mdi)
+        
+    def run_app(self, app):
+        if app == 'calibration':
+            os.popen("tclsh %s/bin/emccalib.tcl -- -ini %s > /dev/null &" % (TCLPATH, INIPATH), "w")
+        elif app == 'status':
+            os.popen("linuxcnctop  > /dev/null &", "w")   
+        else:
+            process = ['halshow', 'halscope', 'halmeter', ]
+            for i in process:
+                if i == app:
+                    os.popen('/usr/bin/%s' % i)
+            
 
     #####################
     # general functions #
