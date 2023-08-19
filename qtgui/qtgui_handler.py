@@ -49,7 +49,10 @@ class HandlerClass:
         self.PATHS = paths
         self.last_loaded_file = None
         self.inifile = linuxcnc.ini(INIPATH)
-        self.open_file = self.inifile.find('DISPLAY', 'OPEN_FILE')
+        self.conf_path = str(self.inifile)
+        self.conf_path = '/'.join(self.conf_path.split('/')[:-1])
+        
+        
 
     ##########################################
     # Special Functions called from QTSCREEN
@@ -348,8 +351,13 @@ class HandlerClass:
     #####################
     
     def open_file_show(self):
-        self.w.lbl_signal_1.setText(f'{INIPATH}{self.open_file}')
-        #ACTION.OPEN_PROGRAM(fname)
+        self.stat.poll()
+        conf_path = '/'.join(self.stat.ini_filename.split('/')[:-1])
+        open_file_from_ini = self.inifile.find('DISPLAY', 'OPEN_FILE')
+        if open_file_from_ini is not None:
+            open_file = open_file_from_ini[1:]
+            open_file = conf_path + open_file
+            ACTION.OPEN_PROGRAM(open_file)
 
     # keyboard jogging from key binding calls
     # double the rate if fast is true 
