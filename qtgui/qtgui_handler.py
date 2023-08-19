@@ -128,7 +128,8 @@ class HandlerClass:
                     self.w.cb_view_select.setCurrentIndex(cb_view_select_index)
                     self.w.gcodegraphics.set_view(i)
                 else:
-                    cb_view_select_index += 1   
+                    cb_view_select_index += 1
+                    
         self.w.cb_view_select.currentIndexChanged.connect(self.change_view)
         self.w.pb_view_full.setCheckable(True)
         self.w.pb_view_full.toggled.connect(self.view_fullscreen)
