@@ -117,6 +117,11 @@ class HandlerClass:
         self.w.pb_bottom_mdi.setCheckable(True)
         self.w.pb_bottom_mdi.setChecked(False)
         self.w.pb_bottom_mdi.toggled.connect(self.mdi_input)
+        
+        ## settings
+        self.w.pb_bottom_settings.setCheckable(True)
+        self.w.pb_bottom_settings.setChecked(False)
+        self.w.pb_bottom_settings.toggled.connect(self.settings_page_open)
     
         # view frame
         self.start_view = self.inifile.find('DISPLAY', 'START_VIEW')
@@ -308,6 +313,13 @@ class HandlerClass:
             self.w.stw_gcode.setCurrentIndex(1)
         else:
             self.w.stw_gcode.setCurrentIndex(0)
+            
+    def settings_page_open(self, state):
+        if state:
+            self.w.stw_main.setCurrentIndex(2)
+        else:
+            self.w.stw_main.setCurrentIndex(0)
+            
 
     #######################
     # callbacks from form #

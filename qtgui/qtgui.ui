@@ -395,7 +395,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pb_bottom_13">
+           <widget class="QPushButton" name="pb_bottom_settings">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -770,7 +770,7 @@
        <item row="0" column="1">
         <widget class="QStackedWidget" name="stw_main">
          <property name="currentIndex">
-          <number>0</number>
+          <number>2</number>
          </property>
          <widget class="QWidget" name="page">
           <layout class="QHBoxLayout" name="horizontalLayout_6">
@@ -2149,6 +2149,21 @@ p, li { white-space: pre-wrap; }
             <widget class="FileManager" name="filemanager"/>
            </item>
           </layout>
+         </widget>
+         <widget class="QWidget" name="page_9">
+          <widget class="QCheckBox" name="checkBox">
+           <property name="geometry">
+            <rect>
+             <x>10</x>
+             <y>10</y>
+             <width>271</width>
+             <height>25</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Использовать запуск со строки</string>
+           </property>
+          </widget>
          </widget>
         </widget>
        </item>
