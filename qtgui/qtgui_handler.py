@@ -99,6 +99,8 @@ class HandlerClass:
         
         
         ## reload file
+        ## TODO сделать проверку загруженного файла и по его наличию назначить
+        ## будет ли включена кнопка перезагрузки 
         self.w.pb_bottom_programm_reload.setEnabled(False)
         self.w.pb_bottom_programm_reload.clicked.connect(self.file_reload)
         
