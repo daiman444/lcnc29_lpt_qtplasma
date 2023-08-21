@@ -69,6 +69,8 @@ class HandlerClass:
         STATUS.connect("state-estop-reset", lambda w: self.update_estate('RESET'))
         STATUS.connect("state-on",lambda w: self.update_power('ON'))
         STATUS.connect("state-off",lambda w: self.update_power('OFF'))
+        STATUS.connect('all-homed', self.all_hommed_upd)
+        STATUS.connect('not-all-homed', self.not_all_hommed_upd)
         STATUS.connect('file-loaded', self.file_loaded)
         
         #stw main
@@ -144,7 +146,6 @@ class HandlerClass:
         self.w.pb_view_1.clicked.connect(lambda: self.view_pb_actions('zoom-in'))
         self.w.pb_view_2.clicked.connect(lambda: self.view_pb_actions('zoom-out'))
         self.w.pb_view_3.clicked.connect(lambda: self.view_pb_actions('clear'))
-        self.w.pb_view_4.clicked.connect(lambda: self.view_pb_actions('reload'))
         
         # homing frame
         self.w.stw_workpiece.setCurrentIndex(0)
@@ -234,14 +235,10 @@ class HandlerClass:
             self.w.stw_main.setCurrentIndex(0)
             
     def change_view(self, cur_index):
-        
         self.w.gcodegraphics.set_view(self.view_list[cur_index])
         
     def view_pb_actions(self, set_action):
-        if set_action == 'reload':
-            STATUS.emit('reload-display')
-        else:
-            ACTION.SET_GRAPHICS_VIEW(set_action)        
+        ACTION.SET_GRAPHICS_VIEW(set_action)        
         
     def gui_update(self, *args):
         if self.w.pb_view_full.toggled(False):
@@ -266,9 +263,21 @@ class HandlerClass:
     def update_power(self, pstatus):
         if pstatus == 'ON':
             self.w.pb_bottom_pwr.setChecked(True)
+            self.w.pb_bottom_homing.setEnabled(True)
         else:
             self.w.pb_bottom_pwr.setChecked(False)
+            self.w.pb_bottom_homing.setEnabled(False)
         #self.w.pb_bottom_pwr.setText(pstatus)
+        
+    def all_hommed_upd(self, obj):
+        self.w.pb_bottom_programm_run.setEnabled(True)
+        self.w.pb_bottom_mdi.setEnabled(True)
+        self.w.stw_workpiece.setEnabled(True)
+        
+    def not_all_hommed_upd(self, obj, list):
+        self.w.pb_bottom_programm_run.setEnabled(False)
+        self.w.pb_bottom_mdi.setEnabled(False)
+        self.w.stw_workpiece.setEnabled(False)
     
     def homing(self):
         if STATUS.is_all_homed():
@@ -285,7 +294,11 @@ class HandlerClass:
 
 # TODO            
     def file_edit(self):
-        pass
+        if self.last_loaded_file:
+            editor = self.inifile.find('DISPLAY', 'EDITOR')
+            edit_command = f'{editor} {self.last_loaded_file} &'
+            os.popen(edit_command)
+        
             
     def file_reload(self):
         if self.last_loaded_file is not None:

@@ -770,7 +770,7 @@
        <item row="0" column="1">
         <widget class="QStackedWidget" name="stw_main">
          <property name="currentIndex">
-          <number>2</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="page">
           <layout class="QHBoxLayout" name="horizontalLayout_6">
@@ -1107,22 +1107,6 @@
                      <width>40</width>
                      <height>40</height>
                     </size>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QPushButton" name="pb_view_4">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="styleSheet">
-                    <string notr="true">background-color: rgb(151, 75, 75);</string>
-                   </property>
-                   <property name="text">
-                    <string>Upd</string>
                    </property>
                   </widget>
                  </item>
