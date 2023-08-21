@@ -311,6 +311,7 @@ class HandlerClass:
             
     def programm_abort(self):
         self.cmd.abort()
+        self.cmd.wait_complete()
         self.cmd.mode(linuxcnc.MODE_MANUAL)
         self.w.pb_bottom_programm_run.setEnabled(True)
         self.w.pb_bottom_programm_rfl.setEnabled(True)
