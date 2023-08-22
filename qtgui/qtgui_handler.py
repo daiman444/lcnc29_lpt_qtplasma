@@ -291,8 +291,7 @@ class HandlerClass:
         if filename is not None:
             self.w.stw_main.setCurrentIndex(0)
             self.w.pb_bottom_programm_reload.setEnabled(True)
-
-# TODO            
+        
     def file_edit(self):
         if self.last_loaded_file:
             editor = self.inifile.find('DISPLAY', 'EDITOR')
@@ -303,9 +302,7 @@ class HandlerClass:
     def file_reload(self):
         if self.last_loaded_file is not None:
             ACTION.OPEN_PROGRAM(self.last_loaded_file)
-            
-    
-           
+                    
     def programm_run(self):
         self.w.pb_bottom_programm_run.setEnabled(False)
         self.w.pb_bottom_programm_rfl.setEnabled(False)
