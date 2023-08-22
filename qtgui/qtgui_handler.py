@@ -6,7 +6,6 @@ import os
 import linuxcnc
 
 from PyQt5 import QtCore, QtWidgets
-
 from qtvcp.widgets.mdi_line import MDILine as MDI_WIDGET
 from qtvcp.widgets.gcode_editor import GcodeEditor as GCODE
 from qtvcp.widgets.stylesheeteditor import  StyleSheetEditor as SSE
@@ -51,9 +50,6 @@ class HandlerClass:
         self.last_loaded_file = None
         self.inifile = linuxcnc.ini(INIPATH)
 
-        
-        
-
     ##########################################
     # Special Functions called from QTSCREEN
     ##########################################
@@ -64,6 +60,7 @@ class HandlerClass:
     def initialized__(self):
         KEYBIND.add_call('Key_F12','on_keycall_F12')
         self.open_file_show()
+        
         # from status
         STATUS.connect("state-estop", lambda w: self.update_estate('ESTOP'))
         STATUS.connect("state-estop-reset", lambda w: self.update_estate('RESET'))
@@ -77,7 +74,6 @@ class HandlerClass:
         self.w.stw_main.setCurrentIndex(0)
         
         # bottom frame
-        
         ## estop
         self.w.pb_bottom_estop.setCheckable(True)
         self.w.pb_bottom_estop.setChecked(False)
@@ -98,7 +94,6 @@ class HandlerClass:
         
         ## edit file
         self.w.pb_bottom_programm_edit.clicked.connect(self.file_edit)
-        
         
         ## reload file
         ## TODO сделать проверку загруженного файла и по его наличию назначить
@@ -258,7 +253,6 @@ class HandlerClass:
         else:
             self.w.pb_bottom_estop.setChecked(False)
             self.w.pb_bottom_pwr.setEnabled(False)
-        #self.w.pb_bottom_estop.setText(estatus)
         
     def update_power(self, pstatus):
         if pstatus == 'ON':
@@ -267,7 +261,6 @@ class HandlerClass:
         else:
             self.w.pb_bottom_pwr.setChecked(False)
             self.w.pb_bottom_homing.setEnabled(False)
-        #self.w.pb_bottom_pwr.setText(pstatus)
         
     def all_hommed_upd(self, obj):
         self.w.pb_bottom_programm_run.setEnabled(True)
