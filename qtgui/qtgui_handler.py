@@ -126,14 +126,14 @@ class HandlerClass:
         # view frame
         self.start_view = self.inifile.find('DISPLAY', 'START_VIEW')
         self.view_list = ['p', 'x',  'y', 'z', 'z2']
-        cb_view_select_index = 0
+        self.current_view = 0
         if self.start_view is not None:
             for i in self.view_list:
                 if i == self.start_view:
-                    self.w.cb_view_select.setCurrentIndex(cb_view_select_index)
+                    self.w.cb_view_select.setCurrentIndex(self.current_view)
                     self.w.gcodegraphics.set_view(i)
                 else:
-                    cb_view_select_index += 1
+                    self.current_view += 1
                     
         self.w.cb_view_select.currentIndexChanged.connect(self.change_view)
         self.w.pb_view_full.setCheckable(True)
@@ -231,6 +231,7 @@ class HandlerClass:
             
     def change_view(self, cur_index):
         self.w.gcodegraphics.set_view(self.view_list[cur_index])
+        self.current_view = cur_index
         
     def view_pb_actions(self, set_action):
         ACTION.SET_GRAPHICS_VIEW(set_action)        
@@ -277,7 +278,10 @@ class HandlerClass:
             ACTION.SET_MACHINE_UNHOMED(-1)
         else:
             ACTION.SET_MACHINE_HOMING(-1)
-    
+        view = self.w.gcodegraphics.getview()
+        self.w.gcodegraphics.set_view(view)
+        self.w.gcodegraphics.updateGL()
+        
     def file_loaded(self, obj, filename):
         self.w.lbl_signal_0.setText(filename)
         self.last_loaded_file = filename
