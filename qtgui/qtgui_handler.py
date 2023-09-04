@@ -69,6 +69,7 @@ class HandlerClass:
         STATUS.connect('all-homed', self.all_hommed_upd)
         STATUS.connect('not-all-homed', self.not_all_hommed_upd)
         STATUS.connect('file-loaded', self.file_loaded)
+        STATUS.connect('periodic', self.upd_pos)
         
         #stw main
         self.w.stw_main.setCurrentIndex(0)
@@ -222,6 +223,16 @@ class HandlerClass:
     ########################
     # callbacks from STATUS #
     ########################
+    
+    def upd_pos(self, data):
+        self.stat.poll()
+        pos = self.stat.joint_position
+        offset = self.stat.g92_offset
+        join_0 = pos[0] - offset[0]
+        join_1 = pos[1] - offset[1]
+        self.w.lbl_xpos.setText(f'{round(join_0, 2)}')
+        self.w.lbl_ypos.setText(f'{round(join_1, 2)}')
+        self.w.lbl_vel_val.setText(f'{round(self.stat.current_vel, 0)}')
     
     def change_main( self, state):
         if state:
