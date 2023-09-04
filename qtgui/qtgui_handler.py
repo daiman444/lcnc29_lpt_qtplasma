@@ -394,6 +394,8 @@ class HandlerClass:
         self.cmd.mode(linuxcnc.MODE_MDI)
         self.cmd.wait_complete()
         self.cmd.mdi('%s' % mdi)
+        self.cmd.wait_complete()
+        self.cmd.mode(linuxcnc.MODE_MANUAL)
         
     def run_app(self, app):
         if app == 'calibration':
