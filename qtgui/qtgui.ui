@@ -980,24 +980,6 @@
                     </property>
                     <property name="icon">
                      <iconset resource="../../../linuxcnc/configs/lcnc29_lpt_qtplasma/qtgui/qtgui.qrc">
-                      <normaloff>:/main/img/tool_axis_x.png</normaloff>:/main/img/tool_axis_x.png</iconset>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string/>
-                    </property>
-                    <property name="icon">
-                     <iconset resource="../../../linuxcnc/configs/lcnc29_lpt_qtplasma/qtgui/qtgui.qrc">
-                      <normaloff>:/main/img/tool_axis_y.png</normaloff>:/main/img/tool_axis_y.png</iconset>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string/>
-                    </property>
-                    <property name="icon">
-                     <iconset resource="../../../linuxcnc/configs/lcnc29_lpt_qtplasma/qtgui/qtgui.qrc">
                       <normaloff>:/main/img/tool_axis_z.png</normaloff>:/main/img/tool_axis_z.png</iconset>
                     </property>
                    </item>

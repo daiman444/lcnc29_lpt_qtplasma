@@ -125,7 +125,7 @@ class HandlerClass:
     
         # view frame
         self.start_view = self.inifile.find('DISPLAY', 'START_VIEW')
-        self.view_list = ['p', 'x',  'y', 'z', 'z2']
+        self.view_list = ['p', 'z', 'z2']
         self.current_view = 0
         if self.start_view is not None:
             for i in self.view_list:
