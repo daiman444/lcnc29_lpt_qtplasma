@@ -1,6 +1,8 @@
 # Include your custom HAL commands here
 # This file will not be overwritten when you run PNCconf again
 
+loadusr -W ./comps/hcontrol
+
 loadrt debounce cfg=1,1,2
 loadrt ahc
 loadrt thc2

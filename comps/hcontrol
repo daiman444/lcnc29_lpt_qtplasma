@@ -1,0 +1,39 @@
+#!/usr/bin/env python3
+
+import hal
+import time
+
+class HControl:
+    def __init__(self, name):
+        self.comp = hal.component(name)
+        self.bit_in = ['homing', 'home_sw', 'up', 'down', ]
+        self.float_in = ['max_lim', 'min_lim', 'max_vel', 'homing_vel', 'pos-fb', ]
+        self.bit_out = ['homed', ]
+        self.float_out = ['pos-cmd']
+        self.pins_init()
+        
+    def pins_init(self):
+        for i in self.bit_in:
+            self.comp.newpin(i, hal.HAL_BIT, hal.HAL_IN)
+        
+        for i in self.float_in:
+            self.comp.newpin(i, hal.HAL_FLOAT, hal.HAL_IN)
+        
+        for i in self.bit_out:
+            self.comp.newpin(i, hal.HAL_BIT, hal.HAL_OUT)
+        
+        for i in self.float_out:
+            self.comp.newpin(i, hal.HAL_FLOAT, hal.HAL_OUT)
+        
+    def ready(self):
+        self.comp.ready()
+        
+if __name__ == '__main__':
+    hc = HControl('hcontrol')
+    hc.ready()
+    
+try:
+    while 1:
+        pass
+except KeyboardInterrupt as e:
+    print(e)
