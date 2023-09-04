@@ -5,6 +5,7 @@ import sys
 import os
 import linuxcnc
 
+from hal_glib import GStat
 from PyQt5 import QtCore, QtWidgets
 from qtvcp.widgets.mdi_line import MDILine as MDI_WIDGET
 from qtvcp.widgets.gcode_editor import GcodeEditor as GCODE
@@ -28,6 +29,7 @@ STATUS = Status()
 ACTION = Action()
 INFO = Info()
 STYLEEDITOR = SSE()
+GSTAT = GStat()
 TCLPATH = os.environ['LINUXCNC_TCL_DIR']
 INIPATH = os.environ.get('INI_FILE_NAME', '/dev/null')
 ###################################
@@ -159,8 +161,9 @@ class HandlerClass:
         ### pb_x_zero
         self.w.pb_x_zero.clicked.connect(lambda: self.mdi_command('G92X0'))
         self.w.pb_y_zero.clicked.connect(lambda: self.mdi_command('G92y0'))
-        self.w.pb_z_zero.clicked.connect(lambda: self.mdi_command('G92z0'))
-        self.w.pb_xyz_zero.clicked.connect(lambda: self.mdi_command('G92xyz0'))
+        self.w.pb_xyz_zero.clicked.connect(lambda: self.mdi_command('G92x0y0'))
+        self.w.pb_goto_zero.clicked.connect(lambda: self.mdi_command('G0X0Y0'))
+        self.w.pb_goto_end.clicked.connect(lambda: self.mdi_command('goto_end'))
         
         # Settings
         self.w.pb_settings_halshow.clicked.connect(lambda: self.run_app('halshow'))
@@ -391,10 +394,21 @@ class HandlerClass:
         self.w.stw_workpiece.setCurrentIndex(index)
         
     def mdi_command(self, mdi):
+        if mdi == 'goto_end':
+            y_coord = self.inifile.find('AXIS_Y', 'MAX_LIMIT')
+            x_max = self.inifile.find('AXIS_X', 'MAX_LIMIT')
+            x_min = self.inifile.find('AXIS_X', 'MIN_LIMIT')
+            if abs(float(x_min)) > float(x_max):
+                x_coord = x_min
+            else:
+                x_coord = x_max
+            mdi = f'g53g0x{x_coord}y{y_coord}'
         self.cmd.mode(linuxcnc.MODE_MDI)
         self.cmd.wait_complete()
         self.cmd.mdi('%s' % mdi)
-        self.cmd.wait_complete()
+        while not GSTAT.is_interp_idle():
+            self.w.gcodegraphics.updateGL()
+            QtWidgets.QApplication.processEvents()
         self.cmd.mode(linuxcnc.MODE_MANUAL)
         
     def run_app(self, app):
