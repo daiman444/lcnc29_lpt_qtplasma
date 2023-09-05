@@ -3,7 +3,7 @@ loadrt [EMCMOT]EMCMOT base_period_nsec=[EMCMOT]BASE_PERIOD servo_period_nsec=[EM
 
 loadrt hal_parport cfg="0x378 out"
 setp parport.0.reset-time 5000
-loadrt stepgen step_type=0,0,0,0
+loadrt stepgen step_type=0,0,0,0 ctrl_type=p,p,p,v
 
 addf parport.0.read base-thread
 addf stepgen.make-pulses base-thread
@@ -88,7 +88,7 @@ setp stepgen.3.stepspace 0
 setp stepgen.3.dirhold 35000
 setp stepgen.3.dirsetup 35000
 setp stepgen.3.maxaccel [JOINT_3]STEPGEN_MAXACCEL
-net zpos-cmd joint.3.motor-pos-cmd => stepgen.3.position-cmd
+#net zpos-cmd joint.3.motor-pos-cmd => stepgen.3.position-cmd
 net zpos-fb stepgen.3.position-fb => joint.3.motor-pos-fb
 net zstep <= stepgen.3.step
 net zdir <= stepgen.3.dir

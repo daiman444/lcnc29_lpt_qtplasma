@@ -3,7 +3,7 @@ loadrt [EMCMOT]EMCMOT base_period_nsec=[EMCMOT]BASE_PERIOD servo_period_nsec=[EM
 
 loadrt hal_parport cfg="0x378 out"
 setp parport.0.reset-time 5000
-loadrt stepgen step_type=0,0,0,0
+loadrt stepgen step_type=0,0,0,0 ctrl_type=p,p,p,v
 
 addf parport.0.read base-thread
 addf stepgen.make-pulses base-thread

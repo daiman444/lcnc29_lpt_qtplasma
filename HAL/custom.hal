@@ -39,8 +39,8 @@ net spindle-enable          spindle.0.on                    parport.0.pin-17-out
 unlinkp                     joint.3.motor-pos-cmd
 net zpos-cmd                joint.3.motor-pos-cmd           ahc.z-pos-in
 
-unlinkp                     stepgen.3.position-cmd
-net z-pos-out               ahc.z-pos-out                   stepgen.3.position-cmd
+#unlinkp                     stepgen.3.position-cmd
+#net z-pos-out               ahc.z-pos-out                   stepgen.3.position-cmd
 
 unlinkp                     stepgen.3.position-fb
 net zpos-fb                 ahc.z-fb-out                    joint.3.motor-pos-fb
