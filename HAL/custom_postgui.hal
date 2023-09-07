@@ -1,2 +1,6 @@
 # Include your custom_postgui HAL commands here
 # This file will not be overwritten when you run PNCconf again
+
+#net enable              qtgui.z-enable          stepgen.3.enable   
+#net vel-cmd             qtgui.vel-cmd           stepgen.3.velocity-fb
+#net pos-fb              qtgui.pos-fb            stepgen.3.position-fb

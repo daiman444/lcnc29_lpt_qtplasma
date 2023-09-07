@@ -11,7 +11,7 @@ from qtvcp.widgets.mdi_line import MDILine as MDI_WIDGET
 from qtvcp.widgets.gcode_editor import GcodeEditor as GCODE
 from qtvcp.widgets.stylesheeteditor import  StyleSheetEditor as SSE
 from qtvcp.lib.keybindings import Keylookup
-from qtvcp.core import Status, Action, Info
+from qtvcp.core import Status, Action, Info, Qhal
 
 # Set up logging
 from qtvcp import logger
@@ -28,6 +28,7 @@ KEYBIND = Keylookup()
 STATUS = Status()
 ACTION = Action()
 INFO = Info()
+QHAL = Qhal()
 STYLEEDITOR = SSE()
 GSTAT = GStat()
 TCLPATH = os.environ['LINUXCNC_TCL_DIR']
@@ -37,21 +38,25 @@ INIPATH = os.environ.get('INI_FILE_NAME', '/dev/null')
 ###################################
 
 class HandlerClass:
-
     ########################
     # **** INITIALIZE **** #
     ########################
     # widgets allows access to  widgets from the qtvcp files
     # at this point the widgets and hal pins are not instantiated
     def __init__(self, halcomp,widgets,paths):
-        self.hal = halcomp
+        self.halcomp = halcomp
         self.w = widgets
         self.cmd = linuxcnc.command()
         self.stat = linuxcnc.stat()
         self.PATHS = paths
         self.last_loaded_file = None
         self.inifile = linuxcnc.ini(INIPATH)
-
+        self.bit_in = ['up', 'down', ]
+        self.float_in = ['pos-fb', ]
+        self.bit_out = ['homed', ]
+        self.float_out = ['vel-cmd', ]
+        self.init_pins()
+        
     ##########################################
     # Special Functions called from QTSCREEN
     ##########################################
@@ -175,6 +180,23 @@ class HandlerClass:
         # panels
         self.w.fr_left.close()
         self.w.fr_right.close()
+        
+    def init_pins(self):
+        for i in self.bit_in:
+            QHAL.newpin(i, QHAL.HAL_BIT, QHAL.HAL_IN)
+        
+        for i in self.float_in:
+            QHAL.newpin(i, QHAL.HAL_FLOAT, QHAL.HAL_IN)
+        
+        for i in self.bit_out:
+            QHAL.newpin(i, QHAL.HAL_BIT, QHAL.HAL_OUT)
+        
+        for i in self.float_out:
+            QHAL.newpin(i, QHAL.HAL_FLOAT, QHAL.HAL_OUT)
+        
+        
+        
+        
         
     def processed_key_event__(self,receiver,event,is_pressed,key,code,shift,cntrl):
         # when typing in MDI, we don't want keybinding to call functions
