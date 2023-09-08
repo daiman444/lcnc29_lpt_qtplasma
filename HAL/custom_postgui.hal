@@ -1,6 +1,10 @@
 # Include your custom_postgui HAL commands here
 # This file will not be overwritten when you run PNCconf again
 
-#net enable              qtgui.z-enable          stepgen.3.enable   
-#net vel-cmd             qtgui.vel-cmd           stepgen.3.velocity-fb
-#net pos-fb              qtgui.pos-fb            stepgen.3.position-fb
+#net enable              qtgui.z-enable          stepgen.3.enable
+setp                    hcontrol.max-lim            [H_CONTROL]MAX_LIMIT
+setp                    hcontrol.min-lim            [H_CONTROL]MIN_LIMIT
+setp                    hcontrol.max-vel            [H_CONTROL]MAX_VELOCITY
+
+net vel-cmd             hcontrol.vel-cmd            stepgen.3.velocity-cmd
+net pos-fb              hcontrol.pos-fb             stepgen.3.position-fb

@@ -6,10 +6,21 @@ import time
 class HControl:
     def __init__(self, name):
         self.comp = hal.component(name)
-        self.bit_in = ['homing', 'home_sw', 'up', 'down', ]
-        self.float_in = ['max_lim', 'min_lim', 'max_vel', 'homing_vel', 'pos-fb', ]
-        self.bit_out = ['homed', ]
-        self.float_out = ['pos-cmd']
+        self.homed_state = False
+        self.offset = 0
+        self.bit_in = [
+            'homing', 'home-sw', 'probing' 
+            ]
+        self.float_in = [
+            'max-lim', 'min-lim', 'max-vel', 
+            'homing-vel', 'pos-fb', 'home-offset'
+            ]
+        self.bit_out = [
+            'homed', 
+            ]
+        self.float_out = [
+            'vel-cmd', 'offset', 
+            ]
         self.pins_init()
         
     def pins_init(self):
@@ -28,12 +39,41 @@ class HControl:
     def ready(self):
         self.comp.ready()
         
+    def homing(self):
+        if self.homed_state:
+            self.homed_state = False
+            self.comp['homed'] = False
+        else:
+            while not self.comp['home-sw']:
+                self.comp['vel-cmd'] = 10
+            self.comp['vel-cmd'] = 0
+            while self.comp['home-sw']:
+                self.comp['vel-cmd'] = -10
+            self.offset = self.comp['pos-fb']
+            homed_zero = self.offset - self.comp['home-offset']
+            while self.comp['pos-fb'] > homed_zero:
+                self.comp['vel-cmd'] = -10
+            self.comp['vel-cmd'] = 0
+            self.homed_state = True
+            self.comp['homed'] = True
+            self.comp['offset'] = self.offset
+            
+    def probing(self):
+        pass
+
+            
+        
+        
 if __name__ == '__main__':
     hc = HControl('hcontrol')
     hc.ready()
     
 try:
     while 1:
-        pass
+        if hc.comp['homing']:
+            hc.homing()
+        elif hc.comp['probing']:
+            hc.probing()
+        
 except KeyboardInterrupt as e:
     print(e)

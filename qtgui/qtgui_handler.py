@@ -51,10 +51,11 @@ class HandlerClass:
         self.PATHS = paths
         self.last_loaded_file = None
         self.inifile = linuxcnc.ini(INIPATH)
-        self.bit_in = ['up', 'down', ]
-        self.float_in = ['pos-fb', ]
-        self.bit_out = ['homed', ]
-        self.float_out = ['vel-cmd', ]
+        self.bit_in = []
+        self.float_in = []
+        self.bit_out = ['homing']
+        self.float_out = []
+        self.init_pins()
         
     ##########################################
     # Special Functions called from QTSCREEN
@@ -180,6 +181,19 @@ class HandlerClass:
         # panels
         self.w.fr_left.close()
         self.w.fr_right.close()
+        
+    def init_pins(self):
+        for i in self.bit_in:
+            QHAL.newpin(i, QHAL.HAL_BIT, QHAL.HAL_IN)
+        
+        for i in self.float_in:
+            QHAL.newpin(i, QHAL.HAL_FLOAT, QHAL.HAL_IN)
+        
+        for i in self.bit_out:
+            QHAL.newpin(i, QHAL.HAL_BIT, QHAL.HAL_OUT)
+        
+        for i in self.float_out:
+            QHAL.newpin(i, QHAL.HAL_FLOAT, QHAL.HAL_OUT)
         
     def processed_key_event__(self,receiver,event,is_pressed,key,code,shift,cntrl):
         # when typing in MDI, we don't want keybinding to call functions
