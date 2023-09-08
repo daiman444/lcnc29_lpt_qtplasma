@@ -67,6 +67,7 @@ class HandlerClass:
     def initialized__(self):
         KEYBIND.add_call('Key_F12','on_keycall_F12')
         self.open_file_show()
+        self.w.screen_options.setProperty('play_sounds_option', False)
         
         # from status
         STATUS.connect("state-estop", lambda w: self.update_estate('ESTOP'))
