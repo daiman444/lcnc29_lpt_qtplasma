@@ -1,0 +1,12 @@
+component hc "Height Control";
+
+description 
+"""
+
+""";
+
+author "ddd";
+
+license "GPLv2 or greater";
+
+option singleton yes;
