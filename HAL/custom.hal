@@ -12,3 +12,5 @@ addf debounce.1 servo-thread
 net probe-in                debounce.0.0.in                 parport.0.pin-15-in-not
 net probe-out               debounce.0.0.out                motion.probe-input
 setp                        debounce.0.delay 15
+
+ 

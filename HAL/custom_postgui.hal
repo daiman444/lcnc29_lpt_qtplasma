@@ -6,5 +6,5 @@
 #setp                    hcontrol.min-lim            [H_CONTROL]MIN_LIMIT
 #setp                    hcontrol.max-vel            [H_CONTROL]MAX_VELOCITY
 
-#net vel-cmd             hcontrol.vel-cmd            stepgen.3.velocity-cmd
-#net pos-fb              hcontrol.pos-fb             stepgen.3.position-fb
+net vel-cmd             hcontrol.vel-cmd            stepgen.3.velocity-cmd
+net pos-fb              hcontrol.pos-fb             stepgen.3.position-fb
