@@ -2,9 +2,9 @@
 # This file will not be overwritten when you run PNCconf again
 
 #net enable              qtgui.z-enable          stepgen.3.enable
-setp                    hcontrol.max-lim            [H_CONTROL]MAX_LIMIT
-setp                    hcontrol.min-lim            [H_CONTROL]MIN_LIMIT
-setp                    hcontrol.max-vel            [H_CONTROL]MAX_VELOCITY
+#setp                    hcontrol.max-lim            [H_CONTROL]MAX_LIMIT
+#setp                    hcontrol.min-lim            [H_CONTROL]MIN_LIMIT
+#setp                    hcontrol.max-vel            [H_CONTROL]MAX_VELOCITY
 
-net vel-cmd             hcontrol.vel-cmd            stepgen.3.velocity-cmd
-net pos-fb              hcontrol.pos-fb             stepgen.3.position-fb
+#net vel-cmd             hcontrol.vel-cmd            stepgen.3.velocity-cmd
+#net pos-fb              hcontrol.pos-fb             stepgen.3.position-fb
