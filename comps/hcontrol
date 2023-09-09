@@ -7,18 +7,21 @@ class HControl:
     def __init__(self, name):
         self.comp = hal.component(name)
         self.homed_state = False
+        self.top_of_plate = None
         self.offset = 0
         self.bit_in = [
             'homing', 'home-sw', 'probing',
-            'probe-sw',
+            'probe-sw', 'piercing', 'arc-ok',
+            'pierce-and-cut',
             ]
         self.float_in = [
             'max-lim', 'min-lim', 'max-vel', 
             'homing-vel', 'pos-fb', 'home-offset',
-            'probe-vel', 
+            'probe-vel', 'pierce-hght', 'jump-hght',
+            'pierce-delay', 'cut-hght',
             ]
         self.bit_out = [
-            'homed', 
+            'homed', 'plasma-on',
             ]
         self.float_out = [
             'vel-cmd', 'offset', 
@@ -66,6 +69,32 @@ class HControl:
         while self.comp['probe-sw']:
             self.comp['vel-cmd'] = 20
         self.comp['vel-cmd'] = 0
+        self.top_of_plate = self.comp['pos-fb']
+        
+        
+    def piercing(self):
+        pierce_hght = self.top_of_plate + self.comp['pierce-hght']
+        while pierce_hght > self.comp['pos-fb']:
+            self.comp['vel-cmd'] = 20
+        self.comp['vel-cmd'] = 0
+        self.comp['plasma-on'] = True
+        while not self.comp['arc-ok']:
+            self.comp['vel-cmd'] = 0
+        pierce_hght += self.comp['jump-hght']
+        while pierce_hght > self.comp['pos-fb']:
+            self.comp['vel-cmd'] = 20
+        self.comp['vel-cmd'] = 0
+        time.sleep(self.comp['pierce-delay'])
+        pierce_hght = self.top_of_plate + self.comp['cut-hght']
+        while pierce_hght < self.comp['pos-fb']:
+            self.comp['vel-cmd'] = 20
+        self.comp['vel-cmd'] = 0
+        
+    def pierce_and_cut(self):
+        self.probing()
+        self.piercing()
+        
+        
         
         
 if __name__ == '__main__':
@@ -78,6 +107,11 @@ try:
             hc.homing()
         elif hc.comp['probing']:
             hc.probing()
+        elif hc.comp['piercing']:
+            hc.piercing()
+        elif hc.comp['pierce-and-cut']:
+            hc.pierce_and_cut()
+        
         
 except KeyboardInterrupt as e:
     print(e)
