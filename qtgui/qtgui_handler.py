@@ -178,6 +178,17 @@ class HandlerClass:
         self.w.pb_settings_halstatus.clicked.connect(lambda: self.run_app('status'))
         self.w.pb_settings_halcalibration.clicked.connect(lambda: self.run_app('calibration'))
         
+        # sliders
+        ## feed
+        self.w.hs_feed.setMinimum(0)
+        self.w.hs_feed.setMaximum(250)
+        self.w.hs_feed.setValue(100)
+        
+        ##jog  
+        self.w.hs_jog.setMinimum(0)
+        self.w.hs_jog.setMaximum(250)
+        self.w.hs_jog.setValue(100)
+        
         # panels
         self.w.fr_left.close()
         self.w.fr_right.close()

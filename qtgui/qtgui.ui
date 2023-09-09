@@ -1899,74 +1899,20 @@ p, li { white-space: pre-wrap; }
                      <enum>QFrame::Raised</enum>
                     </property>
                     <layout class="QGridLayout" name="gridLayout_7">
-                     <item row="16" column="2">
-                      <widget class="QLabel" name="label_15">
+                     <item row="22" column="0">
+                      <widget class="QLabel" name="label_19">
                        <property name="text">
-                        <string>mm</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="9" column="0">
-                      <widget class="QLabel" name="label_7">
-                       <property name="text">
-                        <string>XXX</string>
+                        <string>Cut:</string>
                        </property>
                        <property name="alignment">
                         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                        </property>
                       </widget>
                      </item>
-                     <item row="9" column="2">
-                      <widget class="QLabel" name="label_9">
-                       <property name="text">
-                        <string>mm</string>
-                       </property>
-                       <property name="alignment">
-                        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="20" column="0">
-                      <widget class="QLabel" name="label_18">
-                       <property name="text">
-                        <string>Jump</string>
-                       </property>
-                       <property name="alignment">
-                        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="2" column="0" colspan="3">
-                      <widget class="QSlider" name="horizontalSlider_2">
+                     <item row="19" column="0" colspan="3">
+                      <widget class="QSlider" name="hs_delay">
                        <property name="orientation">
                         <enum>Qt::Horizontal</enum>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="4" column="0" colspan="3">
-                      <widget class="QSlider" name="horizontalSlider_4">
-                       <property name="orientation">
-                        <enum>Qt::Horizontal</enum>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="11" column="0">
-                      <widget class="QLabel" name="label_12">
-                       <property name="text">
-                        <string>Cor. vel:</string>
-                       </property>
-                       <property name="alignment">
-                        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="7" column="1">
-                      <widget class="QLabel" name="label_17">
-                       <property name="text">
-                        <string>Direction</string>
-                       </property>
-                       <property name="alignment">
-                        <set>Qt::AlignCenter</set>
                        </property>
                       </widget>
                      </item>
@@ -1980,22 +1926,32 @@ p, li { white-space: pre-wrap; }
                        </property>
                       </widget>
                      </item>
+                     <item row="2" column="0" colspan="3">
+                      <widget class="QSlider" name="hs_feed">
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="11" column="2">
+                      <widget class="QLabel" name="label_14">
+                       <property name="text">
+                        <string>mm</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="9" column="2">
+                      <widget class="QLabel" name="label_9">
+                       <property name="text">
+                        <string>mm</string>
+                       </property>
+                       <property name="alignment">
+                        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                       </property>
+                      </widget>
+                     </item>
                      <item row="25" column="0" colspan="3">
-                      <widget class="QSlider" name="horizontalSlider_10">
-                       <property name="orientation">
-                        <enum>Qt::Horizontal</enum>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="8" column="0" colspan="3">
-                      <widget class="QSlider" name="horizontalSlider_6">
-                       <property name="orientation">
-                        <enum>Qt::Horizontal</enum>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="19" column="0" colspan="3">
-                      <widget class="QSlider" name="horizontalSlider_7">
+                      <widget class="QSlider" name="hs_blow">
                        <property name="orientation">
                         <enum>Qt::Horizontal</enum>
                        </property>
@@ -2011,20 +1967,61 @@ p, li { white-space: pre-wrap; }
                        </property>
                       </widget>
                      </item>
-                     <item row="0" column="0">
-                      <widget class="QLabel" name="label">
+                     <item row="18" column="2">
+                      <widget class="QLabel" name="label_22">
                        <property name="text">
-                        <string>Feed:</string>
+                        <string>mm</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="12" column="0" colspan="3">
+                      <widget class="QSlider" name="hs_cor_vel">
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="4" column="0" colspan="3">
+                      <widget class="QSlider" name="hs_jog">
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="20" column="0">
+                      <widget class="QLabel" name="label_18">
+                       <property name="text">
+                        <string>Jump</string>
                        </property>
                        <property name="alignment">
                         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                        </property>
                       </widget>
                      </item>
-                     <item row="11" column="2">
-                      <widget class="QLabel" name="label_14">
+                     <item row="3" column="2">
+                      <widget class="QLabel" name="label_6">
                        <property name="text">
                         <string>mm</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="9" column="0">
+                      <widget class="QLabel" name="label_7">
+                       <property name="text">
+                        <string>XXX</string>
+                       </property>
+                       <property name="alignment">
+                        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="26" column="0">
+                      <widget class="QLabel" name="label_21">
+                       <property name="text">
+                        <string>TextLabel</string>
+                       </property>
+                       <property name="alignment">
+                        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                        </property>
                       </widget>
                      </item>
@@ -2032,44 +2029,6 @@ p, li { white-space: pre-wrap; }
                       <widget class="QLabel" name="label_5">
                        <property name="text">
                         <string>Jog:</string>
-                       </property>
-                       <property name="alignment">
-                        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="20" column="2">
-                      <widget class="QLabel" name="label_25">
-                       <property name="text">
-                        <string>mm</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="17" column="0" colspan="3">
-                      <widget class="QSlider" name="horizontalSlider_3">
-                       <property name="orientation">
-                        <enum>Qt::Horizontal</enum>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="24" column="2">
-                      <widget class="QLabel" name="label_24">
-                       <property name="text">
-                        <string>mm</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="27" column="0" colspan="3">
-                      <widget class="QSlider" name="horizontalSlider_11">
-                       <property name="orientation">
-                        <enum>Qt::Horizontal</enum>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="16" column="0">
-                      <widget class="QLabel" name="label_2">
-                       <property name="text">
-                        <string>Pierce:</string>
                        </property>
                        <property name="alignment">
                         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -2093,10 +2052,13 @@ p, li { white-space: pre-wrap; }
                        </property>
                       </widget>
                      </item>
-                     <item row="18" column="2">
-                      <widget class="QLabel" name="label_22">
+                     <item row="0" column="1">
+                      <widget class="QLabel" name="label_11">
                        <property name="text">
-                        <string>mm</string>
+                        <string/>
+                       </property>
+                       <property name="alignment">
+                        <set>Qt::AlignCenter</set>
                        </property>
                       </widget>
                      </item>
@@ -2153,44 +2115,34 @@ p, li { white-space: pre-wrap; }
                        </layout>
                       </widget>
                      </item>
-                     <item row="22" column="0">
-                      <widget class="QLabel" name="label_19">
+                     <item row="21" column="0" colspan="3">
+                      <widget class="QSlider" name="hs_jump">
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="20" column="2">
+                      <widget class="QLabel" name="label_25">
                        <property name="text">
-                        <string>Cut:</string>
+                        <string>mm</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="11" column="0">
+                      <widget class="QLabel" name="label_12">
+                       <property name="text">
+                        <string>Cor. vel:</string>
                        </property>
                        <property name="alignment">
                         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                        </property>
                       </widget>
                      </item>
-                     <item row="21" column="0" colspan="3">
-                      <widget class="QSlider" name="horizontalSlider_8">
+                     <item row="8" column="0" colspan="3">
+                      <widget class="QSlider" name="hs_direction">
                        <property name="orientation">
                         <enum>Qt::Horizontal</enum>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="12" column="0" colspan="3">
-                      <widget class="QSlider" name="horizontalSlider_5">
-                       <property name="orientation">
-                        <enum>Qt::Horizontal</enum>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="3" column="2">
-                      <widget class="QLabel" name="label_6">
-                       <property name="text">
-                        <string>mm</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="0" column="1">
-                      <widget class="QLabel" name="label_11">
-                       <property name="text">
-                        <string/>
-                       </property>
-                       <property name="alignment">
-                        <set>Qt::AlignCenter</set>
                        </property>
                       </widget>
                      </item>
@@ -2201,13 +2153,54 @@ p, li { white-space: pre-wrap; }
                        </property>
                       </widget>
                      </item>
-                     <item row="26" column="0">
-                      <widget class="QLabel" name="label_21">
+                     <item row="16" column="0">
+                      <widget class="QLabel" name="label_2">
                        <property name="text">
-                        <string>TextLabel</string>
+                        <string>Pierce:</string>
                        </property>
                        <property name="alignment">
                         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="7" column="1">
+                      <widget class="QLabel" name="label_17">
+                       <property name="text">
+                        <string>Direction</string>
+                       </property>
+                       <property name="alignment">
+                        <set>Qt::AlignCenter</set>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="0">
+                      <widget class="QLabel" name="label">
+                       <property name="text">
+                        <string>Feed:</string>
+                       </property>
+                       <property name="alignment">
+                        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="17" column="0" colspan="3">
+                      <widget class="QSlider" name="hs_pierce">
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="24" column="2">
+                      <widget class="QLabel" name="label_24">
+                       <property name="text">
+                        <string>mm</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="27" column="0" colspan="3">
+                      <widget class="QSlider" name="horizontalSlider_11">
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
                        </property>
                       </widget>
                      </item>
@@ -2222,17 +2215,7 @@ p, li { white-space: pre-wrap; }
                       </widget>
                      </item>
                      <item row="23" column="0" colspan="3">
-                      <widget class="QSlider" name="horizontalSlider_9">
-                       <property name="orientation">
-                        <enum>Qt::Horizontal</enum>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="10" column="0" colspan="3">
-                      <widget class="Slider" name="slider">
-                       <property name="maximum">
-                        <number>100</number>
-                       </property>
+                      <widget class="QSlider" name="hs_cut">
                        <property name="orientation">
                         <enum>Qt::Horizontal</enum>
                        </property>
@@ -2242,6 +2225,20 @@ p, li { white-space: pre-wrap; }
                       <widget class="QLabel" name="label_26">
                        <property name="text">
                         <string>mm</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="16" column="2">
+                      <widget class="QLabel" name="label_15">
+                       <property name="text">
+                        <string>mm</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="10" column="0" colspan="3">
+                      <widget class="QSlider" name="hs_volts">
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
                        </property>
                       </widget>
                      </item>
@@ -2372,11 +2369,6 @@ p, li { white-space: pre-wrap; }
   </widget>
  </widget>
  <customwidgets>
-  <customwidget>
-   <class>Slider</class>
-   <extends>QSlider</extends>
-   <header>qtvcp.widgets.simple_widgets</header>
-  </customwidget>
   <customwidget>
    <class>FileManager</class>
    <extends>QWidget</extends>
