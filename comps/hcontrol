@@ -9,11 +9,13 @@ class HControl:
         self.homed_state = False
         self.offset = 0
         self.bit_in = [
-            'homing', 'home-sw', 'probing' 
+            'homing', 'home-sw', 'probing',
+            'probe-sw',
             ]
         self.float_in = [
             'max-lim', 'min-lim', 'max-vel', 
-            'homing-vel', 'pos-fb', 'home-offset'
+            'homing-vel', 'pos-fb', 'home-offset',
+            'probe-vel', 
             ]
         self.bit_out = [
             'homed', 
@@ -59,9 +61,11 @@ class HControl:
             self.comp['offset'] = self.offset
             
     def probing(self):
-        pass
-
-            
+        while not self.comp['probe-sw']:
+            self.comp['vel-cmd'] = -20
+        while self.comp['probe-sw']:
+            self.comp['vel-cmd'] = 20
+        self.comp['vel-cmd'] = 0
         
         
 if __name__ == '__main__':
