@@ -56,6 +56,13 @@ class HandlerClass:
         self.float_in = []
         self.bit_out = ['homing']
         self.float_out = []
+        self.sliders_list = [
+            'jog', 'feed', 'direction',
+            'volts', 'cor_vel', 'pierce',
+            'delay', 'jump', 'cut',
+            'blow', 
+        ]
+        self.sl_d = qtgui_defaults.sliders
         self.init_pins()
         
     ##########################################
@@ -172,6 +179,16 @@ class HandlerClass:
         self.w.pb_goto_zero.clicked.connect(lambda: self.mdi_command('G0X0Y0'))
         self.w.pb_goto_end.clicked.connect(lambda: self.mdi_command('goto_end'))
         
+        # sliders
+        for i in self.sliders_list:
+            self.w['hs_' + i].setValue(self.sl_d[i + '_val'])
+            self.w['hs_' + i].setMinimum(self.sl_d[i + '_min'])
+            self.w['hs_' + i].setMaximum(self.sl_d[i + '_max'])
+            self.w['hs_' + i].setSingleStep(self.sl_d[i +'_single_step'])
+            self.w['hs_' + i].setPageStep(self.sl_d[i +'_page_step'])
+            self.w['lbl_' + i].setText('%s' % (self.sl_d[i + '_val'] * self.sl_d[i + '_scale']))
+            self.w['hs_' + i].valueChanged.connect(lambda w, sl_name = i: self.slider_val_change(sl_name))
+            
         # Settings
         self.w.pb_settings_halshow.clicked.connect(lambda: self.run_app('halshow'))
         self.w.pb_settings_halmeter.clicked.connect(lambda: self.run_app('halmeter'))
@@ -179,28 +196,7 @@ class HandlerClass:
         self.w.pb_settings_halstatus.clicked.connect(lambda: self.run_app('status'))
         self.w.pb_settings_halcalibration.clicked.connect(lambda: self.run_app('calibration'))
         
-        # sliders
-        ## feed
-        self.w.hs_feed.setMinimum(0)
-        self.w.hs_feed.setMaximum(250)
-        self.w.hs_feed.setValue(100)
-        self.w.hs_feed.setSingleStep(1)
-        self.w.hs_feed.setPageStep(1)
-        self.w.hs_feed.valueChanged.connect()
         
-        ##jog  
-        self.w.hs_jog.setMinimum(0)
-        self.w.hs_jog.setMaximum(250)
-        self.w.hs_jog.setValue(100)
-        self.w.hs_jog.setSingleStep(1)
-        self.w.hs_jog.setPageStep(1)
-        
-        ##direction
-        self.w.hs_direction.setMinimum(-1)
-        self.w.hs_direction.setMaximum(1)
-        self.w.hs_direction.setValue(1)
-        self.w.hs_direction.setSingleStep(1)
-        self.w.hs_direction.setPageStep(1)
         
         # panels
         self.w.fr_left.close()
@@ -465,8 +461,11 @@ class HandlerClass:
                 if i == app:
                     os.popen('/usr/bin/%s' % i)
             
-    def feed_val(self):
-        pass
+    def slider_val_change(self, slider):
+        val = self.w['hs_' + slider].value() * self.sl_d[slider + '_scale']
+        self.w['lbl_' + slider].setText('%s' % val)
+        
+        
     #####################
     # general functions #
     #####################
