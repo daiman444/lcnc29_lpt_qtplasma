@@ -181,8 +181,8 @@ class HandlerClass:
         
         # sliders
         for i in self.sliders_list:
-            self.w['hs_' + i].setMaximum(self.sl_d[i + '_max'])
             self.w['hs_' + i].setMinimum(self.sl_d[i + '_min'])
+            self.w['hs_' + i].setMaximum(self.sl_d[i + '_max'])
             self.w['hs_' + i].setValue(self.sl_d[i + '_val'])
             self.w['hs_' + i].setSingleStep(self.sl_d[i +'_single_step'])
             self.w['hs_' + i].setPageStep(self.sl_d[i +'_page_step'])
@@ -204,8 +204,6 @@ class HandlerClass:
         self.w.pb_settings_halscope.clicked.connect(lambda: self.run_app('halscope'))
         self.w.pb_settings_halstatus.clicked.connect(lambda: self.run_app('status'))
         self.w.pb_settings_halcalibration.clicked.connect(lambda: self.run_app('calibration'))
-        
-        
         
         # panels
         self.w.fr_left.close()
