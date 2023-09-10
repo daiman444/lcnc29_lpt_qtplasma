@@ -181,12 +181,21 @@ class HandlerClass:
         
         # sliders
         for i in self.sliders_list:
-            self.w['hs_' + i].setValue(self.sl_d[i + '_val'])
-            self.w['hs_' + i].setMinimum(self.sl_d[i + '_min'])
             self.w['hs_' + i].setMaximum(self.sl_d[i + '_max'])
+            self.w['hs_' + i].setMinimum(self.sl_d[i + '_min'])
+            self.w['hs_' + i].setValue(self.sl_d[i + '_val'])
             self.w['hs_' + i].setSingleStep(self.sl_d[i +'_single_step'])
             self.w['hs_' + i].setPageStep(self.sl_d[i +'_page_step'])
-            self.w['lbl_' + i].setText('%s' % (self.sl_d[i + '_val'] * self.sl_d[i + '_scale']))
+            val = round(self.w['hs_' + i].value() / self.sl_d[i + '_scale'], 1)
+            if i == 'direction':
+                if val == 1:
+                    self.w['lbl_' + i].setText('FWD')
+                elif val == -1:
+                    self.w['lbl_' + i].setText('BWD')
+                else:
+                    self.w['lbl_' + i].setText('STOP')
+            else:
+                self.w['lbl_' + i].setText('%s' % val)
             self.w['hs_' + i].valueChanged.connect(lambda w, sl_name = i: self.slider_val_change(sl_name))
             
         # Settings
@@ -462,8 +471,16 @@ class HandlerClass:
                     os.popen('/usr/bin/%s' % i)
             
     def slider_val_change(self, slider):
-        val = self.w['hs_' + slider].value() * self.sl_d[slider + '_scale']
-        self.w['lbl_' + slider].setText('%s' % val)
+        val = round(self.w['hs_' + slider].value() / self.sl_d[slider + '_scale'], 1)
+        if slider == 'direction':
+            if val == 1:
+                self.w['lbl_' + slider].setText('FWD')
+            elif val == -1:
+                self.w['lbl_' + slider].setText('BWD')
+            else:
+                self.w['lbl_' + slider].setText('STOP')
+        else:    
+            self.w['lbl_' + slider].setText('%s' % val)
         
         
     #####################
