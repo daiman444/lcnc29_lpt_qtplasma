@@ -1934,14 +1934,14 @@ p, li { white-space: pre-wrap; }
                       </widget>
                      </item>
                      <item row="11" column="2">
-                      <widget class="QLabel" name="label_14">
+                      <widget class="QLabel" name="lbl_cor_vel">
                        <property name="text">
                         <string>mm</string>
                        </property>
                       </widget>
                      </item>
                      <item row="9" column="2">
-                      <widget class="QLabel" name="label_9">
+                      <widget class="QLabel" name="lbl_volts">
                        <property name="text">
                         <string>mm</string>
                        </property>
@@ -1968,7 +1968,7 @@ p, li { white-space: pre-wrap; }
                       </widget>
                      </item>
                      <item row="18" column="2">
-                      <widget class="QLabel" name="label_22">
+                      <widget class="QLabel" name="lbl_delay">
                        <property name="text">
                         <string>mm</string>
                        </property>
@@ -1999,14 +1999,14 @@ p, li { white-space: pre-wrap; }
                       </widget>
                      </item>
                      <item row="3" column="2">
-                      <widget class="QLabel" name="label_6">
+                      <widget class="QLabel" name="lbl_jog">
                        <property name="text">
                         <string>mm</string>
                        </property>
                       </widget>
                      </item>
                      <item row="9" column="0">
-                      <widget class="QLabel" name="label_7">
+                      <widget class="QLabel" name="lbl_volts_in">
                        <property name="text">
                         <string>XXX</string>
                        </property>
@@ -2123,7 +2123,7 @@ p, li { white-space: pre-wrap; }
                       </widget>
                      </item>
                      <item row="20" column="2">
-                      <widget class="QLabel" name="label_25">
+                      <widget class="QLabel" name="lbl_jump">
                        <property name="text">
                         <string>mm</string>
                        </property>
@@ -2164,7 +2164,7 @@ p, li { white-space: pre-wrap; }
                       </widget>
                      </item>
                      <item row="7" column="1">
-                      <widget class="QLabel" name="label_17">
+                      <widget class="QLabel" name="lbl_direction">
                        <property name="text">
                         <string>Direction</string>
                        </property>
@@ -2191,7 +2191,7 @@ p, li { white-space: pre-wrap; }
                       </widget>
                      </item>
                      <item row="24" column="2">
-                      <widget class="QLabel" name="label_24">
+                      <widget class="QLabel" name="lbl_blow">
                        <property name="text">
                         <string>mm</string>
                        </property>
@@ -2222,14 +2222,14 @@ p, li { white-space: pre-wrap; }
                       </widget>
                      </item>
                      <item row="22" column="2">
-                      <widget class="QLabel" name="label_26">
+                      <widget class="QLabel" name="lbl_cut">
                        <property name="text">
                         <string>mm</string>
                        </property>
                       </widget>
                      </item>
                      <item row="16" column="2">
-                      <widget class="QLabel" name="label_15">
+                      <widget class="QLabel" name="lbl_pierce">
                        <property name="text">
                         <string>mm</string>
                        </property>
