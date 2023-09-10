@@ -4,6 +4,7 @@
 import sys
 import os
 import linuxcnc
+import qtgui_defaults
 
 from hal_glib import GStat
 from PyQt5 import QtCore, QtWidgets
@@ -183,11 +184,23 @@ class HandlerClass:
         self.w.hs_feed.setMinimum(0)
         self.w.hs_feed.setMaximum(250)
         self.w.hs_feed.setValue(100)
+        self.w.hs_feed.setSingleStep(1)
+        self.w.hs_feed.setPageStep(1)
+        self.w.hs_feed.valueChanged.connect()
         
         ##jog  
         self.w.hs_jog.setMinimum(0)
         self.w.hs_jog.setMaximum(250)
         self.w.hs_jog.setValue(100)
+        self.w.hs_jog.setSingleStep(1)
+        self.w.hs_jog.setPageStep(1)
+        
+        ##direction
+        self.w.hs_direction.setMinimum(-1)
+        self.w.hs_direction.setMaximum(1)
+        self.w.hs_direction.setValue(1)
+        self.w.hs_direction.setSingleStep(1)
+        self.w.hs_direction.setPageStep(1)
         
         # panels
         self.w.fr_left.close()
@@ -452,7 +465,8 @@ class HandlerClass:
                 if i == app:
                     os.popen('/usr/bin/%s' % i)
             
-
+    def feed_val(self):
+        pass
     #####################
     # general functions #
     #####################

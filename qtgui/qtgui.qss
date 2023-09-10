@@ -43,33 +43,37 @@ QLabel{
     color: yellow;
 }
 
+/*паз ползунка*/
 QSlider::groove:horisontal {
-    background: gray;
-    border-radius: 4px;
-    height: 20px }
+    background-color: red; 
+    border: 1px solid black;
+}
 
+/*ползунок*/
 QSlider::handle:horisontal {
-    background: red;
+    background-color: red;
     border: 0px solid black;
     border-radius: 4px;
-    height: 24px }
+    height: 24px;
+    width: 30px;
+}
 
+/*страница отображения значения*/
 QSlider::add-page:horisontal {
     background: blue;
     border: 1px solid black;
     border-radius: 4px;
-    height: 20px }
-
-/*#gcodegraphics{
-    qproperty-_view: z;
+    height: 20px; 
 }
-*/
+
+/*страница отображения значения перед ползунком*/
 QSlider::sub-page:horisontal {
     background: backalt;
     border: 1px solid black;
     border-radius: 4px;
-    height: 16px }
+    height: 16px; }
 
+/*
 QSlider::add-page:horisontal:disabled,
 QSlider::sub-page:horisontal:disabled,
 QSlider::handle:horisontal:disabled,
@@ -77,4 +81,5 @@ QSlider::groove:horisontal:disabled {
     color: green;
     background: rgb(102, 102, 255);
     /*border: 1px solid black;*/
-    border-radius: 4px }
+    border-radius: 4px; }
+    */
