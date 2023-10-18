@@ -3,7 +3,7 @@ Plasma Qt config for LinuxCNC 2.9
 
 # Something
 Список основных команд:
-
+QtPlasma.png
 Estop
 Power
 Load
@@ -15,5 +15,5 @@ Abort
 Manual
 MDI
 
-
+![QtPlasma.png](qtgui%2FQtPlasma.png)
 
